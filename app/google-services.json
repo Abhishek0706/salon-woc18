@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "989099970811",
+    "firebase_url": "https://woc-project.firebaseio.com",
+    "project_id": "woc-project",
+    "storage_bucket": "woc-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989099970811:android:dfe3e1044a097cd1",
+        "android_client_info": {
+          "package_name": "com.example.abhishekpatil.salon_woc_18"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989099970811-1bcnqs4esbbet3atvo83bqs9r6ft2ool.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.abhishekpatil.salon_woc_18",
+            "certificate_hash": "654296d226e5985eb906adb01fc619c51e0fcd81"
+          }
+        },
+        {
+          "client_id": "989099970811-ccv2p9ubq6khijpdtsmjhfl3s333tolk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpcQ6rrj84H_umLbwQjEDCtADnt2PNflU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989099970811-ccv2p9ubq6khijpdtsmjhfl3s333tolk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
