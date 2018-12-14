@@ -1,10 +1,15 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,7 +27,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
-public class Sign_up_verify extends AppCompatActivity {
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+
+public class Sign_up_verify extends Fragment {
     private FirebaseAuth mAuth;
     private String verificationId;
     private Button btn_verify_customer;
@@ -33,24 +41,32 @@ public class Sign_up_verify extends AppCompatActivity {
     DatabaseReference customerref;
     DatabaseReference barberref;
 
-
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up_verify);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sign_up_verify,container,false);
+
+        motp = (EditText)view.findViewById(R.id.text_otp);
+        btn_verify_barber = (Button)view.findViewById(R.id.btn_verify_barber);
+        btn_verify_customer = (Button)view.findViewById(R.id.btn_verify_customer);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         customerref = firebaseDatabase.getReference().child("customer");
         barberref = firebaseDatabase.getReference().child("barber");
         mAuth = FirebaseAuth.getInstance();
-        motp = (EditText)findViewById(R.id.text_otp);
-        btn_verify_customer = (Button)findViewById(R.id.btn_verify_customer);
-        btn_verify_barber = (Button)findViewById(R.id.btn_verify_barber);
-
-       String phonenumber = getIntent().getStringExtra("phonenumber");
 
 
+        return view;
+    }
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Sign_up_verifyArgs args = Sign_up_verifyArgs.fromBundle(getArguments());
+        String phonenumber = args.getPhonenumber();
 
         sendVerificationCode(phonenumber);
 
@@ -65,6 +81,7 @@ public class Sign_up_verify extends AppCompatActivity {
                     return;
                 }
                 verifyCode(otp);
+
             }
         });
         btn_verify_barber.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +95,7 @@ public class Sign_up_verify extends AppCompatActivity {
                     return;
                 }
                 verifyCode(otp);
+
             }
         });
 
@@ -122,7 +140,7 @@ public class Sign_up_verify extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(Sign_up_verify.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 
 
         }
@@ -134,34 +152,40 @@ public class Sign_up_verify extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()== true){
-                    String name = getIntent().getStringExtra("name");
-                    String city = getIntent().getStringExtra("city");
-                    String phonenumber = getIntent().getStringExtra("phonenumber");
+
+                    Sign_up_verifyArgs args = Sign_up_verifyArgs.fromBundle(getArguments());
+                    String phonenumber = args.getPhonenumber();
+                    String name = args.getName();
+                    String city = args.getCity();
+
+                    Toast.makeText(getContext(),"hello",Toast.LENGTH_LONG).show();
+
 
 
                     if(i==1){
                         customerref.child(phonenumber).child("name").setValue(name);
                         customerref.child(phonenumber).child("city").setValue(city);
 
+                      Navigation.findNavController(getView()).navigate(R.id.action_sign_up_verify_to_customer_main);
 
-                        Intent intent = new Intent(Sign_up_verify.this, Customer_main.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+
                     }
                     else{
                         barberref.child(phonenumber).child("name").setValue(name);
                         barberref.child(phonenumber).child("city").setValue(city);
 
-                        Intent intent = new Intent(Sign_up_verify.this, Services_by_barber.class);
-                        intent.putExtra("phoneno",phonenumber);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
+                        Sign_up_verifyDirections.ActionSignUpVerifyToServicesByBarber action = Sign_up_verifyDirections.actionSignUpVerifyToServicesByBarber();
+                        action.setPhonenumber(phonenumber);
+
+                        Navigation.findNavController(getView()).navigate(action);
+
                     }
                 }
 
             }
         });
 
-    }
 
+
+    }
 }

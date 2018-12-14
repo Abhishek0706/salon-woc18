@@ -16,22 +16,22 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical">
-    
-    <EditText
-        android:id="@+id/text_otp_signin"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:textSize="24dp"
-        android:inputType="numberPassword"
-        android:textAlignment="center"
-      />
 
-    <Button
-        android:id="@+id/btn_verify_signin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="verify"
+        <EditText
+            android:id="@+id/text_otp_signin"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:inputType="numberPassword"
+            android:textAlignment="center"
+            />
 
-        />
+        <Button
+            android:id="@+id/btn_verify_signin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="verify"
+
+            />
     </LinearLayout>
 </ScrollView>

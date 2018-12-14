@@ -1,9 +1,15 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -11,7 +17,11 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class Services_by_barber extends AppCompatActivity {
+import androidx.navigation.Navigation;
+
+
+public class Services_by_barber extends Fragment {
+
     private CheckBox box_haircut; private EditText rate_haircut;
     private CheckBox box_hairspa;private EditText rate_hairspa;
     private CheckBox box_haircolor;private EditText rate_haircolor;
@@ -19,26 +29,31 @@ public class Services_by_barber extends AppCompatActivity {
     private CheckBox box_facial;private EditText rate_facial;
     private CheckBox box_bleach;private EditText rate_bleach;
     private Button btn;
-
     private DatabaseReference myref;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_services_by_barber);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_services_by_barber,container,false);
+        box_haircut = (CheckBox)view.findViewById(R.id.cb_haircut); rate_haircut = (EditText)view.findViewById(R.id.rate_haircut);
+        box_hairspa = (CheckBox)view.findViewById(R.id.cb_hairspa); rate_hairspa = (EditText)view.findViewById(R.id.rate_hairspa);
+        box_haircolor = (CheckBox)view.findViewById(R.id.cb_haircolor); rate_haircolor = (EditText)view.findViewById(R.id.rate_haircolor);
+        box_massage = (CheckBox)view.findViewById(R.id.cb_massage); rate_massage = (EditText)view.findViewById(R.id.rate_massage);
+        box_facial = (CheckBox)view.findViewById(R.id.cb_facial); rate_facial = (EditText)view.findViewById(R.id.rate_facial);
+        box_bleach = (CheckBox)view.findViewById(R.id.cb_bleach); rate_bleach = (EditText)view.findViewById(R.id.rate_bleach);
 
-        final String phone = getIntent().getStringExtra("phoneno");
-        myref =  FirebaseDatabase.getInstance().getReference().child("barber").child(phone).child("services");
+        btn  = (Button)view.findViewById(R.id.btn_next_services);
 
-        box_haircut = (CheckBox)findViewById(R.id.cb_haircut); rate_haircut = (EditText)findViewById(R.id.rate_haircut);
-        box_hairspa = (CheckBox)findViewById(R.id.cb_hairspa); rate_hairspa = (EditText)findViewById(R.id.rate_hairspa);
-        box_haircolor = (CheckBox)findViewById(R.id.cb_haircolor); rate_haircolor = (EditText)findViewById(R.id.rate_haircolor);
-        box_massage = (CheckBox)findViewById(R.id.cb_massage); rate_massage = (EditText)findViewById(R.id.rate_massage);
-        box_facial = (CheckBox)findViewById(R.id.cb_facial); rate_facial = (EditText)findViewById(R.id.rate_facial);
-        box_bleach = (CheckBox)findViewById(R.id.cb_bleach); rate_bleach = (EditText)findViewById(R.id.rate_bleach);
 
-        btn  = (Button)findViewById(R.id.btn_next_services);
+        return view;
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        final String phonenumber = Services_by_barberArgs.fromBundle(getArguments()).getPhonenumber();
+        myref =  FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber).child("services");
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,9 +101,9 @@ public class Services_by_barber extends AppCompatActivity {
                     myref.child("bleach").setValue("0");
                 }
 
-                Intent intent  = new Intent(Services_by_barber.this,Time.class);
-                intent.putExtra("phone", phone);
-                startActivity(intent);
+                Services_by_barberDirections.ActionServicesByBarberToDay action = Services_by_barberDirections.actionServicesByBarberToDay();
+                action.setPhonenumber(phonenumber);
+                Navigation.findNavController(v).navigate(action);
             }
         });
 

@@ -1,10 +1,15 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,7 +30,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
-public class Sign_in_verify extends AppCompatActivity {
+import androidx.navigation.Navigation;
+
+
+public class Sign_in_verify extends Fragment {
     private EditText otp;
     private Button btn;
     private FirebaseAuth mAuth;
@@ -34,21 +42,26 @@ public class Sign_in_verify extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     private String verificationId;
 
-
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in_verify);
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_sign_in_verify,container,false);
         firebaseDatabase = FirebaseDatabase.getInstance();
         customerref = firebaseDatabase.getReference().child("customer");
         barberref = firebaseDatabase.getReference().child("barber");
         mAuth = FirebaseAuth.getInstance();
-        otp = (EditText)findViewById(R.id.text_otp_signin);
-        btn = (Button)findViewById(R.id.btn_verify_signin);
-        String phonenumber = getIntent().getStringExtra("phone");
+        otp = (EditText)view.findViewById(R.id.text_otp_signin);
+        btn = (Button)view.findViewById(R.id.btn_verify_signin);
 
+        return view;
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        String phonenumber = Sign_up_verifyArgs.fromBundle(getArguments()).getPhonenumber();
 
         sendVerificationCode(phonenumber);
 
@@ -108,7 +121,7 @@ public class Sign_in_verify extends AppCompatActivity {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(Sign_in_verify.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
 
 
         }
@@ -120,7 +133,7 @@ public class Sign_in_verify extends AppCompatActivity {
 
                 if (task.isSuccessful()== true){
 
-                    final String phonenumber = getIntent().getStringExtra("phone");
+                    final String phonenumber = Sign_up_verifyArgs.fromBundle(getArguments()).getPhonenumber();
 
                     customerref.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -128,17 +141,13 @@ public class Sign_in_verify extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                             if(dataSnapshot.child(phonenumber).exists()){
-                                Toast.makeText(Sign_in_verify.this,"Hello customer",Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(Sign_in_verify.this, Customer_main.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+                                Toast.makeText(getContext(),"Hello customer",Toast.LENGTH_LONG).show();
+                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_customer_main);
 
                             }
                             else{
-                                Toast.makeText(Sign_in_verify.this,"Hello barber",Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(Sign_in_verify.this, Barber_main.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
+                                Toast.makeText(getContext(),"Hello barber",Toast.LENGTH_LONG).show();
+                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_barber_main);
                             }
 
                         }
@@ -155,6 +164,4 @@ public class Sign_in_verify extends AppCompatActivity {
         });
 
     }
-
 }
-
