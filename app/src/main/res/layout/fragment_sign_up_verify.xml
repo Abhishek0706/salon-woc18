@@ -31,14 +31,14 @@
             android:id="@+id/btn_verify_customer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="verify as customer"
+            android:text="@string/verify_as_customer"
 
             />
         <Button
             android:id="@+id/btn_verify_barber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="verify as barber"
+            android:text="@string/verify_as_barber"
 
             />
     </LinearLayout>

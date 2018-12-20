@@ -36,7 +36,7 @@
                     android:id="@+id/nameOfSalon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="NAME OF SALON"
+                    android:text="@string/name_of_salon"
                     android:textSize="24dp"
                     android:textStyle="bold"/>
                 <TextView
@@ -44,13 +44,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
-                    android:text="Address"/>
+                    android:text="@string/address_of_salon"/>
 
                 <TextView
                     android:id="@+id/phonenumber_of_Salon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Other Information"/>
+                    android:text="@string/phone_number"/>
 
             </LinearLayout>
 

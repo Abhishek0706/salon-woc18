@@ -24,7 +24,7 @@
             android:textColor="#000000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NAME OF SALON"
+            android:text="@string/name_of_salon"
             android:textStyle="bold"
             android:textSize="24dp"
             android:layout_gravity="center_horizontal"/>
@@ -32,12 +32,12 @@
             android:id="@+id/salon_info_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="address of salon"/>
+            android:text="@string/address_of_salon"/>
         <TextView
             android:id="@+id/salon_info_phonenumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="phone number"/>
+            android:text="@string/phone_number"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,33 +49,33 @@
                 android:id="@+id/info_cb_haircut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="haircut"/>
+                android:text="@string/haircut"/>
 
             <CheckBox
                 android:id="@+id/info_cb_hairspa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="hairspa" />
+                android:text="@string/hairspa" />
             <CheckBox
                 android:id="@+id/info_cb_haircolor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="haircolor" />
+                android:text="@string/haircolor" />
             <CheckBox
                 android:id="@+id/info_cb_massage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="massage" />
+                android:text="@string/massage" />
             <CheckBox
                 android:id="@+id/info_cb_facial"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="facial" />
+                android:text="@string/facial" />
             <CheckBox
                 android:id="@+id/info_cb_bleach"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="bleach" />
+                android:text="@string/bleach" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,7 +88,7 @@
                 android:gravity="center_horizontal"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:text="CHOOSE YOUR SLOT"/>
+                android:text="@string/choose_your_slot"/>
 
 
             <RadioGroup
@@ -100,57 +100,57 @@
                     android:id="@+id/rb1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9am-10am" />
+                    android:text="@string/time1" />
                 <RadioButton
                     android:id="@+id/rb2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10am-11am" />
+                    android:text="@string/time2" />
                 <RadioButton
                     android:id="@+id/rb3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="11am-12pm" />
+                    android:text="@string/time3" />
                 <RadioButton
                     android:id="@+id/rb4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12pm-1pm" />
+                    android:text="@string/time4" />
                 <RadioButton
                     android:id="@+id/rb5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1pm-2pm" />
+                    android:text="@string/time5" />
                 <RadioButton
                     android:id="@+id/rb6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2pm-3pm" />
+                    android:text="@string/time6" />
                 <RadioButton
                     android:id="@+id/rb7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="3pm-4pm" />
+                    android:text="@string/time7" />
                 <RadioButton
                     android:id="@+id/rb8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="4pm-5pm" />
+                    android:text="@string/time8" />
                 <RadioButton
                     android:id="@+id/rb9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="5pm-6pm" />
+                    android:text="@string/time9" />
                 <RadioButton
                     android:id="@+id/rb10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="6pm-7pm" />
+                    android:text="@string/time10" />
                 <RadioButton
                     android:id="@+id/rb11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="7pm-8pm" />
+                    android:text="@string/time11" />
                 <RadioButton
                     android:id="@+id/rb12"
                     android:layout_width="wrap_content"
@@ -160,7 +160,7 @@
                     android:id="@+id/rb13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="9pm-10pm" />
+                    android:text="@string/time13" />
 
             </RadioGroup>
 
@@ -172,7 +172,7 @@
             android:id="@+id/btn_booknow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="book now"
+            android:text="@string/book_now"
             android:layout_gravity="right"
             />
     </LinearLayout>

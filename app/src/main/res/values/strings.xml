@@ -1,6 +1,46 @@
 <resources>
     <string name="app_name">salon-woc-18</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name_of_salon">NAME OF SALON</string>
+    <string name="address_of_salon">ADDRESS OF SALON</string>
+    <string name="phone_number">PHONENUMBER</string>
+    <string name="haircut">HAIRCUT</string>
+    <string name="hairspa">HAIRSPA</string>
+    <string name="haircolor">HAIRCOLOR</string>
+    <string name="massage">MASSAGE</string>
+    <string name="facial">FACIAL</string>
+    <string name="bleach">BLEACH</string>
+    <string name="choose_your_slot">CHOOSE YOUR SLOT</string>
+    <string name="time1">9am-10am</string>
+    <string name="time2">10am-11am</string>
+    <string name="time3">11am-12pm</string>
+    <string name="time4">12pm-1pm</string>
+    <string name="time5">1pm-2pm</string>
+    <string name="time6">2pm-3pm</string>
+    <string name="time7">3pm-4pm</string>
+    <string name="time8">4pm-5pm</string>
+    <string name="time9">5pm-6pm</string>
+    <string name="time10">6pm-7pm</string>
+    <string name="time11">7pm-8pm</string>
+    <string name="time12">8pm-9pm</string>
+    <string name="time13">9am-10pm</string>
+    <string name="book_now">BOOK NOW</string>
+    <string name="services_which_you_provide">SERVICES WHICH YOU PROVIDE</string>
+    <string name="next">NEXT</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="send_otp">SEND OTP</string>
+    <string name="verify">VERIFY</string>
+    <string name="name">NAME OF CUSTOMER/SALON</string>
+    <string name="city">CITY</string>
+    <string name="address">FULL ADDRESS OF SALON IF YOU ARE BARBER</string>
+    <string name="verify_as_customer">VERIFY AS CUSTOMER</string>
+    <string name="verify_as_barber">VERIFY AS BARBER</string>
+    <string name="today">TODAY</string>
+    <string name="tomorrow">TOMORROW</string>
+    <string name="log_out">LOGOUT</string>
+    <string name="name_of_customer">Name of customer</string>
+    <string name="services">Services</string>
+    <string name="book_for_tomorrow">BOOK FOR TOMORROW</string>
+    <string name="booked_history">BOOKED HISTORY</string>
+
 </resources>

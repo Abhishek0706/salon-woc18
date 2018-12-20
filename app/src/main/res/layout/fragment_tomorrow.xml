@@ -18,14 +18,14 @@
 
             <Button
                 android:id="@+id/btn_today"
-                android:text="today"
+                android:text="@string/today"
 
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <TextView
 
-                android:text="TOMORROW"
+                android:text="@string/tomorrow"
                 android:background="#ffffff"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -36,7 +36,7 @@
                 android:id="@+id/btn_logout_barber2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="logout"
+                android:text="@string/log_out"
                 android:textSize="8dp"/>
 
         </LinearLayout>
@@ -66,7 +66,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="9am-10am"/>
+                        android:text="@string/time1"/>
 
 
                     <LinearLayout
@@ -80,12 +80,12 @@
                             android:id="@+id/tomorrow_status_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -119,7 +119,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="10am-11am"/>
+                        android:text="@string/time2"/>
 
 
                     <LinearLayout
@@ -133,12 +133,12 @@
                             android:id="@+id/tomorrow_status_time2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -172,7 +172,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="11am-12pm"/>
+                        android:text="@string/time3"/>
 
 
                     <LinearLayout
@@ -186,12 +186,12 @@
                             android:id="@+id/tomorrow_status_time3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -225,7 +225,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="12pm-1pm"/>
+                        android:text="@string/time4"/>
 
 
                     <LinearLayout
@@ -239,12 +239,12 @@
                             android:id="@+id/tomorrow_status_time4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -278,7 +278,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="1pm-2pm"/>
+                        android:text="@string/time5"/>
 
 
                     <LinearLayout
@@ -292,12 +292,12 @@
                             android:id="@+id/tomorrow_status_time5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -331,7 +331,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="2pm-3pm"/>
+                        android:text="@string/time6"/>
 
 
                     <LinearLayout
@@ -345,12 +345,12 @@
                             android:id="@+id/tomorrow_status_time6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -384,7 +384,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="3pm-4pm"/>
+                        android:text="@string/time7"/>
 
 
                     <LinearLayout
@@ -398,12 +398,12 @@
                             android:id="@+id/tomorrow_status_time7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -437,7 +437,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="4pm-5pm"/>
+                        android:text="@string/time8"/>
 
 
                     <LinearLayout
@@ -451,12 +451,12 @@
                             android:id="@+id/tomorrow_status_time8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -490,7 +490,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="5pm-6pm"/>
+                        android:text="@string/time9"/>
 
 
                     <LinearLayout
@@ -504,12 +504,12 @@
                             android:id="@+id/tomorrow_status_time9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -543,7 +543,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="6pm-7pm"/>
+                        android:text="@string/time10"/>
 
 
                     <LinearLayout
@@ -557,12 +557,12 @@
                             android:id="@+id/tomorrow_status_time10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -596,7 +596,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="7pm-8pm"/>
+                        android:text="@string/time11"/>
 
 
                     <LinearLayout
@@ -610,12 +610,12 @@
                             android:id="@+id/tomorrow_status_time11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -649,7 +649,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="8pm-9pm"/>
+                        android:text="@string/time12"/>
 
 
                     <LinearLayout
@@ -663,12 +663,12 @@
                             android:id="@+id/tomorrow_status_time12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 
@@ -703,7 +703,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:background="@color/colorPrimary"
-                        android:text="9pm-10pm"/>
+                        android:text="@string/time13"/>
 
 
                     <LinearLayout
@@ -717,12 +717,12 @@
                             android:id="@+id/tomorrow_status_time13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="name of customer" />
+                            android:text="@string/name_of_customer" />
                         <TextView
                             android:id="@+id/tomorrow_service_time13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="services"/>
+                            android:text="@string/services"/>
 
                     </LinearLayout>
 

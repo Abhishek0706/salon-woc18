@@ -16,11 +16,11 @@
             android:id="@+id/btn_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="logout"
+            android:text="@string/log_out"
             android:textSize="8dp"
             />
         <TextView
-            android:text="BOOK FOR TOMORROW"
+            android:text="@string/book_for_tomorrow"
             android:textSize="18dp"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
@@ -32,7 +32,7 @@
             android:id="@+id/btn_bookedAppointments"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="booked history"
+            android:text="@string/booked_history"
             android:textSize="8dp"
             android:layout_weight="1"/>
 

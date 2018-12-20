@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign In"
+                android:text="@string/sign_in"
                 android:textAlignment="center"
                 android:textSize="16dp"
                 android:textColor="@color/colorAccent"
@@ -48,7 +48,7 @@
                 android:id="@+id/phonenumber"
                 android:layout_gravity="center"
                 android:singleLine="true"
-                android:hint="Phone Number"
+                android:hint="@string/phone_number"
                 android:gravity="center_horizontal"
                 android:textSize="24dp"
                 android:layout_width="300dp"
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_height="wrap_content"
-                android:text="send otp"
+                android:text="@string/send_otp"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical" />
         </LinearLayout>

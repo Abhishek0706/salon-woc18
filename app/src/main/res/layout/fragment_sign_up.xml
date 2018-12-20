@@ -34,42 +34,42 @@
             android:inputType="phone"
             android:layout_marginLeft="16dp"
             android:layout_height="wrap_content"
-            android:hint="PHONE NUMBER"
+            android:hint="@string/phone_number"
             />
         <EditText
             android:id="@+id/txt_name"
             android:layout_width="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_height="wrap_content"
-            android:hint="NAME"
+            android:hint="@string/name"
             />
         <EditText
             android:id="@+id/txt_city"
             android:layout_width="match_parent"
             android:layout_marginLeft="16dp"
             android:layout_height="wrap_content"
-            android:hint="CITY"
+            android:hint="@string/city"
             />
         <EditText
             android:id="@+id/txt_fulladdress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:hint="Full address if yout are barber"/>
+            android:hint="@string/address"/>
 
         <Button
             android:id="@+id/btn_sendotp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="-8dip"
-            android:text="send otp"
+            android:text="@string/send_otp"
             android:layout_gravity="center_horizontal"/>
 
         <Button
             android:id="@+id/btn_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign In"
+            android:text="@string/sign_in"
             android:layout_gravity="right"
             />
 
