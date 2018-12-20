@@ -86,6 +86,14 @@
         <action
             android:id="@+id/action_customer_main_to_sign_in"
             app:destination="@id/sign_in" />
+        <argument
+            android:name="phonenumber"
+            android:defaultValue="0"
+            app:argType="string" />
+        <argument
+            android:name="city"
+            android:defaultValue="no city"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/services_by_barber"

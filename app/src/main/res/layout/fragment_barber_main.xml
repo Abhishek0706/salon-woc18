@@ -64,7 +64,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="9am-10am"/>
 
 
@@ -110,7 +110,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="10am-11am"/>
 
 
@@ -157,7 +157,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="11am-12pm"/>
 
 
@@ -204,7 +204,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:layout_width="80dp"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="12pm-1pm"/>
 
 
@@ -251,7 +251,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="1pm-2pm"/>
 
                     <LinearLayout
@@ -296,7 +296,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="2pm-3pm"/>
 
                     <LinearLayout
@@ -341,7 +341,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="3pm-4pm"/>
 
 
@@ -387,7 +387,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="4pm-5pm"/>
 
 
@@ -434,7 +434,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="5pm-6pm"/>
 
 
@@ -480,7 +480,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="6pm-7pm"/>
 
 
@@ -527,7 +527,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="7pm-8pm"/>
 
 
@@ -574,7 +574,7 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:layout_width="80dp"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="8pm-9pm"/>
 
 
@@ -620,7 +620,7 @@
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:background="#00bfff"
+                        android:background="@color/colorPrimary"
                         android:text="9pm-10pm"/>
 
 

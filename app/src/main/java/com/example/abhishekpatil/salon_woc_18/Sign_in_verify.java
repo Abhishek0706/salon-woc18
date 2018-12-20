@@ -146,8 +146,13 @@ public class Sign_in_verify extends Fragment {
                                 NavOptions navOptions = new NavOptions.Builder()
                                         .setPopUpTo(R.id.sign_in_verify, true)
                                         .build();
+                                String city= dataSnapshot.child(phonenumber).child("city").getValue().toString();
+                                Sign_up_verifyDirections.ActionSignUpVerifyToCustomerMain action = Sign_up_verifyDirections.actionSignUpVerifyToCustomerMain();
+                                action.setPhonenumber(phonenumber);
+                                action.setCity(city);
 
-                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_customer_main,null,navOptions);
+
+                                Navigation.findNavController(getView()).navigate(action,navOptions);
 
                             }
                             else{

@@ -48,11 +48,11 @@ public class Sign_up_verify extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_up_verify,container,false);
+        View view = inflater.inflate(R.layout.fragment_sign_up_verify, container, false);
 
-        motp = (EditText)view.findViewById(R.id.text_otp);
-        btn_verify_barber = (Button)view.findViewById(R.id.btn_verify_barber);
-        btn_verify_customer = (Button)view.findViewById(R.id.btn_verify_customer);
+        motp = (EditText) view.findViewById(R.id.text_otp);
+        btn_verify_barber = (Button) view.findViewById(R.id.btn_verify_barber);
+        btn_verify_customer = (Button) view.findViewById(R.id.btn_verify_customer);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         customerref = firebaseDatabase.getReference().child("customer");
@@ -62,7 +62,6 @@ public class Sign_up_verify extends Fragment {
 
         return view;
     }
-
 
 
     @Override
@@ -78,8 +77,8 @@ public class Sign_up_verify extends Fragment {
             @Override
             public void onClick(View v) {
                 String otp = motp.getText().toString();
-                i =1;
-                if(otp.length()<6){
+                i = 1;
+                if (otp.length() < 6) {
                     motp.setError("Enter code");
                     motp.requestFocus();
                     return;
@@ -91,9 +90,9 @@ public class Sign_up_verify extends Fragment {
         btn_verify_barber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i =2;
+                i = 2;
                 String otp = motp.getText().toString();
-                if(otp.length()<6){
+                if (otp.length() < 6) {
                     motp.setError("Enter code");
                     motp.requestFocus();
                     return;
@@ -105,16 +104,16 @@ public class Sign_up_verify extends Fragment {
 
 
     }
-    private void verifyCode(String code){
+
+    private void verifyCode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithCredential(credential);
-
 
 
     }
 
 
-    private void sendVerificationCode(String number){
+    private void sendVerificationCode(String number) {
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number,
@@ -124,20 +123,21 @@ public class Sign_up_verify extends Fragment {
                 mcallbacks
         );
     }
+
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
-            mcallbacks= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            mcallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
-            verificationId =s;
+            verificationId = s;
 
         }
 
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
-            if(code !=null){
+            if (code != null) {
                 verifyCode(code);
             }
         }
@@ -155,7 +155,7 @@ public class Sign_up_verify extends Fragment {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if (task.isSuccessful()== true){
+                if (task.isSuccessful() == true) {
 
                     Sign_up_verifyArgs args = Sign_up_verifyArgs.fromBundle(getArguments());
 
@@ -163,36 +163,39 @@ public class Sign_up_verify extends Fragment {
                     String name = args.getName();
                     String city = args.getCity();
 
-                    Toast.makeText(getContext(),"hello",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "hello", Toast.LENGTH_LONG).show();
 
 
                     Calendar calendar = Calendar.getInstance();
                     String year = String.valueOf(calendar.get(Calendar.YEAR));
                     String month = String.valueOf(calendar.get(Calendar.MONTH));
                     String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-                    String today = day+month+year;
+                    String today = day + month + year;
 
                     Calendar calendar1 = Calendar.getInstance();
-                    calendar1.add(Calendar.DATE,1);
+                    calendar1.add(Calendar.DATE, 1);
                     String year2 = String.valueOf(calendar1.get(Calendar.YEAR));
                     String month2 = String.valueOf(calendar1.get(Calendar.MONTH));
                     String day2 = String.valueOf(calendar1.get(Calendar.DAY_OF_MONTH));
-                    String tomorrow = day2+month2+year2;
+                    String tomorrow = day2 + month2 + year2;
 
 
-                    if(i==1){
+                    if (i == 1) {
                         customerref.child(phonenumber).child("name").setValue(name);
                         customerref.child(phonenumber).child("city").setValue(city);
                         customerref.child(phonenumber).child("phonenumber").setValue(phonenumber);
                         NavOptions navOptions = new NavOptions.Builder()
                                 .setPopUpTo(R.id.sign_up_verify, true)
                                 .build();
+                        Sign_up_verifyDirections.ActionSignUpVerifyToCustomerMain action =Sign_up_verifyDirections.actionSignUpVerifyToCustomerMain();
+                        action.setPhonenumber(phonenumber);
+                        action.setCity(city);
 
-                      Navigation.findNavController(getView()).navigate(R.id.action_sign_up_verify_to_customer_main,null,navOptions);
+
+                        Navigation.findNavController(getView()).navigate(action, navOptions);
 
 
-                    }
-                    else{
+                    } else {
 
                         String fulladd = args.getFulladdress();
                         barberref.child(phonenumber).child("name").setValue(name);
@@ -201,9 +204,9 @@ public class Sign_up_verify extends Fragment {
                         barberref.child(phonenumber).child("phonenumber").setValue(phonenumber);
 
 
-                        for(int i=1;i<=13;i++){
+                        for (int i = 1; i <= 13; i++) {
                             String s = String.valueOf(i);
-                            s = "time"+s;
+                            s = "time" + s;
                             barberref.child(phonenumber).child(today).child(s).child("name").setValue("----");
                             barberref.child(phonenumber).child(today).child(s).child("service").setValue("----");
                             barberref.child(phonenumber).child(today).child(s).child("status").setValue("0");
@@ -211,16 +214,16 @@ public class Sign_up_verify extends Fragment {
 
                         }
 
-                        for(int i=1;i<=13;i++){
+                        for (int i = 1; i <= 13; i++) {
                             String s = String.valueOf(i);
-                            s = "time"+s;
+                            s = "time" + s;
                             barberref.child(phonenumber).child(tomorrow).child(s).child("name").setValue("----");
                             barberref.child(phonenumber).child(tomorrow).child(s).child("service").setValue("----");
                             barberref.child(phonenumber).child(tomorrow).child(s).child("status").setValue("1");
 
                         }
 
-                        Toast.makeText(getContext(),"FIRSTLY CHECK YOUR APPOINTMENTS",Toast.LENGTH_LONG);
+                        Toast.makeText(getContext(), "FIRSTLY CHECK YOUR APPOINTMENTS", Toast.LENGTH_LONG);
 
                         Sign_up_verifyDirections.ActionSignUpVerifyToServicesByBarber action = Sign_up_verifyDirections.actionSignUpVerifyToServicesByBarber();
                         action.setPhonenumber(phonenumber);
@@ -232,7 +235,6 @@ public class Sign_up_verify extends Fragment {
 
             }
         });
-
 
 
     }

@@ -24,9 +24,9 @@ public class Sign_in extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_in,container,false);
-        mbtn = (Button)view.findViewById(R.id.btn_sendotp);
-        mphone = (EditText)view.findViewById(R.id.phonenumber);
+        View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
+        mbtn = (Button) view.findViewById(R.id.btn_sendotp);
+        mphone = (EditText) view.findViewById(R.id.phonenumber);
         return view;
     }
 

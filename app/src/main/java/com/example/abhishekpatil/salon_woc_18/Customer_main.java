@@ -37,7 +37,6 @@ public class Customer_main extends Fragment {
     private List<ListItem> listItems;
     private DatabaseReference myref;
     private DatabaseReference customerref;
-    private FirebaseUser muser;
     private String phonenumber;
     private static String city;
     private Button logout;
@@ -46,15 +45,15 @@ public class Customer_main extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_customer_main,container,false);
+        View view = inflater.inflate(R.layout.fragment_customer_main, container, false);
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         myref = FirebaseDatabase.getInstance().getReference().child("barber");
         customerref = FirebaseDatabase.getInstance().getReference().child("customer");
-        muser = FirebaseAuth.getInstance().getCurrentUser();
-        logout = (Button)view.findViewById(R.id.btn_logout);
+
+        logout = (Button) view.findViewById(R.id.btn_logout);
 
 
         return view;
@@ -65,21 +64,9 @@ public class Customer_main extends Fragment {
         super.onStart();
 
 
-        phonenumber = muser.getPhoneNumber();
-        customerref.child(phonenumber).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                city = dataSnapshot.child("city").getValue().toString();
-                Toast.makeText(getContext(),city,Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
+        Customer_mainArgs args = Customer_mainArgs.fromBundle(getArguments());
+        phonenumber = args.getPhonenumber();
+        city = args.getCity();
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,20 +75,19 @@ public class Customer_main extends Fragment {
                 NavOptions navOptions = new NavOptions.Builder()
                         .setPopUpTo(R.id.sign_in, true)
                         .build();
-                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_sign_in,null,navOptions);
+                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_sign_in, null, navOptions);
             }
         });
 
 
-
         listItems = new ArrayList<ListItem>();
 
-        Query query = myref.orderByChild("city").equalTo(city);
+        Query query = myref.orderByChild("city");
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
 
                     listItems.add(snapshot.getValue(ListItem.class));
@@ -115,8 +101,8 @@ public class Customer_main extends Fragment {
 
             }
         });
-        adapter = new MyAdapter(listItems,getContext());
+        adapter = new MyAdapter(listItems, getContext());
 
         recyclerView.setAdapter(adapter);
-        }
+    }
 }

@@ -42,20 +42,19 @@ public class Sign_up extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_up,container,false);
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
         database = FirebaseDatabase.getInstance();
         customerref = database.getReference().child("customer");
         barberref = database.getReference().child("barber");
 
 
-        mphone = (EditText)view.findViewById(R.id.txt_phone);
-        mname = (EditText)view.findViewById(R.id.txt_name);
-        mcity = (EditText)view.findViewById(R.id.txt_city);
-        sendotp = (Button)view.findViewById(R.id.btn_sendotp);
-        signin = (Button)view.findViewById(R.id.btn_signin);
-        fulladdress = (EditText)view.findViewById(R.id.txt_fulladdress);
-
+        mphone = (EditText) view.findViewById(R.id.txt_phone);
+        mname = (EditText) view.findViewById(R.id.txt_name);
+        mcity = (EditText) view.findViewById(R.id.txt_city);
+        sendotp = (Button) view.findViewById(R.id.btn_sendotp);
+        signin = (Button) view.findViewById(R.id.btn_signin);
+        fulladdress = (EditText) view.findViewById(R.id.txt_fulladdress);
 
 
         return view;
@@ -70,7 +69,7 @@ public class Sign_up extends Fragment {
             @Override
             public void onClick(final View v) {
 
-                final String phonenumber = "+91"+mphone.getText().toString();
+                final String phonenumber = "+91" + mphone.getText().toString();
                 final String name = mname.getText().toString();
                 final String city = mcity.getText().toString();
 
@@ -78,8 +77,8 @@ public class Sign_up extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        if(dataSnapshot.child(phonenumber).exists()){
-                            Toast.makeText(getContext(),"user is already registered. Please sing up",Toast.LENGTH_LONG).show();
+                        if (dataSnapshot.child(phonenumber).exists()) {
+                            Toast.makeText(getContext(), "user is already registered. Please sing up", Toast.LENGTH_LONG).show();
                             exists = 1;
 
                         }
@@ -95,12 +94,12 @@ public class Sign_up extends Fragment {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        if(dataSnapshot.child(phonenumber).exists()){
-                            Toast.makeText(getContext(),"user is already registered. Please sign up",Toast.LENGTH_LONG).show();
+                        if (dataSnapshot.child(phonenumber).exists()) {
+                            Toast.makeText(getContext(), "user is already registered. Please sign up", Toast.LENGTH_LONG).show();
                             exists = 1;
 
                         }
-                        if(exists ==0){
+                        if (exists == 0) {
                             String fulladd = fulladdress.getText().toString();
 
                             Sign_upDirections.ActionSignUpToSignUpVerify action = Sign_upDirections.actionSignUpToSignUpVerify();
@@ -122,7 +121,6 @@ public class Sign_up extends Fragment {
                 });
 
 
-
             }
         });
 
@@ -134,7 +132,6 @@ public class Sign_up extends Fragment {
                 Navigation.findNavController(v).navigate(action);
             }
         });
-
 
 
     }

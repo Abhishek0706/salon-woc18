@@ -27,7 +27,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view  = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item,viewGroup,false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
         return new ViewHolder(view);
 
     }
@@ -49,7 +49,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 action.setPhonenumber(listItem.getPhonenumber());
                 Navigation.findNavController(v).navigate(action);
 
-              //  Toast.makeText(context,"hello",Toast.LENGTH_LONG).show();
+                //  Toast.makeText(context,"hello",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -60,7 +60,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return listItems.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView text_name;
         private TextView text_address;
         private TextView text_phonenumber;
@@ -69,12 +69,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            text_name = (TextView)itemView.findViewById(R.id.nameOfSalon);
-            text_address = (TextView)itemView.findViewById(R.id.addressOfSalon);
-            text_phonenumber = (TextView)itemView.findViewById(R.id.phonenumber_of_Salon);
-            img = (ImageView)itemView.findViewById(R.id.image);
-            linearLayout = (LinearLayout)itemView.findViewById(R.id.layoutOfSalon);
-
+            text_name = (TextView) itemView.findViewById(R.id.nameOfSalon);
+            text_address = (TextView) itemView.findViewById(R.id.addressOfSalon);
+            text_phonenumber = (TextView) itemView.findViewById(R.id.phonenumber_of_Salon);
+            img = (ImageView) itemView.findViewById(R.id.image);
+            linearLayout = (LinearLayout) itemView.findViewById(R.id.layoutOfSalon);
 
 
         }

@@ -11,7 +11,7 @@ public class ListItem {
         this.phonenumber = phonenumber;
     }
 
-    public ListItem(){
+    public ListItem() {
 
     }
 

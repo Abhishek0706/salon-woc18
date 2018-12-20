@@ -143,79 +143,79 @@ public class Barber_main extends Fragment {
         myref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("time1").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time1").child("status").getValue().toString().equals("2")){
 
                     name1.setText(dataSnapshot.child("time1").child("name").getValue().toString());
                     service1.setText(dataSnapshot.child("time1").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time2").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time2").child("status").getValue().toString().equals("2")){
 
                     name2.setText(dataSnapshot.child("time2").child("name").getValue().toString());
                     service2.setText(dataSnapshot.child("time2").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time3").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time3").child("status").getValue().toString().equals("2")){
 
                     name3.setText(dataSnapshot.child("time3").child("name").getValue().toString());
                     service3.setText(dataSnapshot.child("time3").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time4").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time4").child("status").getValue().toString().equals("2")){
 
                     name4.setText(dataSnapshot.child("time4").child("name").getValue().toString());
                     service4.setText(dataSnapshot.child("time4").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time5").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time5").child("status").getValue().toString().equals("2")){
 
                     name5.setText(dataSnapshot.child("time5").child("name").getValue().toString());
                     service5.setText(dataSnapshot.child("time5").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time6").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time6").child("status").getValue().toString().equals("2")){
 
                     name6.setText(dataSnapshot.child("time6").child("name").getValue().toString());
                     service6.setText(dataSnapshot.child("time6").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time7").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time7").child("status").getValue().toString().equals("2")){
 
                     name7.setText(dataSnapshot.child("time7").child("name").getValue().toString());
                     service7.setText(dataSnapshot.child("time7").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time8").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time8").child("status").getValue().toString().equals("2")){
 
                     name8.setText(dataSnapshot.child("time8").child("name").getValue().toString());
                     service8.setText(dataSnapshot.child("time8").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time9").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time9").child("status").getValue().toString().equals("2")){
 
                     name9.setText(dataSnapshot.child("time9").child("name").getValue().toString());
                     service9.setText(dataSnapshot.child("time9").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time10").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time10").child("status").getValue().toString().equals("2")){
 
                     name10.setText(dataSnapshot.child("time10").child("name").getValue().toString());
                     service10.setText(dataSnapshot.child("time10").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time11").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time11").child("status").getValue().toString().equals("2")){
 
                     name11.setText(dataSnapshot.child("time11").child("name").getValue().toString());
                     service11.setText(dataSnapshot.child("time11").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time12").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time12").child("status").getValue().toString().equals("2")){
 
                     name12.setText(dataSnapshot.child("time12").child("name").getValue().toString());
                     service12.setText(dataSnapshot.child("time12").child("service").getValue().toString());
                 }
 
-                if(dataSnapshot.child("time13").child("status").getValue().toString().equals("1")){
+                if(dataSnapshot.child("time13").child("status").getValue().toString().equals("2")){
 
                     name13.setText(dataSnapshot.child("time13").child("name").getValue().toString());
                     service13.setText(dataSnapshot.child("time13").child("service").getValue().toString());

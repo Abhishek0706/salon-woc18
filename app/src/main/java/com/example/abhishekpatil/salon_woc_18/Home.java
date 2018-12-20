@@ -49,6 +49,7 @@ public class Home extends Fragment {
 
         if(user!= null){
             final String phonenumber = user.getPhoneNumber();
+
             customerref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -56,7 +57,14 @@ public class Home extends Fragment {
                         NavOptions navOptions = new NavOptions.Builder()
                                 .setPopUpTo(R.id.home, true)
                                 .build();
-                        Navigation.findNavController(getView()).navigate(R.id.action_home_to_customer_main,null,navOptions);
+
+                      String city= dataSnapshot.child(phonenumber).child("city").getValue().toString();
+                      HomeDirections.ActionHomeToCustomerMain action = HomeDirections.actionHomeToCustomerMain();
+                      action.setPhonenumber(phonenumber);
+                      action.setCity(city);
+
+
+                        Navigation.findNavController(getView()).navigate(action,navOptions);
                     }
                 }
 
