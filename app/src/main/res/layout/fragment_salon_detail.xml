@@ -12,10 +12,10 @@
 
         <ImageView
             android:id="@+id/salon_imageView"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_launcher_background"/>
+            android:src="@drawable/wp2542098"/>
 
         <TextView
             android:id="@+id/salon_info_name"

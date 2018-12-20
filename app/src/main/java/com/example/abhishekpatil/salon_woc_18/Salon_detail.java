@@ -146,45 +146,47 @@ public class Salon_detail extends Fragment {
         barberref.child(date).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.child("time1").child("status").getValue().toString().equals("0")){
-                    rb1.setVisibility(View.INVISIBLE); }
+                if(dataSnapshot!=null){
+                    if(dataSnapshot.child("time1").child("status").getValue().toString().equals("0")){
+                        rb1.setVisibility(View.INVISIBLE); }
                     else{ rb1.setText("9am-10am"); }
-                if(dataSnapshot.child("time2").child("status").getValue().toString().equals("0")){
-                    rb2.setVisibility(View.INVISIBLE); }
-                else{ rb2.setText("10am-11am"); }
-                if(dataSnapshot.child("time3").child("status").getValue().toString().equals("0")){
-                    rb3.setVisibility(View.INVISIBLE); }
-                else{ rb3.setText("11am-12pm"); }
-                if(dataSnapshot.child("time4").child("status").getValue().toString().equals("0")){
-                    rb4.setVisibility(View.INVISIBLE); }
-                else{ rb4.setText("12pm-1pm"); }
-                if(dataSnapshot.child("time5").child("status").getValue().toString().equals("0")){
-                    rb5.setVisibility(View.INVISIBLE); }
-                else{ rb5.setText("1pm-2pm"); }
-                if(dataSnapshot.child("time6").child("status").getValue().toString().equals("0")){
-                    rb6.setVisibility(View.INVISIBLE); }
-                else{ rb6.setText("2pm-3pm"); }
-                if(dataSnapshot.child("time7").child("status").getValue().toString().equals("0")){
-                    rb7.setVisibility(View.INVISIBLE); }
-                else{ rb7.setText("3pm-4pm"); }
-                if(dataSnapshot.child("time8").child("status").getValue().toString().equals("0")){
-                    rb8.setVisibility(View.INVISIBLE); }
-                else{ rb8.setText("4pm-5pm"); }
-                if(dataSnapshot.child("time9").child("status").getValue().toString().equals("0")){
-                    rb9.setVisibility(View.INVISIBLE); }
-                else{ rb9.setText("5pm-6pm"); }
-                if(dataSnapshot.child("time10").child("status").getValue().toString().equals("0")){
-                    rb10.setVisibility(View.INVISIBLE); }
-                else{ rb10.setText("6pm-7pm"); }
-                if(dataSnapshot.child("time11").child("status").getValue().toString().equals("0")){
-                    rb11.setVisibility(View.INVISIBLE); }
-                else{ rb11.setText("7pm-8pm"); }
-                if(dataSnapshot.child("time12").child("status").getValue().toString().equals("0")){
-                    rb12.setVisibility(View.INVISIBLE); }
-                else{ rb12.setText("8pm-9pm"); }
-                if(dataSnapshot.child("time13").child("status").getValue().toString().equals("0")){
-                    rb13.setVisibility(View.INVISIBLE); }
-                else{ rb13.setText("9pm-10pm"); }
+                    if(dataSnapshot.child("time2").child("status").getValue().toString().equals("0")){
+                        rb2.setVisibility(View.INVISIBLE); }
+                    else{ rb2.setText("10am-11am"); }
+                    if(dataSnapshot.child("time3").child("status").getValue().toString().equals("0")){
+                        rb3.setVisibility(View.INVISIBLE); }
+                    else{ rb3.setText("11am-12pm"); }
+                    if(dataSnapshot.child("time4").child("status").getValue().toString().equals("0")){
+                        rb4.setVisibility(View.INVISIBLE); }
+                    else{ rb4.setText("12pm-1pm"); }
+                    if(dataSnapshot.child("time5").child("status").getValue().toString().equals("0")){
+                        rb5.setVisibility(View.INVISIBLE); }
+                    else{ rb5.setText("1pm-2pm"); }
+                    if(dataSnapshot.child("time6").child("status").getValue().toString().equals("0")){
+                        rb6.setVisibility(View.INVISIBLE); }
+                    else{ rb6.setText("2pm-3pm"); }
+                    if(dataSnapshot.child("time7").child("status").getValue().toString().equals("0")){
+                        rb7.setVisibility(View.INVISIBLE); }
+                    else{ rb7.setText("3pm-4pm"); }
+                    if(dataSnapshot.child("time8").child("status").getValue().toString().equals("0")){
+                        rb8.setVisibility(View.INVISIBLE); }
+                    else{ rb8.setText("4pm-5pm"); }
+                    if(dataSnapshot.child("time9").child("status").getValue().toString().equals("0")){
+                        rb9.setVisibility(View.INVISIBLE); }
+                    else{ rb9.setText("5pm-6pm"); }
+                    if(dataSnapshot.child("time10").child("status").getValue().toString().equals("0")){
+                        rb10.setVisibility(View.INVISIBLE); }
+                    else{ rb10.setText("6pm-7pm"); }
+                    if(dataSnapshot.child("time11").child("status").getValue().toString().equals("0")){
+                        rb11.setVisibility(View.INVISIBLE); }
+                    else{ rb11.setText("7pm-8pm"); }
+                    if(dataSnapshot.child("time12").child("status").getValue().toString().equals("0")){
+                        rb12.setVisibility(View.INVISIBLE); }
+                    else{ rb12.setText("8pm-9pm"); }
+                    if(dataSnapshot.child("time13").child("status").getValue().toString().equals("0")){
+                        rb13.setVisibility(View.INVISIBLE); }
+                    else{ rb13.setText("9pm-10pm"); }
+                }
 
             }
 

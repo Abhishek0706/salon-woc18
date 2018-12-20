@@ -41,6 +41,10 @@
             android:name="city"
             android:defaultValue="no city"
             app:argType="string" />
+        <argument
+            android:name="fulladdress"
+            android:defaultValue="no address"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/sign_in"

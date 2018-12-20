@@ -50,6 +50,12 @@
             android:layout_height="wrap_content"
             android:hint="CITY"
             />
+        <EditText
+            android:id="@+id/txt_fulladdress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:hint="Full address if yout are barber"/>
 
         <Button
             android:id="@+id/btn_sendotp"

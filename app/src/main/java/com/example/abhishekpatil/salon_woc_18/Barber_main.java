@@ -129,7 +129,7 @@ public class Barber_main extends Fragment {
                         s = "time"+s;
                         timeref.child(tomorrow).child(s).child("name").setValue("----");
                         timeref.child(tomorrow).child(s).child("service").setValue("----");
-                        timeref.child(tomorrow).child(s).child("status").setValue("0");
+                        timeref.child(tomorrow).child(s).child("status").setValue("1");
                     }
                 }
             }

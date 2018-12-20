@@ -158,6 +158,7 @@ public class Sign_up_verify extends Fragment {
                 if (task.isSuccessful()== true){
 
                     Sign_up_verifyArgs args = Sign_up_verifyArgs.fromBundle(getArguments());
+
                     String phonenumber = args.getPhonenumber();
                     String name = args.getName();
                     String city = args.getCity();
@@ -182,6 +183,7 @@ public class Sign_up_verify extends Fragment {
                     if(i==1){
                         customerref.child(phonenumber).child("name").setValue(name);
                         customerref.child(phonenumber).child("city").setValue(city);
+                        customerref.child(phonenumber).child("phonenumber").setValue(phonenumber);
                         NavOptions navOptions = new NavOptions.Builder()
                                 .setPopUpTo(R.id.sign_up_verify, true)
                                 .build();
@@ -192,9 +194,12 @@ public class Sign_up_verify extends Fragment {
                     }
                     else{
 
-
+                        String fulladd = args.getFulladdress();
                         barberref.child(phonenumber).child("name").setValue(name);
                         barberref.child(phonenumber).child("city").setValue(city);
+                        barberref.child(phonenumber).child("address").setValue(fulladd);
+                        barberref.child(phonenumber).child("phonenumber").setValue(phonenumber);
+
 
                         for(int i=1;i<=13;i++){
                             String s = String.valueOf(i);
@@ -202,6 +207,7 @@ public class Sign_up_verify extends Fragment {
                             barberref.child(phonenumber).child(today).child(s).child("name").setValue("----");
                             barberref.child(phonenumber).child(today).child(s).child("service").setValue("----");
                             barberref.child(phonenumber).child(today).child(s).child("status").setValue("0");
+
 
                         }
 

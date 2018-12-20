@@ -36,9 +36,10 @@ public class Customer_main extends Fragment {
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
     private DatabaseReference myref;
+    private DatabaseReference customerref;
     private FirebaseUser muser;
     private String phonenumber;
-    private String city;
+    private static String city;
     private Button logout;
 
 
@@ -51,6 +52,7 @@ public class Customer_main extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         myref = FirebaseDatabase.getInstance().getReference().child("barber");
+        customerref = FirebaseDatabase.getInstance().getReference().child("customer");
         muser = FirebaseAuth.getInstance().getCurrentUser();
         logout = (Button)view.findViewById(R.id.btn_logout);
 
@@ -61,6 +63,21 @@ public class Customer_main extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+
+        phonenumber = muser.getPhoneNumber();
+        customerref.child(phonenumber).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                city = dataSnapshot.child("city").getValue().toString();
+                Toast.makeText(getContext(),city,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
 
 
@@ -75,23 +92,11 @@ public class Customer_main extends Fragment {
             }
         });
 
-        phonenumber = muser.getPhoneNumber();
-        FirebaseDatabase.getInstance().getReference().child("customer").child(phonenumber).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                city = dataSnapshot.child("city").getValue().toString();
-                Toast.makeText(getContext(),city,Toast.LENGTH_LONG).show();
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         listItems = new ArrayList<ListItem>();
 
-        Query query = myref.orderByChild("city");
+        Query query = myref.orderByChild("city").equalTo(city);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -113,5 +118,5 @@ public class Customer_main extends Fragment {
         adapter = new MyAdapter(listItems,getContext());
 
         recyclerView.setAdapter(adapter);
-    }
+        }
 }

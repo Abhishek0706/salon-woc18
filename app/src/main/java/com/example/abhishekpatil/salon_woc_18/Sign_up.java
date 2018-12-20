@@ -30,6 +30,7 @@ public class Sign_up extends Fragment {
     private EditText mphone;
     private EditText mname;
     private EditText mcity;
+    private EditText fulladdress;
     private Button sendotp;
     public FirebaseDatabase database;
     public DatabaseReference customerref;
@@ -53,6 +54,7 @@ public class Sign_up extends Fragment {
         mcity = (EditText)view.findViewById(R.id.txt_city);
         sendotp = (Button)view.findViewById(R.id.btn_sendotp);
         signin = (Button)view.findViewById(R.id.btn_signin);
+        fulladdress = (EditText)view.findViewById(R.id.txt_fulladdress);
 
 
 
@@ -99,10 +101,13 @@ public class Sign_up extends Fragment {
 
                         }
                         if(exists ==0){
+                            String fulladd = fulladdress.getText().toString();
+
                             Sign_upDirections.ActionSignUpToSignUpVerify action = Sign_upDirections.actionSignUpToSignUpVerify();
                             action.setPhonenumber(phonenumber);
                             action.setName(name);
                             action.setCity(city);
+                            action.setFulladdress(fulladd);
                             Navigation.findNavController(v).navigate(action);
 
                         }
