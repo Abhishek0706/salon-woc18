@@ -42,5 +42,6 @@
     <string name="services">Services</string>
     <string name="book_for_tomorrow">BOOK FOR TOMORROW</string>
     <string name="booked_history">BOOKED HISTORY</string>
+    <string name="empty">----</string>
 
 </resources>

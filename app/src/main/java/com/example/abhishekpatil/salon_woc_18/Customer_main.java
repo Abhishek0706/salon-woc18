@@ -82,7 +82,7 @@ public class Customer_main extends Fragment {
 
         listItems = new ArrayList<ListItem>();
 
-        Query query = myref.orderByChild("city");
+        Query query = myref.orderByChild("city").equalTo(city);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

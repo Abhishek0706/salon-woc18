@@ -79,12 +79,12 @@
                             android:id="@+id/today_status_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/name_of_customer" />
+                            android:text="@string/empty" />
                         <TextView
                             android:id="@+id/today_service_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -123,14 +123,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time2"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -170,14 +170,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time3"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -218,14 +218,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time4"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -263,14 +263,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time5"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -308,14 +308,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time6"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -354,14 +354,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time7"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -401,14 +401,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time8"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -447,14 +447,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time9"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -494,14 +494,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time10"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -540,14 +540,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time11"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -587,14 +587,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time12"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
@@ -633,14 +633,14 @@
 
                         <TextView
                             android:id="@+id/today_status_time13"
-                            android:text="@string/name_of_customer"
+                            android:text="@string/empty"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/today_service_time13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty"/>
 
                     </LinearLayout>
 
