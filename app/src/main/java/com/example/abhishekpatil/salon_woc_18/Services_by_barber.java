@@ -101,9 +101,8 @@ public class Services_by_barber extends Fragment {
                     myref.child("bleach").setValue("0");
                 }
 
-                Services_by_barberDirections.ActionServicesByBarberToDay action = Services_by_barberDirections.actionServicesByBarberToDay();
-                action.setPhonenumber(phonenumber);
-                Navigation.findNavController(v).navigate(action);
+
+                Navigation.findNavController(v).navigate(R.id.action_services_by_barber_to_barber_main);
             }
         });
 

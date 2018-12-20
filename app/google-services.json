@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "989099970811-1bcnqs4esbbet3atvo83bqs9r6ft2ool.apps.googleusercontent.com",
+          "client_id": "989099970811-cee9cj4fsncen1tuk03k5nnea9e2nlvu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.abhishekpatil.salon_woc_18",
-            "certificate_hash": "654296d226e5985eb906adb01fc619c51e0fcd81"
+            "certificate_hash": "0a7b748b1e489b298afaf3be594d6f1bc1d8853c"
           }
         },
         {

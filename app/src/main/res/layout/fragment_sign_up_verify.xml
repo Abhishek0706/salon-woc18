@@ -8,6 +8,7 @@
     android:gravity="center"
     android:fillViewport="true"
     android:layout_gravity="center"
+
     tools:context=".Sign_up_verify">
 
     <LinearLayout

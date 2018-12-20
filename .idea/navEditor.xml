@@ -13,8 +13,34 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1441" />
-                            <option name="y" value="236" />
+                            <option name="x" value="1609" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_barber_main_to_sign_in">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_barber_main_to_tomorrow">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="customer_booked_appointment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1554" />
+                            <option name="y" value="439" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -25,25 +51,23 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1461" />
-                            <option name="y" value="537" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="day">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="837" />
-                            <option name="y" value="-85" />
+                            <option name="x" value="1024" />
+                            <option name="y" value="568" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_day_to_time4">
+                            <entry key="action_customer_main_to_customer_booked_appointment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_customer_main_to_salon_detail">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_customer_main_to_sign_in">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -53,18 +77,61 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="home">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="504" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_home_to_barber_main">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_home_to_customer_main">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_home_to_sign_up">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="salon_detail">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="1611" />
+                            <option name="y" value="914" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="services_by_barber">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="514" />
-                            <option name="y" value="-183" />
+                            <option name="x" value="857" />
+                            <option name="y" value="909" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_services_by_barber_to_day">
+                            <entry key="action_services_by_barber_to_barber_main">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -79,8 +146,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="265" />
-                            <option name="y" value="453" />
+                            <option name="x" value="518" />
+                            <option name="y" value="461" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -100,8 +167,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="689" />
-                            <option name="y" value="398" />
+                            <option name="x" value="771" />
+                            <option name="y" value="461" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -126,8 +193,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="97" />
+                            <option name="x" value="265" />
+                            <option name="y" value="504" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -152,8 +219,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="268" />
-                            <option name="y" value="-40" />
+                            <option name="x" value="518" />
+                            <option name="y" value="860" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -173,18 +240,23 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="time4">
+                  <entry key="tomorrow">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1091" />
-                            <option name="y" value="-47" />
+                            <option name="x" value="788" />
+                            <option name="y" value="-87" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_time4_to_barber_main">
+                            <entry key="action_tomorrow_to_barber_main">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_tomorrow_to_sign_in">
                               <value>
                                 <LayoutPositions />
                               </value>

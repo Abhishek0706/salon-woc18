@@ -4,36 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-
-    tools:context=".Barber_main">
+    tools:context=".Tomorrow">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/btn_today"
+                android:text="today"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
             <TextView
 
-                android:text="TODAY"
+                android:text="TOMORROW"
+                android:background="#ffffff"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#ffffff"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
             <Button
-                android:id="@+id/btn_tomorrow"
-                android:text="tomorrow"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
-            <Button
-                android:id="@+id/btn_logout_barber"
+                android:id="@+id/btn_logout_barber2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="logout"
@@ -45,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
 
 
             <android.support.v7.widget.CardView
@@ -76,17 +77,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time1"
+                            android:id="@+id/tomorrow_status_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time1"
+                            android:id="@+id/tomorrow_service_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                         />
 
                 </LinearLayout>
 
@@ -103,7 +111,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -122,17 +129,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time2"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time2"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time2"
+                            android:id="@+id/tomorrow_service_time2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
 
                 </LinearLayout>
 
@@ -149,11 +163,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -169,17 +181,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time3"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time3"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time3"
+                            android:id="@+id/tomorrow_service_time3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
 
                 </LinearLayout>
 
@@ -196,17 +215,14 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
-
+                        android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:layout_width="80dp"
                         android:background="#00bfff"
                         android:text="12pm-1pm"/>
-
 
 
                     <LinearLayout
@@ -217,17 +233,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time4"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time4"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time4"
+                            android:id="@+id/tomorrow_service_time4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                          />
 
                 </LinearLayout>
 
@@ -244,7 +267,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -254,6 +276,7 @@
                         android:background="#00bfff"
                         android:text="1pm-2pm"/>
 
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -262,17 +285,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time5"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time5"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time5"
+                            android:id="@+id/tomorrow_service_time5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                         />
 
                 </LinearLayout>
 
@@ -289,7 +319,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -299,6 +328,7 @@
                         android:background="#00bfff"
                         android:text="2pm-3pm"/>
 
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -307,17 +337,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time6"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time6"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time6"
+                            android:id="@+id/tomorrow_service_time6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                         />
 
                 </LinearLayout>
 
@@ -334,7 +371,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -353,17 +389,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time7"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time7"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time7"
+                            android:id="@+id/tomorrow_service_time7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                         />
 
                 </LinearLayout>
 
@@ -380,7 +423,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -391,7 +433,6 @@
                         android:text="4pm-5pm"/>
 
 
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -400,17 +441,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time8"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time8"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time8"
+                            android:id="@+id/tomorrow_service_time8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
 
                 </LinearLayout>
 
@@ -427,7 +475,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -446,17 +493,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time9"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time9"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time9"
+                            android:id="@+id/tomorrow_service_time9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
 
                 </LinearLayout>
 
@@ -473,7 +527,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -484,7 +537,6 @@
                         android:text="6pm-7pm"/>
 
 
-
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -493,17 +545,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time10"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time10"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time10"
+                            android:id="@+id/tomorrow_service_time10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        />
 
                 </LinearLayout>
 
@@ -520,7 +579,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -539,17 +597,24 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time11"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time11"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time11"
+                            android:id="@+id/tomorrow_service_time11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/tomorrow_switch11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                    />
 
                 </LinearLayout>
 
@@ -566,14 +631,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
-
+                        android:layout_width="80dp"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:layout_width="80dp"
                         android:background="#00bfff"
                         android:text="8pm-9pm"/>
 
@@ -581,27 +644,35 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:layout_marginLeft="8dp"
+                        android:layout_gravity="center"
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time12"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time12"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time12"
+                            android:id="@+id/tomorrow_service_time12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
 
+                    <Switch
+                        android:id="@+id/tomorrow_switch12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                       />
+
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
                 android:layout_margin="8dp"
                 android:layout_width="match_parent"
@@ -613,7 +684,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
@@ -632,27 +702,33 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/today_status_time13"
-                            android:text="name of customer"
+                            android:id="@+id/tomorrow_status_time13"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:text="name of customer" />
                         <TextView
-                            android:id="@+id/today_service_time13"
+                            android:id="@+id/tomorrow_service_time13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="services"/>
 
                     </LinearLayout>
 
+                    <Switch
+                        android:id="@+id/tomorrow_switch13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                          />
+
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
-
-
         </LinearLayout>
 
     </LinearLayout>
+
 
 
 </ScrollView>

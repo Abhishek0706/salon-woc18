@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 
@@ -142,12 +143,19 @@ public class Sign_in_verify extends Fragment {
 
                             if(dataSnapshot.child(phonenumber).exists()){
                                 Toast.makeText(getContext(),"Hello customer",Toast.LENGTH_LONG).show();
-                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_customer_main);
+                                NavOptions navOptions = new NavOptions.Builder()
+                                        .setPopUpTo(R.id.sign_in_verify, true)
+                                        .build();
+
+                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_customer_main,null,navOptions);
 
                             }
                             else{
                                 Toast.makeText(getContext(),"Hello barber",Toast.LENGTH_LONG).show();
-                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_barber_main);
+                                NavOptions navOptions = new NavOptions.Builder()
+                                        .setPopUpTo(R.id.sign_in_verify, true)
+                                        .build();
+                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_barber_main,null,navOptions);
                             }
 
                         }
