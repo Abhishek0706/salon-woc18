@@ -7,6 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -71,17 +74,22 @@ public class Tomorrow extends Fragment {
     private Switch switch13;
     private TextView name13;
     private TextView service13;
-    private Button logout;
+//    private Button logout;
     private Button migrate;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tomorrow, container, false);
-        phonenumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber();
+        phonenumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber().substring(1);
 
-        logout = (Button) view.findViewById(R.id.btn_logout_barber2);
+//        logout = (Button) view.findViewById(R.id.btn_logout_barber2);
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 1);
         String year = String.valueOf(calendar.get(Calendar.YEAR));
@@ -141,16 +149,16 @@ public class Tomorrow extends Fragment {
     public void onStart() {
         super.onStart();
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                NavOptions navOptions = new NavOptions.Builder()
-                        .setPopUpTo(R.id.sign_in, true)
-                        .build();
-                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_sign_in, null, navOptions);
-            }
-        });
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//                NavOptions navOptions = new NavOptions.Builder()
+//                        .setPopUpTo(R.id.sign_in, true)
+//                        .build();
+//                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_sign_in, null, navOptions);
+//            }
+//        });
         migrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,7 +175,7 @@ public class Tomorrow extends Fragment {
                     service1.setText(dataSnapshot.child("time1").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time1").child("status").getValue().toString().equals("1")){
                     switch1.setChecked(true);
-                    name1.setText("Waiting for customer :P");
+                    name1.setText("Available");
                     service1.setText(" ");
                 }
                 else{
@@ -180,7 +188,7 @@ public class Tomorrow extends Fragment {
                     service2.setText(dataSnapshot.child("time2").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time2").child("status").getValue().toString().equals("1")){
                     switch2.setChecked(true);
-                    name2.setText("Waiting for customer :P");
+                    name2.setText("Available");
                     service2.setText(" ");
                 }
                 else{
@@ -193,7 +201,7 @@ public class Tomorrow extends Fragment {
                     service3.setText(dataSnapshot.child("time3").child("service").getValue().toString());
                 }  else if(dataSnapshot.child("time3").child("status").getValue().toString().equals("1")){
                     switch3.setChecked(true);
-                    name3.setText("Waiting for customer :P");
+                    name3.setText("Available");
                     service3.setText(" ");
                 }
                 else{
@@ -206,7 +214,7 @@ public class Tomorrow extends Fragment {
                     service4.setText(dataSnapshot.child("time4").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time4").child("status").getValue().toString().equals("1")){
                     switch4.setChecked(true);
-                    name4.setText("Waiting for customer :P");
+                    name4.setText("Available");
                     service4.setText(" ");
                 }
                 else{
@@ -219,7 +227,7 @@ public class Tomorrow extends Fragment {
                     service5.setText(dataSnapshot.child("time5").child("service").getValue().toString());
                 }  else if(dataSnapshot.child("time5").child("status").getValue().toString().equals("1")){
                     switch5.setChecked(true);
-                    name5.setText("Waiting for customer :P");
+                    name5.setText("Available");
                     service5.setText(" ");
                 }
                 else{
@@ -232,7 +240,7 @@ public class Tomorrow extends Fragment {
                     service6.setText(dataSnapshot.child("time6").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time6").child("status").getValue().toString().equals("1")){
                     switch6.setChecked(true);
-                    name6.setText("Waiting for customer :P");
+                    name6.setText("Available");
                     service6.setText(" ");
                 }
                 else{
@@ -245,7 +253,7 @@ public class Tomorrow extends Fragment {
                     service7.setText(dataSnapshot.child("time7").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time7").child("status").getValue().toString().equals("1")){
                     switch7.setChecked(true);
-                    name7.setText("Waiting for customer :P");
+                    name7.setText("Available");
                     service7.setText(" ");
                 }
                 else{
@@ -258,7 +266,7 @@ public class Tomorrow extends Fragment {
                     service8.setText(dataSnapshot.child("time8").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time8").child("status").getValue().toString().equals("1")){
                     switch8.setChecked(true);
-                    name8.setText("Waiting for customer :P");
+                    name8.setText("Available");
                     service8.setText(" ");
                 }
                 else{
@@ -271,7 +279,7 @@ public class Tomorrow extends Fragment {
                     service9.setText(dataSnapshot.child("time9").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time9").child("status").getValue().toString().equals("1")){
                     switch9.setChecked(true);
-                    name9.setText("Waiting for customer :P");
+                    name9.setText("Available");
                     service9.setText(" ");
                 }
                 else{
@@ -284,7 +292,7 @@ public class Tomorrow extends Fragment {
                     service10.setText(dataSnapshot.child("time10").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time10").child("status").getValue().toString().equals("1")){
                     switch10.setChecked(true);
-                    name10.setText("Waiting for customer :P");
+                    name10.setText("Available");
                     service10.setText(" ");
                 }
                 else{
@@ -297,7 +305,7 @@ public class Tomorrow extends Fragment {
                     service11.setText(dataSnapshot.child("time11").child("service").getValue().toString());
                 }  else if(dataSnapshot.child("time11").child("status").getValue().toString().equals("1")){
                     switch11.setChecked(true);
-                    name11.setText("Waiting for customer :P");
+                    name11.setText("Available");
                     service11.setText(" ");
                 }
                 else{
@@ -310,7 +318,7 @@ public class Tomorrow extends Fragment {
                     service12.setText(dataSnapshot.child("time12").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time12").child("status").getValue().toString().equals("1")){
                     switch12.setChecked(true);
-                    name12.setText("Waiting for customer :P");
+                    name12.setText("Available");
                     service12.setText(" ");
                 }
                 else{
@@ -323,7 +331,7 @@ public class Tomorrow extends Fragment {
                     service13.setText(dataSnapshot.child("time13").child("service").getValue().toString());
                 } else if(dataSnapshot.child("time13").child("status").getValue().toString().equals("1")){
                     switch13.setChecked(true);
-                    name13.setText("Waiting for customer :P");
+                    name13.setText("Available");
                     service13.setText(" ");
                 }
                 else{
@@ -522,6 +530,36 @@ public class Tomorrow extends Fragment {
                 }
             }
         });
+
+
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_barber, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.barber_menu_edit_profile:
+                Toast.makeText(getContext(), "edit profile", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.barber_menu_edit_rates:
+                Toast.makeText(getContext(), "edit rates", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.barber_menu_logout:
+                FirebaseAuth.getInstance().signOut();
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.sign_in, true)
+                        .build();
+                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_sign_in, null, navOptions);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
 
 
     }

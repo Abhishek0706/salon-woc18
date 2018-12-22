@@ -64,7 +64,7 @@ public class Sign_in_verify extends Fragment {
 
         String phonenumber = Sign_up_verifyArgs.fromBundle(getArguments()).getPhonenumber();
 
-        sendVerificationCode(phonenumber);
+        sendVerificationCode("+"+phonenumber);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +162,6 @@ public class Sign_in_verify extends Fragment {
                                         .build();
                                 Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_barber_main,null,navOptions);
                             }
-
                         }
 
                         @Override

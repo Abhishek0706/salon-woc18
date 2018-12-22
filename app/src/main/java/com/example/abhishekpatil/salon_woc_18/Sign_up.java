@@ -69,7 +69,7 @@ public class Sign_up extends Fragment {
             @Override
             public void onClick(final View v) {
 
-                final String phonenumber = "+91" + mphone.getText().toString();
+                final String phonenumber = "91" + mphone.getText().toString();
                 final String name = mname.getText().toString();
                 final String city = mcity.getText().toString();
 

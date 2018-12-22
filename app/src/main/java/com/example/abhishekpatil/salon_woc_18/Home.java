@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -48,7 +49,8 @@ public class Home extends Fragment {
         barberref = database.getReference().child("barber");
 
         if(user!= null){
-            final String phonenumber = user.getPhoneNumber();
+            final String phonenumber = user.getPhoneNumber().substring(1);
+            Toast.makeText(getContext(),phonenumber,Toast.LENGTH_LONG).show();
 
             customerref.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override

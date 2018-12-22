@@ -30,6 +30,7 @@ import java.util.Calendar;
 public class Salon_detail extends Fragment {
     private String name;
     private String address;
+
     private String myServices = " ";
     private String phonenumberBarber;
     private String customerName;
@@ -48,6 +49,8 @@ public class Salon_detail extends Fragment {
     private DatabaseReference barberref;
     private DatabaseReference customerref;
     private Button book;
+    private DatabaseReference historyref;
+    private static String date;
 
     @Nullable
     @Override
@@ -59,8 +62,9 @@ public class Salon_detail extends Fragment {
         address = Salon_detailArgs.fromBundle(getArguments()).getAddress();
         phonenumberBarber = Salon_detailArgs.fromBundle(getArguments()).getPhonenumber();
 
-        phonenumberCustomer = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber().toString();
+        phonenumberCustomer = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber().substring(1);
         customerref = FirebaseDatabase.getInstance().getReference().child("customer").child(phonenumberCustomer);
+        historyref = customerref.child("history").push();
         mname = (TextView) view.findViewById(R.id.salon_info_name);
         maddrerss = (TextView) view.findViewById(R.id.salon_info_address);
         mphonenumber = (TextView) view.findViewById(R.id.salon_info_phonenumber);
@@ -102,7 +106,81 @@ public class Salon_detail extends Fragment {
         String year = String.valueOf(calendar.get(Calendar.YEAR));
         String month = String.valueOf(calendar.get(Calendar.MONTH));
         String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-        final String date = day + month + year;
+        date = day + month + year;
+        barberref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(date).exists()) {
+                    if (!dataSnapshot.child(date).child("time1").child("status").getValue().toString().equals("1")) {
+                        rb1.setClickable(false);
+                        rb1.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time2").child("status").getValue().toString().equals("1")) {
+                        rb2.setClickable(false);
+                        rb2.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time3").child("status").getValue().toString().equals("1")) {
+                        rb3.setClickable(false);
+                        rb3.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time4").child("status").getValue().toString().equals("1")) {
+                        rb4.setClickable(false);
+                        rb4.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time5").child("status").getValue().toString().equals("1")) {
+                        rb5.setClickable(false);
+                        rb5.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time6").child("status").getValue().toString().equals("1")) {
+                        rb6.setClickable(false);
+                        rb6.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time7").child("status").getValue().toString().equals("1")) {
+                        rb7.setClickable(false);
+                        rb7.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time8").child("status").getValue().toString().equals("1")) {
+                        rb8.setClickable(false);
+                        rb8.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time9").child("status").getValue().toString().equals("1")) {
+                        rb9.setClickable(false);
+                        rb9.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time10").child("status").getValue().toString().equals("1")) {
+                        rb10.setClickable(false);
+                        rb10.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time11").child("status").getValue().toString().equals("1")) {
+                        rb11.setClickable(false);
+                        rb11.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time12").child("status").getValue().toString().equals("1")) {
+                        rb12.setClickable(false);
+                        rb12.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+                    if (!dataSnapshot.child(date).child("time13").child("status").getValue().toString().equals("1")) {
+                        rb13.setClickable(false);
+                        rb13.setTextColor(getResources().getColor(R.color.offcolor));
+                    }
+
+                } else {
+                    // if barber has not opened his mobile today and customer opened his id then this makes his database and make all slot off
+                    for (int i = 1; i <= 13; i++) {
+                        String s = String.valueOf(i);
+                        s = "time" + s;
+                        barberref.child(date).child(s).child("name").setValue("----");
+                        barberref.child(date).child(s).child("service").setValue("----");
+                        barberref.child(date).child(s).child("status").setValue("0");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         barberref.child("services").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -150,71 +228,20 @@ public class Salon_detail extends Fragment {
 
             }
         });
-        barberref.child(date).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null) {
-                    if (!dataSnapshot.child("time1").child("status").getValue().toString().equals("1")) {
-                        rb1.setClickable(false);
-                        rb1.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time2").child("status").getValue().toString().equals("1")) {
-                        rb2.setClickable(false);
-                        rb2.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time3").child("status").getValue().toString().equals("1")) {
-                        rb3.setClickable(false);
-                        rb3.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time4").child("status").getValue().toString().equals("1")) {
-                        rb4.setClickable(false);
-                        rb4.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time5").child("status").getValue().toString().equals("1")) {
-                        rb5.setClickable(false);
-                        rb5.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time6").child("status").getValue().toString().equals("1")) {
-                        rb6.setClickable(false);
-                        rb6.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time7").child("status").getValue().toString().equals("1")) {
-                        rb7.setClickable(false);
-                        rb7.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time8").child("status").getValue().toString().equals("1")) {
-                        rb8.setClickable(false);
-                        rb8.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time9").child("status").getValue().toString().equals("1")) {
-                        rb9.setClickable(false);
-                        rb9.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time10").child("status").getValue().toString().equals("1")) {
-                        rb10.setClickable(false);
-                        rb10.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time11").child("status").getValue().toString().equals("1")) {
-                        rb11.setClickable(false);
-                        rb11.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time12").child("status").getValue().toString().equals("1")) {
-                        rb12.setClickable(false);
-                        rb12.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                    if (!dataSnapshot.child("time13").child("status").getValue().toString().equals("1")) {
-                        rb13.setClickable(false);
-                        rb13.setTextColor(getResources().getColor(R.color.offcolor));
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        barberref.child(date).addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot != null) {
+//
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
         customerref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -254,66 +281,64 @@ public class Salon_detail extends Fragment {
                 }
 
                 int selected_id = radioGroup.getCheckedRadioButtonId();
-                radioButton = (RadioButton)getView().findViewById(selected_id);
+                radioButton = (RadioButton) getView().findViewById(selected_id);
                 String myTime = radioButton.getText().toString();
 
 
-                if(myTime.equals(rb1.getText().toString())){
-                    barberref.child(date).child("time1").child("name").setValue(customerName);
-                    barberref.child(date).child("time1").child("service").setValue(myServices);
-                    barberref.child(date).child("time1").child("status").setValue("2"); }
-                if(myTime.equals(rb2.getText().toString())){
-                    barberref.child(date).child("time2").child("name").setValue(customerName);
-                    barberref.child(date).child("time2").child("service").setValue(myServices);
-                    barberref.child(date).child("time2").child("status").setValue("2"); }
-                if(myTime.equals(rb3.getText().toString())){
-                    barberref.child(date).child("time3").child("name").setValue(customerName);
-                    barberref.child(date).child("time3").child("service").setValue(myServices);
-                    barberref.child(date).child("time3").child("status").setValue("2"); }
-                if(myTime.equals(rb4.getText().toString())){
-                    barberref.child(date).child("time4").child("name").setValue(customerName);
-                    barberref.child(date).child("time4").child("service").setValue(myServices);
-                    barberref.child(date).child("time4").child("status").setValue("2"); }
-                if(myTime.equals(rb5.getText().toString())){
-                    barberref.child(date).child("time5").child("name").setValue(customerName);
-                    barberref.child(date).child("time5").child("service").setValue(myServices);
-                    barberref.child(date).child("time5").child("status").setValue("2"); }
-                if(myTime.equals(rb6.getText().toString())){
-                    barberref.child(date).child("time6").child("name").setValue(customerName);
-                    barberref.child(date).child("time6").child("service").setValue(myServices);
-                    barberref.child(date).child("time6").child("status").setValue("2"); }
-                if(myTime.equals(rb7.getText().toString())){
-                    barberref.child(date).child("time7").child("name").setValue(customerName);
-                    barberref.child(date).child("time7").child("service").setValue(myServices);
-                    barberref.child(date).child("time7").child("status").setValue("2"); }
-                if(myTime.equals(rb8.getText().toString())){
-                    barberref.child(date).child("time8").child("name").setValue(customerName);
-                    barberref.child(date).child("time8").child("service").setValue(myServices);
-                    barberref.child(date).child("time8").child("status").setValue("2"); }
-                if(myTime.equals(rb9.getText().toString())){
-                    barberref.child(date).child("time9").child("name").setValue(customerName);
-                    barberref.child(date).child("time9").child("service").setValue(myServices);
-                    barberref.child(date).child("time9").child("status").setValue("2"); }
-                if(myTime.equals(rb10.getText().toString())){
-                    barberref.child(date).child("time10").child("name").setValue(customerName);
-                    barberref.child(date).child("time10").child("service").setValue(myServices);
-                    barberref.child(date).child("time10").child("status").setValue("1"); }
-                if(myTime.equals(rb11.getText().toString())){
-                    barberref.child(date).child("time11").child("name").setValue(customerName);
-                    barberref.child(date).child("time11").child("service").setValue(myServices);
-                    barberref.child(date).child("time11").child("status").setValue("2"); }
-                if(myTime.equals(rb12.getText().toString())){
-                    barberref.child(date).child("time12").child("name").setValue(customerName);
-                    barberref.child(date).child("time12").child("service").setValue(myServices);
-                    barberref.child(date).child("time12").child("status").setValue("2"); }
-                if(myTime.equals(rb13.getText().toString())){
-                    barberref.child(date).child("time13").child("name").setValue(customerName);
-                    barberref.child(date).child("time13").child("service").setValue(myServices);
-                    barberref.child(date).child("time13").child("status").setValue("2"); }
+                if (myTime.equals(rb1.getText().toString())) {
+                    bookAppointment("time1", customerName, myServices);
 
+                }
+                if (myTime.equals(rb2.getText().toString())) {
+                    bookAppointment("time2", customerName, myServices);
+                }
+                if (myTime.equals(rb3.getText().toString())) {
+                    bookAppointment("time3", customerName, myServices);
+                }
+                if (myTime.equals(rb4.getText().toString())) {
+                    bookAppointment("time4", customerName, myServices);
+                }
+                if (myTime.equals(rb5.getText().toString())) {
+                    bookAppointment("time5", customerName, myServices);
 
+                }
+                if (myTime.equals(rb6.getText().toString())) {
+                    bookAppointment("time6", customerName, myServices);
+                }
+                if (myTime.equals(rb7.getText().toString())) {
+                    bookAppointment("time7", customerName, myServices);
+                }
+                if (myTime.equals(rb8.getText().toString())) {
+                    bookAppointment("time8", customerName, myServices);
+                }
+                if (myTime.equals(rb9.getText().toString())) {
+                    bookAppointment("time9", customerName, myServices);
+                }
+                if (myTime.equals(rb10.getText().toString())) {
+                    bookAppointment("time10", customerName, myServices);
+                }
+                if (myTime.equals(rb11.getText().toString())) {
+                    bookAppointment("time11", customerName, myServices);
+
+                }
+                if (myTime.equals(rb12.getText().toString())) {
+                    bookAppointment("time12", customerName, myServices);
+                }
+                if (myTime.equals(rb13.getText().toString())) {
+                    bookAppointment("time13", customerName, myServices);
+                }
             }
         });
 
+
+    }
+
+    public void bookAppointment(String time, String name, String service) {
+        barberref.child(date).child(time).child("name").setValue(name);
+        barberref.child(date).child(time).child("service").setValue(service);
+        barberref.child(date).child(time).child("status").setValue("2");
+        historyref.child("date").setValue(date);
+        historyref.child("time").setValue(time);
+        historyref.child("phonenumber").setValue(phonenumberBarber);
     }
 }

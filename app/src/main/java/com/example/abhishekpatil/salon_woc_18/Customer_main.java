@@ -9,6 +9,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -39,8 +42,13 @@ public class Customer_main extends Fragment {
     private DatabaseReference customerref;
     private String phonenumber;
     private static String city;
-    private Button logout;
+//    private Button logout;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     @Nullable
     @Override
@@ -53,7 +61,7 @@ public class Customer_main extends Fragment {
         myref = FirebaseDatabase.getInstance().getReference().child("barber");
         customerref = FirebaseDatabase.getInstance().getReference().child("customer");
 
-        logout = (Button) view.findViewById(R.id.btn_logout);
+//        logout = (Button) view.findViewById(R.id.btn_logout);
 
 
         return view;
@@ -68,18 +76,19 @@ public class Customer_main extends Fragment {
         phonenumber = args.getPhonenumber();
         city = args.getCity();
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                NavOptions navOptions = new NavOptions.Builder()
-                        .setPopUpTo(R.id.sign_in, true)
-                        .build();
-                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_sign_in, null, navOptions);
-            }
-        });
+//        logout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseAuth.getInstance().signOut();
+//                NavOptions navOptions = new NavOptions.Builder()
+//                        .setPopUpTo(R.id.sign_in, true)
+//                        .build();
+//                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_sign_in, null, navOptions);
+//            }
+//        });
 
 
+        customerref.child(phonenumber).child("history").child("default").setValue("default");
         listItems = new ArrayList<ListItem>();
 
         Query query = myref.orderByChild("city").equalTo(city);
@@ -88,7 +97,6 @@ public class Customer_main extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
 
                     listItems.add(snapshot.getValue(ListItem.class));
                     adapter.notifyDataSetChanged();
@@ -104,5 +112,39 @@ public class Customer_main extends Fragment {
         adapter = new MyAdapter(listItems, getContext());
 
         recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_edit_profile:
+                Toast.makeText(getContext(), "edit profile", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.menu_booking_history:
+                Customer_mainDirections.ActionCustomerMainToCustomerBookedAppointment action = Customer_mainDirections.actionCustomerMainToCustomerBookedAppointment();
+                action.setPhonenumber(phonenumber);
+                Navigation.findNavController(getView()).navigate(action);
+
+                Toast.makeText(getContext(), "booking history", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.menu_logout:
+                FirebaseAuth.getInstance().signOut();
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.sign_in, true)
+                        .build();
+                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_sign_in, null, navOptions);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+
     }
 }

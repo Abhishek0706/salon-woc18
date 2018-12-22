@@ -13,12 +13,22 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1425" />
-                            <option name="y" value="192" />
+                            <option name="x" value="1870" />
+                            <option name="y" value="571" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="action_barber_main_to_edit_profile">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_barber_main_to_edit_rates">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_barber_main_to_sign_in">
                               <value>
                                 <LayoutPositions />
@@ -39,8 +49,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1474" />
-                            <option name="y" value="579" />
+                            <option name="x" value="1675" />
+                            <option name="y" value="958" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -51,13 +61,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1024" />
-                            <option name="y" value="568" />
+                            <option name="x" value="929" />
+                            <option name="y" value="1345" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
                             <entry key="action_customer_main_to_customer_booked_appointment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_customer_main_to_edit_profile">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -77,13 +92,37 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="edit_profile">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="2606" />
+                            <option name="y" value="1004" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="edit_rates">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="2388" />
+                            <option name="y" value="18" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="home">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-5" />
-                            <option name="y" value="345" />
+                            <option name="x" value="12" />
+                            <option name="y" value="1312" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -113,8 +152,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="1295" />
-                            <option name="y" value="922" />
+                            <option name="x" value="1900" />
+                            <option name="y" value="1502" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -125,8 +164,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="857" />
-                            <option name="y" value="909" />
+                            <option name="x" value="864" />
+                            <option name="y" value="397" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -146,8 +185,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="518" />
-                            <option name="y" value="461" />
+                            <option name="x" value="1289" />
+                            <option name="y" value="973" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -167,8 +206,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="771" />
-                            <option name="y" value="461" />
+                            <option name="x" value="1022" />
+                            <option name="y" value="741" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -194,7 +233,7 @@
                         <option name="myPosition">
                           <Point>
                             <option name="x" value="265" />
-                            <option name="y" value="504" />
+                            <option name="y" value="1151" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -219,8 +258,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="518" />
-                            <option name="y" value="860" />
+                            <option name="x" value="524" />
+                            <option name="y" value="638" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -245,13 +284,23 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="924" />
-                            <option name="y" value="237" />
+                            <option name="x" value="1717" />
+                            <option name="y" value="73" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
                             <entry key="action_tomorrow_to_barber_main">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_tomorrow_to_edit_profile">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_tomorrow_to_edit_rates">
                               <value>
                                 <LayoutPositions />
                               </value>

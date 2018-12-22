@@ -71,7 +71,7 @@ public class Sign_up_verify extends Fragment {
         Sign_up_verifyArgs args = Sign_up_verifyArgs.fromBundle(getArguments());
         String phonenumber = args.getPhonenumber();
 
-        sendVerificationCode(phonenumber);
+        sendVerificationCode("+"+phonenumber);
 
         btn_verify_customer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -138,7 +138,7 @@ public class Sign_up_verify extends Fragment {
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
-                verifyCode(code);
+            //    verifyCode(code); removed autoverification here because, it is automatially verifyinig as barber
             }
         }
 
@@ -210,6 +210,7 @@ public class Sign_up_verify extends Fragment {
                             barberref.child(phonenumber).child(today).child(s).child("name").setValue("----");
                             barberref.child(phonenumber).child(today).child(s).child("service").setValue("----");
                             barberref.child(phonenumber).child(today).child(s).child("status").setValue("0");
+
 
 
                         }

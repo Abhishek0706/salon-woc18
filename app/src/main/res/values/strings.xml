@@ -32,7 +32,7 @@
     <string name="verify">VERIFY</string>
     <string name="name">NAME OF CUSTOMER/SALON</string>
     <string name="city">CITY</string>
-    <string name="address">FULL ADDRESS OF SALON IF YOU ARE BARBER</string>
+    <string name="address">(Barber)address of salon</string>
     <string name="verify_as_customer">VERIFY AS CUSTOMER</string>
     <string name="verify_as_barber">VERIFY AS BARBER</string>
     <string name="today">TODAY</string>
@@ -43,5 +43,11 @@
     <string name="book_for_tomorrow">BOOK FOR TOMORROW</string>
     <string name="booked_history">BOOKED HISTORY</string>
     <string name="empty">----</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="salon_name">Name</string>
+    <string name="salon_address">Address</string>
+    <string name="salon_phonenumber">Phone Number</string>
+    <style name="available">Available</style>
 
 </resources>

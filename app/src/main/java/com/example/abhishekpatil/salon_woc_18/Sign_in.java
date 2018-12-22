@@ -38,7 +38,7 @@ public class Sign_in extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String phonenumber = "+91";
+                String phonenumber = "91";
                 phonenumber += mphone.getText().toString();
 
                 Sign_inDirections.ActionSignInToSignInVerify action = Sign_inDirections.actionSignInToSignInVerify();

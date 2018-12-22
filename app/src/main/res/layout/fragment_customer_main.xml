@@ -12,29 +12,29 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/log_out"
-            android:textSize="8dp"
-            />
+        <!--<Button-->
+            <!--android:id="@+id/btn_logout"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/log_out"-->
+            <!--android:textSize="8dp"-->
+            <!--/>-->
         <TextView
             android:text="@string/book_for_tomorrow"
-            android:textSize="18dp"
+            android:textSize="24dp"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"/>
-        <Button
-            android:id="@+id/btn_bookedAppointments"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/booked_history"
-            android:textSize="8dp"
-            android:layout_weight="1"/>
+        <!--<Button-->
+            <!--android:id="@+id/btn_bookedAppointments"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/booked_history"-->
+            <!--android:textSize="8dp"-->
+            <!--android:layout_weight="1"/>-->
 
     </LinearLayout>
 
