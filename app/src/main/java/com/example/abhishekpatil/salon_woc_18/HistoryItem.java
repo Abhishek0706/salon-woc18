@@ -81,6 +81,7 @@ public class HistoryItem {
     }
 
     public String getPhonenumber() {
+        phonenumber = "+"+phonenumber;
         return phonenumber;
     }
 }
