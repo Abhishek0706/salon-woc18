@@ -53,14 +53,16 @@ public class Customer_booked_appointment extends Fragment {
         historyref = FirebaseDatabase.getInstance().getReference().child("customer").child(phonenumber).child("history");
 
 
-        Query query = historyref.orderByChild("date").equalTo("23112018");
+        Query query = historyref.orderByChild("date");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                if(dataSnapshot!=null){
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    historyItems.add(snapshot.getValue(HistoryItem.class));
-                    adapter.notifyDataSetChanged();
+                        historyItems.add(snapshot.getValue(HistoryItem.class));
+                        adapter.notifyDataSetChanged();
+                    }
                 }
             }
 

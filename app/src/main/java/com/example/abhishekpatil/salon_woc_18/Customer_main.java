@@ -88,7 +88,7 @@ public class Customer_main extends Fragment {
 //        });
 
 
-        customerref.child(phonenumber).child("history").child("default").setValue("default");
+//        customerref.child(phonenumber).child("history").child("default").setValue("default");
         listItems = new ArrayList<ListItem>();
 
         Query query = myref.orderByChild("city").equalTo(city);

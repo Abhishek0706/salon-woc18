@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GestureDetectorCompat;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +38,7 @@ import androidx.navigation.Navigation;
 
 public class Barber_main extends Fragment {
 
+    private LinearLayout todayLayout;
     private DatabaseReference myref;
     private DatabaseReference timeref;
     private String phonenumber;
@@ -74,11 +78,13 @@ public class Barber_main extends Fragment {
     }
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_barber_main, container, false);
 
+        todayLayout = (LinearLayout)view.findViewById(R.id.layout_today) ;
         name1 = (TextView) view.findViewById(R.id.today_status_time1);
         service1 = (TextView) view.findViewById(R.id.today_service_time1);
         name2 = (TextView) view.findViewById(R.id.today_status_time2);
@@ -137,6 +143,8 @@ public class Barber_main extends Fragment {
 //                Navigation.findNavController(getView()).navigate(R.id.action_barber_main_to_sign_in,null,navOptions);
 //            }
 //        });
+
+
 
 
         migrate.setOnClickListener(new View.OnClickListener() {

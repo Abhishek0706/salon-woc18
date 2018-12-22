@@ -28,8 +28,8 @@ import java.util.Calendar;
 
 
 public class Salon_detail extends Fragment {
-    private String name;
-    private String address;
+    private String Barbername;
+    private String Barberaddress;
 
     private String myServices = " ";
     private String phonenumberBarber;
@@ -58,8 +58,8 @@ public class Salon_detail extends Fragment {
         View view = inflater.inflate(R.layout.fragment_salon_detail, container, false);
 
 
-        name = Salon_detailArgs.fromBundle(getArguments()).getName();
-        address = Salon_detailArgs.fromBundle(getArguments()).getAddress();
+        Barbername = Salon_detailArgs.fromBundle(getArguments()).getName();
+        Barberaddress = Salon_detailArgs.fromBundle(getArguments()).getAddress();
         phonenumberBarber = Salon_detailArgs.fromBundle(getArguments()).getPhonenumber();
 
         phonenumberCustomer = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber().substring(1);
@@ -96,8 +96,8 @@ public class Salon_detail extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        mname.setText(name);
-        maddrerss.setText(address);
+        mname.setText(Barbername);
+        maddrerss.setText(Barberaddress);
         mphonenumber.setText(phonenumberBarber);
 
 
@@ -340,5 +340,7 @@ public class Salon_detail extends Fragment {
         historyref.child("date").setValue(date);
         historyref.child("time").setValue(time);
         historyref.child("phonenumber").setValue(phonenumberBarber);
+        historyref.child("name").setValue(Barbername);
+        historyref.child("address").setValue(Barberaddress);
     }
 }

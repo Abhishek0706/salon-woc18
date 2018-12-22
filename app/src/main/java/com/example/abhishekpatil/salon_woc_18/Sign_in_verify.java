@@ -142,7 +142,7 @@ public class Sign_in_verify extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                             if(dataSnapshot.child(phonenumber).exists()){
-                                Toast.makeText(getContext(),"Hello customer",Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getContext(),"Hello customer",Toast.LENGTH_LONG).show();
                                 NavOptions navOptions = new NavOptions.Builder()
                                         .setPopUpTo(R.id.sign_in_verify, true)
                                         .build();
@@ -156,7 +156,7 @@ public class Sign_in_verify extends Fragment {
 
                             }
                             else{
-                                Toast.makeText(getContext(),"Hello barber",Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getContext(),"Hello barber",Toast.LENGTH_LONG).show();
                                 NavOptions navOptions = new NavOptions.Builder()
                                         .setPopUpTo(R.id.sign_in_verify, true)
                                         .build();
