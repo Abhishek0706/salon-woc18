@@ -3,106 +3,98 @@ package com.example.abhishekpatil.salon_woc_18;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Edit_rates.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Edit_rates#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Edit_rates extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private CheckBox box_haircut;
+    private EditText rate_haircut;
+    private CheckBox box_hairspa;
+    private EditText rate_hairspa;
+    private CheckBox box_haircolor;
+    private EditText rate_haircolor;
+    private CheckBox box_massage;
+    private EditText rate_massage;
+    private CheckBox box_facial;
+    private EditText rate_facial;
+    private CheckBox box_bleach;
+    private EditText rate_bleach;
+    private Button btn;
+    private DatabaseReference myref;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_edit_rates,container,false);
+        box_haircut = (CheckBox) view.findViewById(R.id.cbx_haircut);
+        rate_haircut = (EditText) view.findViewById(R.id.ratex_haircut);
+        box_hairspa = (CheckBox) view.findViewById(R.id.cbx_hairspa);
+        rate_hairspa = (EditText) view.findViewById(R.id.ratex_hairspa);
+        box_haircolor = (CheckBox) view.findViewById(R.id.cbx_haircolor);
+        rate_haircolor = (EditText) view.findViewById(R.id.ratex_haircolor);
+        box_massage = (CheckBox) view.findViewById(R.id.cbx_massage);
+        rate_massage = (EditText) view.findViewById(R.id.ratex_massage);
+        box_facial = (CheckBox) view.findViewById(R.id.cbx_facial);
+        rate_facial = (EditText) view.findViewById(R.id.ratex_facial);
+        box_bleach = (CheckBox) view.findViewById(R.id.cbx_bleach);
+        rate_bleach = (EditText) view.findViewById(R.id.ratex_bleach);
 
-    private OnFragmentInteractionListener mListener;
-
-    public Edit_rates() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Edit_rates.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Edit_rates newInstance(String param1, String param2) {
-        Edit_rates fragment = new Edit_rates();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        btn = (Button) view.findViewById(R.id.btn_edit_rates);
+        return view;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_rates, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public void onStart() {
+        super.onStart();
+        final String phonenumber = Edit_ratesArgs.fromBundle(getArguments()).getPhonenumber();
+        myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber).child("services");
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (box_haircut.isChecked()) {
+                    myref.child("haircut").setValue(rate_haircut.getText().toString());
+                } else {
+                    myref.child("haircut").setValue("0");
+                }
+                if (box_hairspa.isChecked()) {
+                    myref.child("hairspa").setValue(rate_hairspa.getText().toString());
+                } else {
+                    myref.child("hairspa").setValue("0");
+                }
+                if (box_haircolor.isChecked()) {
+                    myref.child("haircolor").setValue(rate_haircolor.getText().toString());
+                } else {
+                    myref.child("haircolor").setValue("0");
+                }
+                if (box_massage.isChecked()) {
+                    myref.child("massage").setValue(rate_massage.getText().toString());
+                } else {
+                    myref.child("massage").setValue("0");
+                }
+                if (box_facial.isChecked()) {
+                    myref.child("facial").setValue(rate_facial.getText().toString());
+                } else {
+                    myref.child("facial").setValue("0");
+                }
+                if (box_bleach.isChecked()) {
+                    myref.child("bleach").setValue(rate_bleach.getText().toString());
+                } else {
+                    myref.child("bleach").setValue("0");
+                }
+                btn.setClickable(false);
+                Toast.makeText(getContext(),"Changes Applied. Press back.",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

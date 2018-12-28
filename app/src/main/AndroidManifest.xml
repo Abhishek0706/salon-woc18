@@ -5,7 +5,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/wp2542098"
-        android:label="Daddy's Salon"
+        android:label=". Daddy's Salon"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -16,15 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Sign_in" />
-        <activity android:name=".Sign_in_verify" />
-        <activity android:name=".Sign_up" />
-        <activity android:name=".Sign_up_verify" />
-        <activity android:name=".Services_by_barber" />
-        <activity android:name=".Customer_main" />
-        <activity android:name=".Time" />
-        <activity android:name=".TimeTime" />
-        <activity android:name=".Barber_main"></activity>
+
     </application>
 
 </manifest>

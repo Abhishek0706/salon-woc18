@@ -1,5 +1,6 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.abhishekpatil.salon_woc_18.viewModels.Salon_detail_view_model;
 
 import java.util.List;
 

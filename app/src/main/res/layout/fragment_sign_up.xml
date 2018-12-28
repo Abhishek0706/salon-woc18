@@ -13,9 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:orientation="vertical"
-        android:layout_gravity="center"
-        >
+        android:layout_marginBottom="16dp"
+        android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,19 +42,36 @@
             android:layout_height="wrap_content"
             android:hint="@string/name"
             />
-        <EditText
-            android:id="@+id/txt_city"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/city"
-            />
+
+
         <EditText
             android:id="@+id/txt_fulladdress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:hint="@string/address"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="16dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                android:text="City"
+                android:textSize="20dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"/>
+            <Spinner
+                android:autofillHints="Choose city"
+                android:id="@+id/spinner"
+                android:layout_marginLeft="16dp"
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
 
         <Button
             android:id="@+id/btn_sendotp"
@@ -63,15 +79,29 @@
             android:layout_height="wrap_content"
             android:paddingHorizontal="-8dip"
             android:text="@string/send_otp"
+            android:background="@color/btncolor"
             android:layout_gravity="center_horizontal"/>
 
-        <Button
-            android:id="@+id/btn_signin"
+        <ProgressBar
+            android:id="@+id/progress_signup"
+            android:layout_marginVertical="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sign_in"
-            android:layout_gravity="right"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"
             />
+
+
+        <TextView
+            android:id="@+id/text_signin"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textColor="#00bfff"
+            android:text="Already have an account?? Sign In"/>
+
+
 
     </LinearLayout>
 

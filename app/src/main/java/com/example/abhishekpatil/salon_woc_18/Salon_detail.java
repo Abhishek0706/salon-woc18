@@ -1,5 +1,8 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,26 +14,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import com.example.abhishekpatil.salon_woc_18.viewModels.Salon_detail_view_model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
-
 
 public class Salon_detail extends Fragment {
     private String Barbername;
     private String Barberaddress;
-
+    private Salon_detail_view_model view_model;
     private String myServices = " ";
     private String phonenumberBarber;
     private String customerName;
@@ -51,6 +52,7 @@ public class Salon_detail extends Fragment {
     private Button book;
     private DatabaseReference historyref;
     private static String date;
+    private LinearLayout layout;
 
     @Nullable
     @Override
@@ -61,8 +63,9 @@ public class Salon_detail extends Fragment {
         Barbername = Salon_detailArgs.fromBundle(getArguments()).getName();
         Barberaddress = Salon_detailArgs.fromBundle(getArguments()).getAddress();
         phonenumberBarber = Salon_detailArgs.fromBundle(getArguments()).getPhonenumber();
-
+        layout = (LinearLayout)view.findViewById(R.id.salon_detail_layout);
         phonenumberCustomer = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber().substring(1);
+
         customerref = FirebaseDatabase.getInstance().getReference().child("customer").child(phonenumberCustomer);
         historyref = customerref.child("history").push();
         mname = (TextView) view.findViewById(R.id.salon_info_name);
@@ -107,9 +110,57 @@ public class Salon_detail extends Fragment {
         String month = String.valueOf(calendar.get(Calendar.MONTH));
         String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
         date = day + month + year;
-        barberref.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        view_model = ViewModelProviders.of(this).get(Salon_detail_view_model.class);
+
+
+        LiveData<DataSnapshot> liveData = view_model.getLivedatabarber(phonenumberBarber);
+        LiveData<DataSnapshot> liveData1 = view_model.getLivedataservices(phonenumberBarber);
+
+        liveData1.observe(this, new Observer<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child("haircut").getValue().toString().equals("0")) {
+                    cb1.setEnabled(false);
+                } else {
+                    cb1.setText("haircut(" + dataSnapshot.child("haircut").getValue().toString() + ")");
+                }
+                if (dataSnapshot.child("hairspa").getValue().toString().equals("0")) {
+                    cb2.setEnabled(false);
+
+                } else {
+                    cb2.setText("hairspa(" + dataSnapshot.child("hairspa").getValue().toString() + ")");
+                }
+                if (dataSnapshot.child("haircolor").getValue().toString().equals("0")) {
+                    cb3.setEnabled(false);
+
+                } else {
+                    cb3.setText("haircolor(" + dataSnapshot.child("haircolor").getValue().toString() + ")");
+                }
+                if (dataSnapshot.child("massage").getValue().toString().equals("0")) {
+                    cb4.setEnabled(false);
+
+                } else {
+                    cb4.setText("massage(" + dataSnapshot.child("massage").getValue().toString() + ")");
+                }
+                if (dataSnapshot.child("facial").getValue().toString().equals("0")) {
+                    cb5.setEnabled(false);
+
+                } else {
+                    cb5.setText("facial(" + dataSnapshot.child("facial").getValue().toString() + ")");
+                }
+                if (dataSnapshot.child("bleach").getValue().toString().equals("0")) {
+                    cb6.setEnabled(false);
+
+                } else {
+                    cb6.setText("bleach(" + dataSnapshot.child("bleach").getValue().toString() + ")");
+                }
+            }
+        });
+
+        liveData.observe(this, new Observer<DataSnapshot>() {
+            @Override
+            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
                 if (dataSnapshot.child(date).exists()) {
                     if (!dataSnapshot.child(date).child("time1").child("status").getValue().toString().equals("1")) {
                         rb1.setClickable(false);
@@ -174,74 +225,10 @@ public class Salon_detail extends Fragment {
                         barberref.child(date).child(s).child("status").setValue("0");
                     }
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
 
-        barberref.child("services").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("haircut").getValue().toString().equals("0")) {
-                    cb1.setEnabled(false);
-                } else {
-                    cb1.setText("haircut(" + dataSnapshot.child("haircut").getValue().toString() + ")");
-                }
-                if (dataSnapshot.child("hairspa").getValue().toString().equals("0")) {
-                    cb2.setEnabled(false);
-
-                } else {
-                    cb2.setText("hairspa(" + dataSnapshot.child("hairspa").getValue().toString() + ")");
-                }
-                if (dataSnapshot.child("haircolor").getValue().toString().equals("0")) {
-                    cb3.setEnabled(false);
-
-                } else {
-                    cb3.setText("haircolor(" + dataSnapshot.child("haircolor").getValue().toString() + ")");
-                }
-                if (dataSnapshot.child("massage").getValue().toString().equals("0")) {
-                    cb4.setEnabled(false);
-
-                } else {
-                    cb4.setText("massage(" + dataSnapshot.child("massage").getValue().toString() + ")");
-                }
-                if (dataSnapshot.child("facial").getValue().toString().equals("0")) {
-                    cb5.setEnabled(false);
-
-                } else {
-                    cb5.setText("facial(" + dataSnapshot.child("facial").getValue().toString() + ")");
-                }
-                if (dataSnapshot.child("bleach").getValue().toString().equals("0")) {
-                    cb6.setEnabled(false);
-
-                } else {
-                    cb6.setText("bleach(" + dataSnapshot.child("bleach").getValue().toString() + ")");
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-//        barberref.child(date).addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot != null) {
-//
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
 
         customerref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -327,6 +314,11 @@ public class Salon_detail extends Fragment {
                 if (myTime.equals(rb13.getText().toString())) {
                     bookAppointment("time13", customerName, myServices);
                 }
+
+                layout.setClickable(false);
+                Toast.makeText(getContext(),"Your appointment have been successfully booked!!\n Please press back.",Toast.LENGTH_LONG).show();
+
+
             }
         });
 

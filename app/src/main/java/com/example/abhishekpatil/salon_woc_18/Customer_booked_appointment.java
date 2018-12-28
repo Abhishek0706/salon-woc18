@@ -1,30 +1,25 @@
 package com.example.abhishekpatil.salon_woc_18;
 
-import android.content.Context;
-import android.net.Uri;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
+import com.example.abhishekpatil.salon_woc_18.viewModels.Customer_booked_appointments_view_model;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Customer_booked_appointment extends Fragment {
+public class Customer_booked_appointment extends android.support.v4.app.Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<HistoryItem> historyItems;
@@ -50,27 +45,28 @@ public class Customer_booked_appointment extends Fragment {
         super.onStart();
 
         historyItems = new ArrayList<HistoryItem>();
-        historyref = FirebaseDatabase.getInstance().getReference().child("customer").child(phonenumber).child("history");
 
+        Customer_booked_appointments_view_model view_model = ViewModelProviders.of(this).get(Customer_booked_appointments_view_model.class);
+        LiveData<DataSnapshot> liveData = view_model.getDataSnapshotLiveDatahistory();
 
-        Query query = historyref.orderByChild("date");
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        liveData.observe(this, new Observer<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot!=null){
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+                historyItems.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                        historyItems.add(snapshot.getValue(HistoryItem.class));
-                        adapter.notifyDataSetChanged();
-                    }
+                    historyItems.add(snapshot.getValue(HistoryItem.class));
+                    adapter.notifyDataSetChanged();
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                if (historyItems.size() == 0) {
+                    historyItems.clear();
+                    Toast.makeText(getContext(), "NO BOOKING YET", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
+
 
         adapter = new MyAdapterHistory(historyItems, getContext());
 

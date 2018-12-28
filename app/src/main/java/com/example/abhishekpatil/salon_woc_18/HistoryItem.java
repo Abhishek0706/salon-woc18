@@ -23,9 +23,8 @@ public class HistoryItem {
     }
 
     public String getDate() {
-        date = date.substring(0,2)+"/"+ date.substring(2,4)+"/"+date.substring(4,date.length());
 
-        return date;
+            return date.substring(0,2)+"/"+date.substring(2,4)+"/"+date.substring(4,date.length());
     }
 
     public String getTime() {
@@ -81,7 +80,7 @@ public class HistoryItem {
     }
 
     public String getPhonenumber() {
-        phonenumber = "+"+phonenumber;
-        return phonenumber;
+
+        return "+"+phonenumber;
     }
 }

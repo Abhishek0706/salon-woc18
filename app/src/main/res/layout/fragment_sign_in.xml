@@ -60,10 +60,12 @@
                 android:id="@+id/btn_sendotp"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="8dp"
+                android:background="@color/btncolor"
                 android:layout_height="wrap_content"
                 android:text="@string/send_otp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_vertical" />
+                android:gravity="center" />
+
         </LinearLayout>
 
 

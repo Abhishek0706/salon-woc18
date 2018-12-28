@@ -10,8 +10,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,17 +44,19 @@ public class Sign_in_verify extends Fragment {
     private DatabaseReference barberref;
     FirebaseDatabase firebaseDatabase;
     private String verificationId;
+    private ProgressBar pb;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_in_verify,container,false);
+        View view = inflater.inflate(R.layout.fragment_sign_in_verify, container, false);
         firebaseDatabase = FirebaseDatabase.getInstance();
         customerref = firebaseDatabase.getReference().child("customer");
         barberref = firebaseDatabase.getReference().child("barber");
         mAuth = FirebaseAuth.getInstance();
-        otp = (EditText)view.findViewById(R.id.text_otp_signin);
-        btn = (Button)view.findViewById(R.id.btn_verify_signin);
+        otp = (EditText) view.findViewById(R.id.text_otp_signin);
+        btn = (Button) view.findViewById(R.id.btn_verify_signin);
+        pb = (ProgressBar)view.findViewById(R.id.progress_signinverify);
 
         return view;
     }
@@ -62,37 +66,41 @@ public class Sign_in_verify extends Fragment {
     public void onStart() {
         super.onStart();
 
+
         String phonenumber = Sign_up_verifyArgs.fromBundle(getArguments()).getPhonenumber();
 
-        sendVerificationCode("+"+phonenumber);
+        sendVerificationCode("+" + phonenumber);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String code = otp.getText().toString();
 
-                if(otp.length()<6){
+
+                if (otp.length() < 6) {
                     otp.setError("Enter code");
                     otp.requestFocus();
                     return;
                 }
                 verifyCode(code);
+
+
             }
         });
 
 
-
     }
-    private void verifyCode(String code){
+
+    private void verifyCode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithCredential(credential);
 
 
-
     }
 
 
-    private void sendVerificationCode(String number){
+    private void sendVerificationCode(String number) {
+        pb.setVisibility(View.VISIBLE);
 
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number,
@@ -102,37 +110,41 @@ public class Sign_in_verify extends Fragment {
                 mcallbacks
         );
     }
+
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
-            mcallbacks= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            mcallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
         @Override
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
-            verificationId =s;
+            verificationId = s;
+            btn.setVisibility(View.VISIBLE);
 
         }
 
         @Override
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
-            if(code !=null){
+            if (code != null) {
                 verifyCode(code);
             }
         }
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            otp.setError("Invalid Code");
+            otp.requestFocus();
 
 
         }
     };
+
     private void signInWithCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if (task.isSuccessful()== true){
+                if (task.isSuccessful() == true) {
 
                     final String phonenumber = Sign_up_verifyArgs.fromBundle(getArguments()).getPhonenumber();
 
@@ -141,26 +153,25 @@ public class Sign_in_verify extends Fragment {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            if(dataSnapshot.child(phonenumber).exists()){
+                            if (dataSnapshot.child(phonenumber).exists()) {
                                 //Toast.makeText(getContext(),"Hello customer",Toast.LENGTH_LONG).show();
                                 NavOptions navOptions = new NavOptions.Builder()
                                         .setPopUpTo(R.id.sign_in_verify, true)
                                         .build();
-                                String city= dataSnapshot.child(phonenumber).child("city").getValue().toString();
-                                Sign_up_verifyDirections.ActionSignUpVerifyToCustomerMain action = Sign_up_verifyDirections.actionSignUpVerifyToCustomerMain();
+                                String city = dataSnapshot.child(phonenumber).child("city").getValue().toString();
+                                Sign_in_verifyDirections.ActionSignInVerifyToCustomerMain action = Sign_in_verifyDirections.actionSignInVerifyToCustomerMain();
                                 action.setPhonenumber(phonenumber);
                                 action.setCity(city);
 
 
-                                Navigation.findNavController(getView()).navigate(action,navOptions);
+                                Navigation.findNavController(getView()).navigate(action, navOptions);
 
-                            }
-                            else{
+                            } else {
                                 //Toast.makeText(getContext(),"Hello barber",Toast.LENGTH_LONG).show();
                                 NavOptions navOptions = new NavOptions.Builder()
                                         .setPopUpTo(R.id.sign_in_verify, true)
                                         .build();
-                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_barber_main,null,navOptions);
+                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_barber_main, null, navOptions);
                             }
                         }
 
@@ -170,6 +181,9 @@ public class Sign_in_verify extends Fragment {
                         }
                     });
 
+                }
+                else{
+                    Toast.makeText(getContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
 
             }

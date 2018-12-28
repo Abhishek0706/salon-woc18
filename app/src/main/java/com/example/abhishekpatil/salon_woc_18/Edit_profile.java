@@ -3,106 +3,83 @@ package com.example.abhishekpatil.salon_woc_18;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Edit_profile.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Edit_profile#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Edit_profile extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public Edit_profile() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Edit_profile.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Edit_profile newInstance(String param1, String param2) {
-        Edit_profile fragment = new Edit_profile();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    String phonenumber;
+    int type;
+    private EditText editname;
+    private Spinner editCity;
+    private EditText editaddress;
+    private Button editbutton;
+    private DatabaseReference myref;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_edit_profile,container,false);
+        editname = (EditText) view.findViewById(R.id.edit_name);
+        editCity = (Spinner) view.findViewById(R.id.spinner_city);
+        editaddress = (EditText) view.findViewById(R.id.edit_address);
+        editbutton = (Button) view.findViewById(R.id.btn_edit);
+        return view;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onStart() {
+        super.onStart();
+
+
+        editCity.setAdapter(new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item,Cities.cityname));
+        Edit_profileArgs args = Edit_profileArgs.fromBundle(getArguments());
+        phonenumber = args.getPhonenumber();
+        type = args.getType();
+
+
+
+        if(type==0){
+            editaddress.setVisibility(View.INVISIBLE);
+            myref = FirebaseDatabase.getInstance().getReference().child("customer").child(phonenumber);
         }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+        else{
+            myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber);
         }
-    }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
+        editbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(editname.length()==0){
+                    editname.setError("Enter name");
+                    editname.requestFocus();
+                    return;
+                }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
+                myref.child("name").setValue(editname.getText().toString());
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+
+                myref.child("city").setValue(Cities.cityname[editCity.getSelectedItemPosition()].trim().toLowerCase());
+                if(type==1&&editaddress.length()!=0){
+                    myref.child("address").setValue(editaddress.getText().toString());
+                }
+                editbutton.setEnabled(false);
+
+                Toast.makeText(getContext(),"Changes will be applies next time you open the app!\n Press back to go to Home screen",Toast.LENGTH_LONG).show();
+            }
+        });
+
+
     }
 }

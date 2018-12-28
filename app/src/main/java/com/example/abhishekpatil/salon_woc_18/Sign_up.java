@@ -10,8 +10,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,20 +27,22 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 public class Sign_up extends Fragment {
 
     private EditText mphone;
     private EditText mname;
-    private EditText mcity;
     private EditText fulladdress;
     private Button sendotp;
     public FirebaseDatabase database;
     public DatabaseReference customerref;
     public DatabaseReference barberref;
     static int exists = 0;
-    private Button signin;
+    private Spinner spinner;
+    private TextView signin;
+    private ProgressBar pb;
 
 
     @Nullable
@@ -47,15 +53,15 @@ public class Sign_up extends Fragment {
         database = FirebaseDatabase.getInstance();
         customerref = database.getReference().child("customer");
         barberref = database.getReference().child("barber");
-
-
+        spinner = (Spinner)view.findViewById(R.id.spinner);
         mphone = (EditText) view.findViewById(R.id.txt_phone);
         mname = (EditText) view.findViewById(R.id.txt_name);
-        mcity = (EditText) view.findViewById(R.id.txt_city);
+
         sendotp = (Button) view.findViewById(R.id.btn_sendotp);
-        signin = (Button) view.findViewById(R.id.btn_signin);
+        signin = (TextView) view.findViewById(R.id.text_signin);
         fulladdress = (EditText) view.findViewById(R.id.txt_fulladdress);
 
+        pb = (ProgressBar)view.findViewById(R.id.progress_signup);
 
         return view;
     }
@@ -64,14 +70,28 @@ public class Sign_up extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        spinner.setAdapter(new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_dropdown_item,Cities.cityname));
 
         sendotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
 
+                if(mphone.length()!=10){
+                    mphone.setError("Enter a valid phone number");
+                    mphone.requestFocus();
+                    return;
+                }
+                if(mname.length()<1){
+                    mname.setError("Enter name");
+                    mname.requestFocus();
+                    return;
+                }
+
+                pb.setVisibility(View.VISIBLE);
                 final String phonenumber = "91" + mphone.getText().toString();
                 final String name = mname.getText().toString();
-                final String city = mcity.getText().toString();
+                final String city = Cities.cityname[spinner.getSelectedItemPosition()].trim().toLowerCase();
+
 
                 customerref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -107,7 +127,10 @@ public class Sign_up extends Fragment {
                             action.setName(name);
                             action.setCity(city);
                             action.setFulladdress(fulladd);
-                            Navigation.findNavController(v).navigate(action);
+                            NavOptions navOptions = new NavOptions.Builder()
+                                    .setPopUpTo(R.id.sign_up, true)
+                                    .build();
+                            Navigation.findNavController(v).navigate(action,navOptions);
 
                         }
 
@@ -128,7 +151,6 @@ public class Sign_up extends Fragment {
             @Override
             public void onClick(View v) {
                 Sign_upDirections.ActionSignUpToSignIn action = Sign_upDirections.actionSignUpToSignIn();
-                action.setPhonenumber(mphone.getText().toString());
                 Navigation.findNavController(v).navigate(action);
             }
         });

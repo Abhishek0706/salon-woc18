@@ -1,5 +1,10 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.abhishekpatil.salon_woc_18.viewModels.Customer_main_view_model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,7 +48,6 @@ public class Customer_main extends Fragment {
     private DatabaseReference customerref;
     private String phonenumber;
     private static String city;
-//    private Button logout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,15 +59,11 @@ public class Customer_main extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customer_main, container, false);
-
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         myref = FirebaseDatabase.getInstance().getReference().child("barber");
         customerref = FirebaseDatabase.getInstance().getReference().child("customer");
-
-//        logout = (Button) view.findViewById(R.id.btn_logout);
-
 
         return view;
     }
@@ -75,40 +76,29 @@ public class Customer_main extends Fragment {
         Customer_mainArgs args = Customer_mainArgs.fromBundle(getArguments());
         phonenumber = args.getPhonenumber();
         city = args.getCity();
-
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                NavOptions navOptions = new NavOptions.Builder()
-//                        .setPopUpTo(R.id.sign_in, true)
-//                        .build();
-//                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_sign_in, null, navOptions);
-//            }
-//        });
-
-
-//        customerref.child(phonenumber).child("history").child("default").setValue("default");
         listItems = new ArrayList<ListItem>();
 
-        Query query = myref.orderByChild("city").equalTo(city);
 
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        Customer_main_view_model view_model = ViewModelProviders.of(this).get(Customer_main_view_model.class);
+
+
+      LiveData<DataSnapshot> liveData = view_model.getDataSnapshotLiveDatabarberlist(city);
+
+        liveData.observe(this, new Observer<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+                listItems.clear();
+                if(dataSnapshot!= null){
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
                     listItems.add(snapshot.getValue(ListItem.class));
                     adapter.notifyDataSetChanged();
 
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                }
             }
         });
+
         adapter = new MyAdapter(listItems, getContext());
 
         recyclerView.setAdapter(adapter);
@@ -125,21 +115,21 @@ public class Customer_main extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_edit_profile:
-                Toast.makeText(getContext(), "edit profile", Toast.LENGTH_LONG).show();
+                Customer_mainDirections.ActionCustomerMainToEditProfile action = Customer_mainDirections.actionCustomerMainToEditProfile();
+                action.setPhonenumber(phonenumber);
+                action.setType(0);
+                Navigation.findNavController(getView()).navigate(action);
                 return true;
             case R.id.menu_booking_history:
-                Customer_mainDirections.ActionCustomerMainToCustomerBookedAppointment action = Customer_mainDirections.actionCustomerMainToCustomerBookedAppointment();
-                action.setPhonenumber(phonenumber);
-                Navigation.findNavController(getView()).navigate(action);
+                Customer_mainDirections.ActionCustomerMainToCustomerBookedAppointment action1 = Customer_mainDirections.actionCustomerMainToCustomerBookedAppointment();
+                action1.setPhonenumber(phonenumber);
+                Navigation.findNavController(getView()).navigate(action1);
 
                 Toast.makeText(getContext(), "booking history", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.menu_logout:
                 FirebaseAuth.getInstance().signOut();
-                NavOptions navOptions = new NavOptions.Builder()
-                        .setPopUpTo(R.id.sign_in, true)
-                        .build();
-                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_sign_in, null, navOptions);
+                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_home);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

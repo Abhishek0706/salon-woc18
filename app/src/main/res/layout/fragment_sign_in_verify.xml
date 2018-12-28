@@ -28,11 +28,20 @@
             />
 
         <Button
+            android:visibility="invisible"
+            android:background="@color/btncolor"
             android:id="@+id/btn_verify_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/verify"
+            android:text="@string/verify" />
 
+        <ProgressBar
+            android:id="@+id/progress_signinverify"
+            android:layout_marginVertical="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"
             />
     </LinearLayout>
 </ScrollView>

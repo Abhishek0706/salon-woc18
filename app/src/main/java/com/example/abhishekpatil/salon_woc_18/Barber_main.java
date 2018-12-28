@@ -1,5 +1,9 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +28,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.abhishekpatil.salon_woc_18.viewModels.Barber_main_view_model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +47,6 @@ public class Barber_main extends Fragment {
     private DatabaseReference myref;
     private DatabaseReference timeref;
     private String phonenumber;
-    //    private Button logout;
     private TextView name1;
     private TextView service1;
     private TextView name2;
@@ -78,13 +82,12 @@ public class Barber_main extends Fragment {
     }
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_barber_main, container, false);
 
-        todayLayout = (LinearLayout)view.findViewById(R.id.layout_today) ;
+        todayLayout = (LinearLayout) view.findViewById(R.id.layout_today);
         name1 = (TextView) view.findViewById(R.id.today_status_time1);
         service1 = (TextView) view.findViewById(R.id.today_service_time1);
         name2 = (TextView) view.findViewById(R.id.today_status_time2);
@@ -112,17 +115,8 @@ public class Barber_main extends Fragment {
         name13 = (TextView) view.findViewById(R.id.today_status_time13);
         service13 = (TextView) view.findViewById(R.id.today_service_time13);
 
-//        logout = (Button)view.findViewById(R.id.btn_logout_barber);
         phonenumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber().substring(1);
 
-        Calendar calendar = Calendar.getInstance();
-        String year = String.valueOf(calendar.get(Calendar.YEAR));
-        String month = String.valueOf(calendar.get(Calendar.MONTH));
-        String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-        String date = day + month + year;
-
-
-        myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber).child(date);
         migrate = (Button) view.findViewById(R.id.btn_tomorrow);
         timeref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber);
 
@@ -133,24 +127,15 @@ public class Barber_main extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                NavOptions navOptions = new NavOptions.Builder()
-//                        .setPopUpTo(R.id.sign_in, true)
-//                        .build();
-//                Navigation.findNavController(getView()).navigate(R.id.action_barber_main_to_sign_in,null,navOptions);
-//            }
-//        });
-
-
 
 
         migrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(getView()).navigate(R.id.action_barber_main_to_tomorrow);
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.barber_main, true)
+                        .build();
+                Navigation.findNavController(getView()).navigate(R.id.action_barber_main_to_tomorrow, null, navOptions);
             }
         });
         Calendar calendar1 = Calendar.getInstance();
@@ -182,98 +167,84 @@ public class Barber_main extends Fragment {
             }
         });
 
-        myref.addListenerForSingleValueEvent(new ValueEventListener() {
+        Barber_main_view_model viewModel = ViewModelProviders.of(this).get(Barber_main_view_model.class);
+        LiveData<DataSnapshot> liveData = viewModel.getDataSnapshotLiveDatabarber();
+
+        liveData.observe(this, new Observer<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("time1").child("status").getValue().toString().equals("2")) {
+            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    if (dataSnapshot.child("time1").child("status").getValue().toString().equals("2")) {
+                        name1.setText(dataSnapshot.child("time1").child("name").getValue().toString());
+                        service1.setText(dataSnapshot.child("time1").child("service").getValue().toString());
+                    }
 
-                    name1.setText(dataSnapshot.child("time1").child("name").getValue().toString());
-                    service1.setText(dataSnapshot.child("time1").child("service").getValue().toString());
+                    if (dataSnapshot.child("time2").child("status").getValue().toString().equals("2")) {
+                        name2.setText(dataSnapshot.child("time2").child("name").getValue().toString());
+                        service2.setText(dataSnapshot.child("time2").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time3").child("status").getValue().toString().equals("2")) {
+                        name3.setText(dataSnapshot.child("time3").child("name").getValue().toString());
+                        service3.setText(dataSnapshot.child("time3").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time4").child("status").getValue().toString().equals("2")) {
+                        name4.setText(dataSnapshot.child("time4").child("name").getValue().toString());
+                        service4.setText(dataSnapshot.child("time4").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time5").child("status").getValue().toString().equals("2")) {
+                        name5.setText(dataSnapshot.child("time5").child("name").getValue().toString());
+                        service5.setText(dataSnapshot.child("time5").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time6").child("status").getValue().toString().equals("2")) {
+                        name6.setText(dataSnapshot.child("time6").child("name").getValue().toString());
+                        service6.setText(dataSnapshot.child("time6").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time7").child("status").getValue().toString().equals("2")) {
+                        name7.setText(dataSnapshot.child("time7").child("name").getValue().toString());
+                        service7.setText(dataSnapshot.child("time7").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time8").child("status").getValue().toString().equals("2")) {
+                        name8.setText(dataSnapshot.child("time8").child("name").getValue().toString());
+                        service8.setText(dataSnapshot.child("time8").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time9").child("status").getValue().toString().equals("2")) {
+                        name9.setText(dataSnapshot.child("time9").child("name").getValue().toString());
+                        service9.setText(dataSnapshot.child("time9").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time10").child("status").getValue().toString().equals("2")) {
+                        name10.setText(dataSnapshot.child("time10").child("name").getValue().toString());
+                        service10.setText(dataSnapshot.child("time10").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time11").child("status").getValue().toString().equals("2")) {
+                        name11.setText(dataSnapshot.child("time11").child("name").getValue().toString());
+                        service11.setText(dataSnapshot.child("time11").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time12").child("status").getValue().toString().equals("2")) {
+                        name12.setText(dataSnapshot.child("time12").child("name").getValue().toString());
+                        service12.setText(dataSnapshot.child("time12").child("service").getValue().toString());
+                    }
+
+                    if (dataSnapshot.child("time13").child("status").getValue().toString().equals("2")) {
+                        name13.setText(dataSnapshot.child("time13").child("name").getValue().toString());
+                        service13.setText(dataSnapshot.child("time13").child("service").getValue().toString());
+                    }
+
                 }
-
-                if (dataSnapshot.child("time2").child("status").getValue().toString().equals("2")) {
-
-                    name2.setText(dataSnapshot.child("time2").child("name").getValue().toString());
-                    service2.setText(dataSnapshot.child("time2").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time3").child("status").getValue().toString().equals("2")) {
-
-                    name3.setText(dataSnapshot.child("time3").child("name").getValue().toString());
-                    service3.setText(dataSnapshot.child("time3").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time4").child("status").getValue().toString().equals("2")) {
-
-                    name4.setText(dataSnapshot.child("time4").child("name").getValue().toString());
-                    service4.setText(dataSnapshot.child("time4").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time5").child("status").getValue().toString().equals("2")) {
-
-                    name5.setText(dataSnapshot.child("time5").child("name").getValue().toString());
-                    service5.setText(dataSnapshot.child("time5").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time6").child("status").getValue().toString().equals("2")) {
-
-                    name6.setText(dataSnapshot.child("time6").child("name").getValue().toString());
-                    service6.setText(dataSnapshot.child("time6").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time7").child("status").getValue().toString().equals("2")) {
-
-                    name7.setText(dataSnapshot.child("time7").child("name").getValue().toString());
-                    service7.setText(dataSnapshot.child("time7").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time8").child("status").getValue().toString().equals("2")) {
-
-                    name8.setText(dataSnapshot.child("time8").child("name").getValue().toString());
-                    service8.setText(dataSnapshot.child("time8").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time9").child("status").getValue().toString().equals("2")) {
-
-                    name9.setText(dataSnapshot.child("time9").child("name").getValue().toString());
-                    service9.setText(dataSnapshot.child("time9").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time10").child("status").getValue().toString().equals("2")) {
-
-                    name10.setText(dataSnapshot.child("time10").child("name").getValue().toString());
-                    service10.setText(dataSnapshot.child("time10").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time11").child("status").getValue().toString().equals("2")) {
-
-                    name11.setText(dataSnapshot.child("time11").child("name").getValue().toString());
-                    service11.setText(dataSnapshot.child("time11").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time12").child("status").getValue().toString().equals("2")) {
-
-                    name12.setText(dataSnapshot.child("time12").child("name").getValue().toString());
-                    service12.setText(dataSnapshot.child("time12").child("service").getValue().toString());
-                }
-
-                if (dataSnapshot.child("time13").child("status").getValue().toString().equals("2")) {
-
-                    name13.setText(dataSnapshot.child("time13").child("name").getValue().toString());
-                    service13.setText(dataSnapshot.child("time13").child("service").getValue().toString());
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
-
     }
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_barber, menu);
@@ -285,17 +256,19 @@ public class Barber_main extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.barber_menu_edit_profile:
-                Toast.makeText(getContext(), "edit profile", Toast.LENGTH_LONG).show();
+                Barber_mainDirections.ActionBarberMainToEditProfile action = Barber_mainDirections.actionBarberMainToEditProfile();
+                action.setPhonenumber(phonenumber);
+                action.setType(1);
+                Navigation.findNavController(getView()).navigate(action);
                 return true;
             case R.id.barber_menu_edit_rates:
-                Toast.makeText(getContext(), "edit rates", Toast.LENGTH_LONG).show();
+                Barber_mainDirections.ActionBarberMainToEditRates action1 = Barber_mainDirections.actionBarberMainToEditRates();
+                action1.setPhonenumber(phonenumber);
+                Navigation.findNavController(getView()).navigate(action1);
                 return true;
             case R.id.barber_menu_logout:
                 FirebaseAuth.getInstance().signOut();
-                NavOptions navOptions = new NavOptions.Builder()
-                        .setPopUpTo(R.id.sign_in, true)
-                        .build();
-                Navigation.findNavController(getView()).navigate(R.id.action_barber_main_to_sign_in, null, navOptions);
+                Navigation.findNavController(getView()).navigate(R.id.action_barber_main_to_home);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

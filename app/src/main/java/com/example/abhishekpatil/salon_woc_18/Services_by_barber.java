@@ -17,6 +17,7 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 
@@ -101,8 +102,11 @@ public class Services_by_barber extends Fragment {
                     myref.child("bleach").setValue("0");
                 }
 
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.services_by_barber, true)
+                        .build();
 
-                Navigation.findNavController(v).navigate(R.id.action_services_by_barber_to_barber_main);
+                Navigation.findNavController(v).navigate(R.id.action_services_by_barber_to_barber_main,null,navOptions);
             }
         });
 

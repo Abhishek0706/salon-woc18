@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,12 +45,13 @@ public class Sign_up_verify extends Fragment {
     FirebaseDatabase firebaseDatabase;
     DatabaseReference customerref;
     DatabaseReference barberref;
+    private ProgressBar pb;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up_verify, container, false);
-
+        pb = (ProgressBar)view.findViewById(R.id.progress_signupverify);
         motp = (EditText) view.findViewById(R.id.text_otp);
         btn_verify_barber = (Button) view.findViewById(R.id.btn_verify_barber);
         btn_verify_customer = (Button) view.findViewById(R.id.btn_verify_customer);
@@ -114,7 +116,7 @@ public class Sign_up_verify extends Fragment {
 
 
     private void sendVerificationCode(String number) {
-
+        pb.setVisibility(View.VISIBLE);
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number,
                 60,
@@ -131,6 +133,8 @@ public class Sign_up_verify extends Fragment {
         public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             verificationId = s;
+            btn_verify_barber.setVisibility(View.VISIBLE);
+            btn_verify_customer.setVisibility(View.VISIBLE);
 
         }
 
@@ -144,9 +148,8 @@ public class Sign_up_verify extends Fragment {
 
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
-
-
+            motp.setError("Invalid Code");
+            motp.requestFocus();
         }
     };
 
@@ -161,7 +164,7 @@ public class Sign_up_verify extends Fragment {
 
                     String phonenumber = args.getPhonenumber();
                     String name = args.getName();
-                    String city = args.getCity();
+                    String city = args.getCity().trim();
 
                     Toast.makeText(getContext(), "hello", Toast.LENGTH_LONG).show();
 
@@ -228,8 +231,11 @@ public class Sign_up_verify extends Fragment {
 
                         Sign_up_verifyDirections.ActionSignUpVerifyToServicesByBarber action = Sign_up_verifyDirections.actionSignUpVerifyToServicesByBarber();
                         action.setPhonenumber(phonenumber);
+                        NavOptions navOptions = new NavOptions.Builder()
+                                .setPopUpTo(R.id.sign_up_verify, true)
+                                .build();
 
-                        Navigation.findNavController(getView()).navigate(action);
+                        Navigation.findNavController(getView()).navigate(action,navOptions);
 
                     }
                 }

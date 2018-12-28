@@ -51,10 +51,6 @@
         android:name="com.example.abhishekpatil.salon_woc_18.Sign_in"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
-        <argument
-            android:name="phonenumber"
-            android:defaultValue="0"
-            app:argType="string" />
         <action
             android:id="@+id/action_sign_in_to_sign_in_verify"
             app:destination="@id/sign_in_verify" />
@@ -69,14 +65,14 @@
             app:destination="@id/tomorrow"
             app:popUpTo="@+id/home" />
         <action
-            android:id="@+id/action_barber_main_to_sign_in"
-            app:destination="@id/sign_in" />
-        <action
             android:id="@+id/action_barber_main_to_edit_profile"
             app:destination="@id/edit_profile" />
         <action
             android:id="@+id/action_barber_main_to_edit_rates"
             app:destination="@id/edit_rates" />
+        <action
+            android:id="@+id/action_barber_main_to_home"
+            app:destination="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/customer_main"
@@ -89,9 +85,6 @@
         <action
             android:id="@+id/action_customer_main_to_salon_detail"
             app:destination="@id/salon_detail" />
-        <action
-            android:id="@+id/action_customer_main_to_sign_in"
-            app:destination="@id/sign_in" />
         <argument
             android:name="phonenumber"
             android:defaultValue="0"
@@ -103,6 +96,9 @@
         <action
             android:id="@+id/action_customer_main_to_edit_profile"
             app:destination="@id/edit_profile" />
+        <action
+            android:id="@+id/action_customer_main_to_home"
+            app:destination="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/services_by_barber"
@@ -158,14 +154,14 @@
             android:id="@+id/action_tomorrow_to_barber_main"
             app:destination="@id/barber_main" />
         <action
-            android:id="@+id/action_tomorrow_to_sign_in"
-            app:destination="@id/sign_in" />
-        <action
             android:id="@+id/action_tomorrow_to_edit_profile"
             app:destination="@id/edit_profile" />
         <action
             android:id="@+id/action_tomorrow_to_edit_rates"
             app:destination="@id/edit_rates" />
+        <action
+            android:id="@+id/action_tomorrow_to_home"
+            app:destination="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/customer_booked_appointment"
@@ -199,10 +195,24 @@
         android:id="@+id/edit_profile"
         android:name="com.example.abhishekpatil.salon_woc_18.Edit_profile"
         android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" />
+        tools:layout="@layout/fragment_edit_profile" >
+        <argument
+            android:name="phonenumber"
+            android:defaultValue="no number"
+            app:argType="string" />
+        <argument
+            android:name="type"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/edit_rates"
         android:name="com.example.abhishekpatil.salon_woc_18.Edit_rates"
         android:label="fragment_edit_rates"
-        tools:layout="@layout/fragment_edit_rates" />
+        tools:layout="@layout/fragment_edit_rates" >
+        <argument
+            android:name="phonenumber"
+            android:defaultValue="0"
+            app:argType="string" />
+    </fragment>
 </navigation>

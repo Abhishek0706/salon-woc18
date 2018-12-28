@@ -1,14 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Edit_rates">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_margin="16dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
 
-</FrameLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/services_which_you_provide"
+                android:layout_margin="8dp"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:id="@+id/haircut"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_haircut"
+                    android:text="@string/haircut"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+                <CheckBox
+                    android:id="@+id/cbx_haircut"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/ratex_haircut"
+                    android:layout_width="0dp"
+                    android:inputType="number"
+                    android:hint="rate"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:id="@+id/hairspa"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_hairspa"
+                    android:layout_width="0dp"
+                    android:text="@string/hairspa"
+
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+                <CheckBox
+                    android:id="@+id/cbx_hairspa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/ratex_hairspa"
+                    android:layout_width="0dp"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:id="@+id/haircolor"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_haircolor"
+                    android:layout_width="0dp"
+                    android:text="@string/haircolor"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+                <CheckBox
+                    android:id="@+id/cbx_haircolor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/ratex_haircolor"
+                    android:layout_width="0dp"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:id="@+id/massage"
+                android:layout_width="match_parent"
+
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_massage"
+                    android:layout_width="0dp"
+                    android:text="@string/massage"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+                <CheckBox
+                    android:id="@+id/cbx_massage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/ratex_massage"
+                    android:layout_width="0dp"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:id="@+id/facial"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_facial"
+                    android:layout_width="0dp"
+                    android:text="@string/facial"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+                <CheckBox
+                    android:id="@+id/cbx_facial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/ratex_facial"
+                    android:layout_width="0dp"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_margin="8dp"
+                android:id="@+id/bleach"
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_bleach"
+                    android:layout_width="0dp"
+                    android:text="@string/bleach"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"/>
+                <CheckBox
+                    android:id="@+id/cbx_bleach"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/ratex_bleach"
+                    android:layout_width="0dp"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_edit_rates"
+                android:layout_width="wrap_content"
+                android:layout_gravity="right"
+                android:background="@color/btncolor"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:text="Save Changes"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>

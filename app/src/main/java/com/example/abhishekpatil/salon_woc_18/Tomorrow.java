@@ -1,5 +1,8 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,6 +21,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.abhishekpatil.salon_woc_18.viewModels.Tomorrow_view_model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,6 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
+import java.util.Observable;
 
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -74,7 +79,7 @@ public class Tomorrow extends Fragment {
     private Switch switch13;
     private TextView name13;
     private TextView service13;
-//    private Button logout;
+    //    private Button logout;
     private Button migrate;
 
     @Override
@@ -149,201 +154,192 @@ public class Tomorrow extends Fragment {
     public void onStart() {
         super.onStart();
 
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseAuth.getInstance().signOut();
-//                NavOptions navOptions = new NavOptions.Builder()
-//                        .setPopUpTo(R.id.sign_in, true)
-//                        .build();
-//                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_sign_in, null, navOptions);
-//            }
-//        });
         migrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_barber_main);
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.tomorrow, true)
+                        .build();
+                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_barber_main, null, navOptions);
             }
         });
 
-        myref.addListenerForSingleValueEvent(new ValueEventListener() {
+        Tomorrow_view_model view_model = ViewModelProviders.of(this).get(Tomorrow_view_model.class);
+        LiveData<DataSnapshot> liveData = view_model.getDataSnapshotLiveDatatomorrow();
+        liveData.observe(this, new Observer<DataSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.child("time1").child("status").getValue().toString().equals("2")) {
-                    switch1.setChecked(true);
-                    name1.setText(dataSnapshot.child("time1").child("name").getValue().toString());
-                    service1.setText(dataSnapshot.child("time1").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time1").child("status").getValue().toString().equals("1")){
-                    switch1.setChecked(true);
-                    name1.setText("Available");
-                    service1.setText(" ");
+            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    if (dataSnapshot.child("time1").child("status").getValue().toString().equals("2")) {
+                        switch1.setChecked(true);
+                        switch1.setVisibility(View.INVISIBLE);
+                        name1.setText(dataSnapshot.child("time1").child("name").getValue().toString());
+                        service1.setText(dataSnapshot.child("time1").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time1").child("status").getValue().toString().equals("1")) {
+                        switch1.setChecked(true);
+                        name1.setText("Available");
+                        service1.setText(" ");
+                    } else {
+                        switch1.setChecked(false);
+                        name1.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time2").child("status").getValue().toString().equals("2")) {
+                        switch2.setChecked(true);
+                        switch2.setVisibility(View.INVISIBLE);
+                        name2.setText(dataSnapshot.child("time2").child("name").getValue().toString());
+                        service2.setText(dataSnapshot.child("time2").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time2").child("status").getValue().toString().equals("1")) {
+                        switch2.setChecked(true);
+                        name2.setText("Available");
+                        service2.setText(" ");
+                    } else {
+                        switch2.setChecked(false);
+                        name2.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time3").child("status").getValue().toString().equals("2")) {
+                        switch3.setChecked(true);
+                        switch3.setVisibility(View.INVISIBLE);
+                        name3.setText(dataSnapshot.child("time3").child("name").getValue().toString());
+                        service3.setText(dataSnapshot.child("time3").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time3").child("status").getValue().toString().equals("1")) {
+                        switch3.setChecked(true);
+                        name3.setText("Available");
+                        service3.setText(" ");
+                    } else {
+                        switch3.setChecked(false);
+                        name3.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time4").child("status").getValue().toString().equals("2")) {
+                        switch4.setChecked(true);
+                        switch4.setVisibility(View.INVISIBLE);
+                        name4.setText(dataSnapshot.child("time4").child("name").getValue().toString());
+                        service4.setText(dataSnapshot.child("time4").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time4").child("status").getValue().toString().equals("1")) {
+                        switch4.setChecked(true);
+                        name4.setText("Available");
+                        service4.setText(" ");
+                    } else {
+                        switch4.setChecked(false);
+                        name4.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time5").child("status").getValue().toString().equals("2")) {
+                        switch5.setChecked(true);
+                        switch5.setVisibility(View.INVISIBLE);
+                        name5.setText(dataSnapshot.child("time5").child("name").getValue().toString());
+                        service5.setText(dataSnapshot.child("time5").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time5").child("status").getValue().toString().equals("1")) {
+                        switch5.setChecked(true);
+                        name5.setText("Available");
+                        service5.setText(" ");
+                    } else {
+                        switch5.setChecked(false);
+                        name5.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time6").child("status").getValue().toString().equals("2")) {
+                        switch6.setChecked(true);
+                        switch6.setVisibility(View.INVISIBLE);
+                        name6.setText(dataSnapshot.child("time6").child("name").getValue().toString());
+                        service6.setText(dataSnapshot.child("time6").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time6").child("status").getValue().toString().equals("1")) {
+                        switch6.setChecked(true);
+                        name6.setText("Available");
+                        service6.setText(" ");
+                    } else {
+                        switch6.setChecked(false);
+                        name6.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time7").child("status").getValue().toString().equals("2")) {
+                        switch7.setChecked(true);
+                        switch7.setVisibility(View.INVISIBLE);
+                        name7.setText(dataSnapshot.child("time7").child("name").getValue().toString());
+                        service7.setText(dataSnapshot.child("time7").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time7").child("status").getValue().toString().equals("1")) {
+                        switch7.setChecked(true);
+                        name7.setText("Available");
+                        service7.setText(" ");
+                    } else {
+                        switch7.setChecked(false);
+                        name7.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time8").child("status").getValue().toString().equals("2")) {
+                        switch8.setChecked(true);
+                        switch8.setVisibility(View.INVISIBLE);
+                        name8.setText(dataSnapshot.child("time8").child("name").getValue().toString());
+                        service8.setText(dataSnapshot.child("time8").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time8").child("status").getValue().toString().equals("1")) {
+                        switch8.setChecked(true);
+                        name8.setText("Available");
+                        service8.setText(" ");
+                    } else {
+                        switch8.setChecked(false);
+                        name8.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time9").child("status").getValue().toString().equals("2")) {
+                        switch9.setChecked(true);
+                        switch9.setVisibility(View.INVISIBLE);
+                        name9.setText(dataSnapshot.child("time9").child("name").getValue().toString());
+                        service9.setText(dataSnapshot.child("time9").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time9").child("status").getValue().toString().equals("1")) {
+                        switch9.setChecked(true);
+                        name9.setText("Available");
+                        service9.setText(" ");
+                    } else {
+                        switch9.setChecked(false);
+                        name9.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time10").child("status").getValue().toString().equals("2")) {
+                        switch10.setChecked(true);
+                        switch10.setVisibility(View.INVISIBLE);
+                        name10.setText(dataSnapshot.child("time10").child("name").getValue().toString());
+                        service10.setText(dataSnapshot.child("time10").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time10").child("status").getValue().toString().equals("1")) {
+                        switch10.setChecked(true);
+                        name10.setText("Available");
+                        service10.setText(" ");
+                    } else {
+                        switch10.setChecked(false);
+                        name10.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time11").child("status").getValue().toString().equals("2")) {
+                        switch11.setChecked(true);
+                        switch11.setVisibility(View.INVISIBLE);
+                        name11.setText(dataSnapshot.child("time11").child("name").getValue().toString());
+                        service11.setText(dataSnapshot.child("time11").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time11").child("status").getValue().toString().equals("1")) {
+                        switch11.setChecked(true);
+                        name11.setText("Available");
+                        service11.setText(" ");
+                    } else {
+                        switch11.setChecked(false);
+                        name11.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time12").child("status").getValue().toString().equals("2")) {
+                        switch12.setChecked(true);
+                        switch12.setVisibility(View.INVISIBLE);
+                        name12.setText(dataSnapshot.child("time12").child("name").getValue().toString());
+                        service12.setText(dataSnapshot.child("time12").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time12").child("status").getValue().toString().equals("1")) {
+                        switch12.setChecked(true);
+                        name12.setText("Available");
+                        service12.setText(" ");
+                    } else {
+                        switch12.setChecked(false);
+                        name12.setText("Closed");
+                    }
+                    if (dataSnapshot.child("time13").child("status").getValue().toString().equals("2")) {
+                        switch13.setChecked(true);
+                        switch13 .setVisibility(View.INVISIBLE);
+                        name13.setText(dataSnapshot.child("time13").child("name").getValue().toString());
+                        service13.setText(dataSnapshot.child("time13").child("service").getValue().toString());
+                    } else if (dataSnapshot.child("time13").child("status").getValue().toString().equals("1")) {
+                        switch13.setChecked(true);
+                        name13.setText("Available");
+                        service13.setText(" ");
+                    } else {
+                        switch13.setChecked(false);
+                        name13.setText("Closed");
+                    }
                 }
-                else{
-                    switch1.setChecked(false);
-                    name1.setText("Closed");
-                }
-                if (dataSnapshot.child("time2").child("status").getValue().toString().equals("2")) {
-                    switch2.setChecked(true);
-                    name2.setText(dataSnapshot.child("time2").child("name").getValue().toString());
-                    service2.setText(dataSnapshot.child("time2").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time2").child("status").getValue().toString().equals("1")){
-                    switch2.setChecked(true);
-                    name2.setText("Available");
-                    service2.setText(" ");
-                }
-                else{
-                    switch2.setChecked(false);
-                    name2.setText("Closed");
-                }
-                if (dataSnapshot.child("time3").child("status").getValue().toString().equals("2")) {
-                    switch3.setChecked(true);
-                    name3.setText(dataSnapshot.child("time3").child("name").getValue().toString());
-                    service3.setText(dataSnapshot.child("time3").child("service").getValue().toString());
-                }  else if(dataSnapshot.child("time3").child("status").getValue().toString().equals("1")){
-                    switch3.setChecked(true);
-                    name3.setText("Available");
-                    service3.setText(" ");
-                }
-                else{
-                    switch3.setChecked(false);
-                    name3.setText("Closed");
-                }
-                if (dataSnapshot.child("time4").child("status").getValue().toString().equals("2")) {
-                    switch4.setChecked(true);
-                    name4.setText(dataSnapshot.child("time4").child("name").getValue().toString());
-                    service4.setText(dataSnapshot.child("time4").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time4").child("status").getValue().toString().equals("1")){
-                    switch4.setChecked(true);
-                    name4.setText("Available");
-                    service4.setText(" ");
-                }
-                else{
-                    switch4.setChecked(false);
-                    name4.setText("Closed");
-                }
-                if (dataSnapshot.child("time5").child("status").getValue().toString().equals("2")) {
-                    switch5.setChecked(true);
-                    name5.setText(dataSnapshot.child("time5").child("name").getValue().toString());
-                    service5.setText(dataSnapshot.child("time5").child("service").getValue().toString());
-                }  else if(dataSnapshot.child("time5").child("status").getValue().toString().equals("1")){
-                    switch5.setChecked(true);
-                    name5.setText("Available");
-                    service5.setText(" ");
-                }
-                else{
-                    switch5.setChecked(false);
-                    name5.setText("Closed");
-                }
-                if (dataSnapshot.child("time6").child("status").getValue().toString().equals("2")) {
-                    switch6.setChecked(true);
-                    name6.setText(dataSnapshot.child("time6").child("name").getValue().toString());
-                    service6.setText(dataSnapshot.child("time6").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time6").child("status").getValue().toString().equals("1")){
-                    switch6.setChecked(true);
-                    name6.setText("Available");
-                    service6.setText(" ");
-                }
-                else{
-                    switch6.setChecked(false);
-                    name6.setText("Closed");
-                }
-                if (dataSnapshot.child("time7").child("status").getValue().toString().equals("2")) {
-                    switch7.setChecked(true);
-                    name7.setText(dataSnapshot.child("time7").child("name").getValue().toString());
-                    service7.setText(dataSnapshot.child("time7").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time7").child("status").getValue().toString().equals("1")){
-                    switch7.setChecked(true);
-                    name7.setText("Available");
-                    service7.setText(" ");
-                }
-                else{
-                    switch7.setChecked(false);
-                    name7.setText("Closed");
-                }
-                if (dataSnapshot.child("time8").child("status").getValue().toString().equals("2")) {
-                    switch8.setChecked(true);
-                    name8.setText(dataSnapshot.child("time8").child("name").getValue().toString());
-                    service8.setText(dataSnapshot.child("time8").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time8").child("status").getValue().toString().equals("1")){
-                    switch8.setChecked(true);
-                    name8.setText("Available");
-                    service8.setText(" ");
-                }
-                else{
-                    switch8.setChecked(false);
-                    name8.setText("Closed");
-                }
-                if (dataSnapshot.child("time9").child("status").getValue().toString().equals("2")) {
-                    switch9.setChecked(true);
-                    name9.setText(dataSnapshot.child("time9").child("name").getValue().toString());
-                    service9.setText(dataSnapshot.child("time9").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time9").child("status").getValue().toString().equals("1")){
-                    switch9.setChecked(true);
-                    name9.setText("Available");
-                    service9.setText(" ");
-                }
-                else{
-                    switch9.setChecked(false);
-                    name9.setText("Closed");
-                }
-                if (dataSnapshot.child("time10").child("status").getValue().toString().equals("2")) {
-                    switch10.setChecked(true);
-                    name10.setText(dataSnapshot.child("time10").child("name").getValue().toString());
-                    service10.setText(dataSnapshot.child("time10").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time10").child("status").getValue().toString().equals("1")){
-                    switch10.setChecked(true);
-                    name10.setText("Available");
-                    service10.setText(" ");
-                }
-                else{
-                    switch10.setChecked(false);
-                    name10.setText("Closed");
-                }
-                if (dataSnapshot.child("time11").child("status").getValue().toString().equals("2")) {
-                    switch11.setChecked(true);
-                    name11.setText(dataSnapshot.child("time11").child("name").getValue().toString());
-                    service11.setText(dataSnapshot.child("time11").child("service").getValue().toString());
-                }  else if(dataSnapshot.child("time11").child("status").getValue().toString().equals("1")){
-                    switch11.setChecked(true);
-                    name11.setText("Available");
-                    service11.setText(" ");
-                }
-                else{
-                    switch11.setChecked(false);
-                    name11.setText("Closed");
-                }
-                if (dataSnapshot.child("time12").child("status").getValue().toString().equals("2")) {
-                    switch12.setChecked(true);
-                    name12.setText(dataSnapshot.child("time12").child("name").getValue().toString());
-                    service12.setText(dataSnapshot.child("time12").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time12").child("status").getValue().toString().equals("1")){
-                    switch12.setChecked(true);
-                    name12.setText("Available");
-                    service12.setText(" ");
-                }
-                else{
-                    switch12.setChecked(false);
-                    name12.setText("Closed");
-                }
-                if (dataSnapshot.child("time13").child("status").getValue().toString().equals("2")) {
-                    switch13.setChecked(true);
-                    name13.setText(dataSnapshot.child("time13").child("name").getValue().toString());
-                    service13.setText(dataSnapshot.child("time13").child("service").getValue().toString());
-                } else if(dataSnapshot.child("time13").child("status").getValue().toString().equals("1")){
-                    switch13.setChecked(true);
-                    name13.setText("Available");
-                    service13.setText(" ");
-                }
-                else{
-                    switch13.setChecked(false);
-                    name13.setText("Closed");
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
 
@@ -545,17 +541,19 @@ public class Tomorrow extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.barber_menu_edit_profile:
-                Toast.makeText(getContext(), "edit profile", Toast.LENGTH_LONG).show();
+                TomorrowDirections.ActionTomorrowToEditProfile action = TomorrowDirections.actionTomorrowToEditProfile();
+                action.setPhonenumber(phonenumber);
+                action.setType(1);
+                Navigation.findNavController(getView()).navigate(action);
                 return true;
             case R.id.barber_menu_edit_rates:
-                Toast.makeText(getContext(), "edit rates", Toast.LENGTH_LONG).show();
+                TomorrowDirections.ActionTomorrowToEditRates action1 = TomorrowDirections.actionTomorrowToEditRates();
+                action1.setPhonenumber(phonenumber);
+                Navigation.findNavController(getView()).navigate(action1);
                 return true;
             case R.id.barber_menu_logout:
                 FirebaseAuth.getInstance().signOut();
-                NavOptions navOptions = new NavOptions.Builder()
-                        .setPopUpTo(R.id.sign_in, true)
-                        .build();
-                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_sign_in, null, navOptions);
+                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_home);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

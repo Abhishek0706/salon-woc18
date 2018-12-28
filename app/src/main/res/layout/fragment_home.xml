@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
-    android:background="#FFA500"
+    android:background="#000"
     tools:context=".Home">
-<ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:src="@drawable/wp2542098"
-    android:layout_gravity="center"
-    />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/home"
+        android:layout_gravity="center"
+        />
 </LinearLayout>
