@@ -63,6 +63,11 @@ public class Home extends Fragment {
                                 String month = String.valueOf(calendar.get(Calendar.MONTH));
                                 String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
                                 String today = day + month + year;
+                                String city = dataSnapshot.child("city").getValue().toString();
+                                String name = dataSnapshot.child("name").getValue().toString();
+                                String address = dataSnapshot.child("address").getValue().toString();
+                                City.setAddress(address);
+                                mviewmodel.setdetail(phonenumber, city, name);
                                 if (!dataSnapshot.child(today).exists()) {
                                     mviewmodel.setInitialData();
                                 }

@@ -45,10 +45,14 @@ public class Edit_profile extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
+        editname.setHint(City.getName());
         editCity.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, Cities.cityname));
         Edit_profileArgs args = Edit_profileArgs.fromBundle(getArguments());
-
+        ArrayAdapter myadapter = (ArrayAdapter) editCity.getAdapter();
+        String s = City.getCity();
+        int spinnerpos = myadapter.getPosition(s);
+        editCity.setSelection(spinnerpos);
+        editaddress.setHint(City.getAddress());
         type = args.getType();
 
         phonenumber = City.getPhonenumber();
@@ -70,15 +74,18 @@ public class Edit_profile extends Fragment {
                 }
 
                 myref.child("name").setValue(editname.getText().toString());
-                myref.child("city").setValue(Cities.cityname[editCity.getSelectedItemPosition()].trim().toLowerCase());
+                myref.child("city").setValue(Cities.cityname[editCity.getSelectedItemPosition()].trim());
+                City.setName(editname.getText().toString());
+                City.setCity(Cities.cityname[editCity.getSelectedItemPosition()].trim());
                 if (type == 1 && editaddress.length() != 0) {//barber
+
+                    City.setAddress(editaddress.getText().toString());
                     myref.child("address").setValue(editaddress.getText().toString());
                     NavOptions navOptions = new NavOptions.Builder()
                             .setPopUpTo(R.id.edit_profile, true).build();
                     Navigation.findNavController(getView()).navigate(R.id.action_edit_profile_to_barber_main, null, navOptions);
                 } else {//customer
-                    City.setName(editname.getText().toString());
-                    City.setCity(Cities.cityname[editCity.getSelectedItemPosition()].trim().toLowerCase());
+
                     NavOptions navOptions = new NavOptions.Builder()
                             .setPopUpTo(R.id.edit_profile, true).build();
                     Navigation.findNavController(getView()).navigate(R.id.action_edit_profile_to_customer_main, null, navOptions);

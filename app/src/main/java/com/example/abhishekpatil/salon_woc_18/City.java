@@ -4,6 +4,16 @@ public class City {
     public static  String city;
     public static String phonenumber;
     public static String name;
+    public static String address;
+
+    public static String getAddress() {
+        return address;
+    }
+
+    public static void setAddress(String address) {
+        City.address = address;
+    }
+
     public static String barberphonenumber;
 
     public static String getBarberphonenumber() {

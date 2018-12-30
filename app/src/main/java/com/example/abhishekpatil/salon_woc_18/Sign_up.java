@@ -85,12 +85,12 @@ public class Sign_up extends Fragment {
                     mname.requestFocus();
                     return;
                 }
-                sendotp.setClickable(false);
+
 
                 pb.setVisibility(View.VISIBLE);
                 final String phonenumber = "91" + mphone.getText().toString();
                 final String name = mname.getText().toString();
-                final String city = Cities.cityname[spinner.getSelectedItemPosition()].trim().toLowerCase();
+                final String city = Cities.cityname[spinner.getSelectedItemPosition()].trim();
                 mviewmodel.setdetail(phonenumber, name, city);
                 customerref = mviewmodel.getCustomerref();
                 customerref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -121,7 +121,9 @@ public class Sign_up extends Fragment {
                             pb.setVisibility(View.INVISIBLE);
                         }
                         if (exists == 0) {
+                            sendotp.setClickable(false);
                             String fulladd = fulladdress.getText().toString();
+                            City.setAddress(fulladd);
                             mviewmodel.setAddress(fulladd);
                             mviewmodel.navigateSignupverify();
                         }

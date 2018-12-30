@@ -76,6 +76,7 @@ public class Home_view_model extends ViewModel {
             barberref.child(getPhonenumber()).child(today).child(s).child("status").setValue("0");
             barberref.child(getPhonenumber()).child(today).child(s).child("phonenumber").setValue("0");
             City.setPhonenumber(getPhonenumber());
+
         }
 
     }
