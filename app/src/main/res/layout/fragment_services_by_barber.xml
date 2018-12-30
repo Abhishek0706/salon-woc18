@@ -22,6 +22,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/services_which_you_provide"
                 android:layout_margin="8dp"
+                android:textColor="@color/btncolor"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="20dp"/>
@@ -178,7 +179,7 @@
                 android:id="@+id/btn_next_services"
                 android:layout_width="wrap_content"
                 android:layout_gravity="right"
-                android:background="@color/btncolor"
+                android:background="@drawable/buttonstyle"
                 android:layout_height="wrap_content"
                 android:text="@string/next"/>
 

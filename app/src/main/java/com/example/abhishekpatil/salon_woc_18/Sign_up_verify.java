@@ -1,5 +1,6 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.abhishekpatil.salon_woc_18.viewModels.Sign_in_verify_view_model;
+import com.example.abhishekpatil.salon_woc_18.viewModels.Sign_up_verify_view_model;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -42,26 +45,18 @@ public class Sign_up_verify extends Fragment {
     private Button btn_verify_barber;
     private EditText motp;
     private static int i = 2;
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference customerref;
-    DatabaseReference barberref;
     private ProgressBar pb;
+    private Sign_up_verify_view_model mviewmodel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_up_verify, container, false);
-        pb = (ProgressBar)view.findViewById(R.id.progress_signupverify);
+        pb = (ProgressBar) view.findViewById(R.id.progress_signupverify);
         motp = (EditText) view.findViewById(R.id.text_otp);
         btn_verify_barber = (Button) view.findViewById(R.id.btn_verify_barber);
         btn_verify_customer = (Button) view.findViewById(R.id.btn_verify_customer);
-
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        customerref = firebaseDatabase.getReference().child("customer");
-        barberref = firebaseDatabase.getReference().child("barber");
         mAuth = FirebaseAuth.getInstance();
-
-
         return view;
     }
 
@@ -69,11 +64,17 @@ public class Sign_up_verify extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        mviewmodel = ViewModelProviders.of(this).get(Sign_up_verify_view_model.class);
+        mviewmodel.setV(getView());
 
         Sign_up_verifyArgs args = Sign_up_verifyArgs.fromBundle(getArguments());
         String phonenumber = args.getPhonenumber();
+        mviewmodel.setPhonenumber(phonenumber);
+        mviewmodel.setAddress(args.getFulladdress());
+        mviewmodel.setCity(args.getCity());
+        mviewmodel.setName(args.getName());
 
-        sendVerificationCode("+"+phonenumber);
+        sendVerificationCode("+" + phonenumber);
 
         btn_verify_customer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,14 +143,12 @@ public class Sign_up_verify extends Fragment {
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
             String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
-            //    verifyCode(code); removed autoverification here because, it is automatially verifyinig as barber
+                //    verifyCode(code); removed autoverification here because, it is automatially verifyinig as barber
             }
         }
-
         @Override
         public void onVerificationFailed(FirebaseException e) {
-            motp.setError("Invalid Code");
-            motp.requestFocus();
+
         }
     };
 
@@ -159,87 +158,13 @@ public class Sign_up_verify extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful() == true) {
-
-                    Sign_up_verifyArgs args = Sign_up_verifyArgs.fromBundle(getArguments());
-
-                    String phonenumber = args.getPhonenumber();
-                    String name = args.getName();
-                    String city = args.getCity().trim();
-
-                    Toast.makeText(getContext(), "hello", Toast.LENGTH_LONG).show();
-
-
-                    Calendar calendar = Calendar.getInstance();
-                    String year = String.valueOf(calendar.get(Calendar.YEAR));
-                    String month = String.valueOf(calendar.get(Calendar.MONTH));
-                    String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-                    String today = day + month + year;
-
-                    Calendar calendar1 = Calendar.getInstance();
-                    calendar1.add(Calendar.DATE, 1);
-                    String year2 = String.valueOf(calendar1.get(Calendar.YEAR));
-                    String month2 = String.valueOf(calendar1.get(Calendar.MONTH));
-                    String day2 = String.valueOf(calendar1.get(Calendar.DAY_OF_MONTH));
-                    String tomorrow = day2 + month2 + year2;
-
-
-                    if (i == 1) {
-                        customerref.child(phonenumber).child("name").setValue(name);
-                        customerref.child(phonenumber).child("city").setValue(city);
-                        customerref.child(phonenumber).child("phonenumber").setValue(phonenumber);
-                        NavOptions navOptions = new NavOptions.Builder()
-                                .setPopUpTo(R.id.sign_up_verify, true)
-                                .build();
-                        Sign_up_verifyDirections.ActionSignUpVerifyToCustomerMain action =Sign_up_verifyDirections.actionSignUpVerifyToCustomerMain();
-                        action.setPhonenumber(phonenumber);
-                        action.setCity(city);
-
-
-                        Navigation.findNavController(getView()).navigate(action, navOptions);
-
-
-                    } else {
-
-                        String fulladd = args.getFulladdress();
-                        barberref.child(phonenumber).child("name").setValue(name);
-                        barberref.child(phonenumber).child("city").setValue(city);
-                        barberref.child(phonenumber).child("address").setValue(fulladd);
-                        barberref.child(phonenumber).child("phonenumber").setValue(phonenumber);
-
-
-                        for (int i = 1; i <= 13; i++) {
-                            String s = String.valueOf(i);
-                            s = "time" + s;
-                            barberref.child(phonenumber).child(today).child(s).child("name").setValue("----");
-                            barberref.child(phonenumber).child(today).child(s).child("service").setValue("----");
-                            barberref.child(phonenumber).child(today).child(s).child("status").setValue("0");
-
-
-
-                        }
-
-                        for (int i = 1; i <= 13; i++) {
-                            String s = String.valueOf(i);
-                            s = "time" + s;
-                            barberref.child(phonenumber).child(tomorrow).child(s).child("name").setValue("----");
-                            barberref.child(phonenumber).child(tomorrow).child(s).child("service").setValue("----");
-                            barberref.child(phonenumber).child(tomorrow).child(s).child("status").setValue("1");
-
-                        }
-
-                        Toast.makeText(getContext(), "FIRSTLY CHECK YOUR APPOINTMENTS", Toast.LENGTH_LONG);
-
-                        Sign_up_verifyDirections.ActionSignUpVerifyToServicesByBarber action = Sign_up_verifyDirections.actionSignUpVerifyToServicesByBarber();
-                        action.setPhonenumber(phonenumber);
-                        NavOptions navOptions = new NavOptions.Builder()
-                                .setPopUpTo(R.id.sign_up_verify, true)
-                                .build();
-
-                        Navigation.findNavController(getView()).navigate(action,navOptions);
-
-                    }
+                    mviewmodel.navigatetodestination(i);
+                    Toast.makeText(getContext(), "FIRSTLY CHECK YOUR APPOINTMENTS", Toast.LENGTH_LONG);
                 }
-
+                else{
+                    motp.setError("Invalid Code");
+                    motp.requestFocus();
+                }
             }
         });
 

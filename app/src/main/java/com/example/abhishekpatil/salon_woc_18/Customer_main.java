@@ -82,19 +82,19 @@ public class Customer_main extends Fragment {
         Customer_main_view_model view_model = ViewModelProviders.of(this).get(Customer_main_view_model.class);
 
 
-      LiveData<DataSnapshot> liveData = view_model.getDataSnapshotLiveDatabarberlist(city);
+        LiveData<DataSnapshot> liveData = view_model.getDataSnapshotLiveDatabarberlist(city);
 
         liveData.observe(this, new Observer<DataSnapshot>() {
             @Override
             public void onChanged(@Nullable DataSnapshot dataSnapshot) {
                 listItems.clear();
-                if(dataSnapshot!= null){
+                if (dataSnapshot != null) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                    listItems.add(snapshot.getValue(ListItem.class));
-                    adapter.notifyDataSetChanged();
+                        listItems.add(snapshot.getValue(ListItem.class));
+                        adapter.notifyDataSetChanged();
 
-                }
+                    }
                 }
             }
         });
@@ -124,8 +124,6 @@ public class Customer_main extends Fragment {
                 Customer_mainDirections.ActionCustomerMainToCustomerBookedAppointment action1 = Customer_mainDirections.actionCustomerMainToCustomerBookedAppointment();
                 action1.setPhonenumber(phonenumber);
                 Navigation.findNavController(getView()).navigate(action1);
-
-                Toast.makeText(getContext(), "booking history", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.menu_logout:
                 FirebaseAuth.getInstance().signOut();

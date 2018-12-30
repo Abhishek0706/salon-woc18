@@ -17,6 +17,9 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
+
 public class Edit_rates extends Fragment {
     private CheckBox box_haircut;
     private EditText rate_haircut;
@@ -57,7 +60,7 @@ public class Edit_rates extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        final String phonenumber = Edit_ratesArgs.fromBundle(getArguments()).getPhonenumber();
+        final String phonenumber = City.getPhonenumber();
         myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber).child("services");
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,9 +71,9 @@ public class Edit_rates extends Fragment {
                     myref.child("haircut").setValue("0");
                 }
                 if (box_hairspa.isChecked()) {
-                    myref.child("hairspa").setValue(rate_hairspa.getText().toString());
+                    myref.child("shave").setValue(rate_hairspa.getText().toString());
                 } else {
-                    myref.child("hairspa").setValue("0");
+                    myref.child("shave").setValue("0");
                 }
                 if (box_haircolor.isChecked()) {
                     myref.child("haircolor").setValue(rate_haircolor.getText().toString());
@@ -93,7 +96,11 @@ public class Edit_rates extends Fragment {
                     myref.child("bleach").setValue("0");
                 }
                 btn.setClickable(false);
-                Toast.makeText(getContext(),"Changes Applied. Press back.",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Changes Applied.",Toast.LENGTH_LONG).show();
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.edit_rates, true)
+                        .build();
+                Navigation.findNavController(v).navigate(R.id.action_edit_rates_to_barber_main,null,navOptions);
             }
         });
     }

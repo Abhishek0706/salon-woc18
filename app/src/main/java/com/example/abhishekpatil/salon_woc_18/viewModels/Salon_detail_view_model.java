@@ -17,23 +17,18 @@ import java.util.List;
 
 public class Salon_detail_view_model extends ViewModel {
 
-    Salon_detail_live_data livedatabarber;
-    Salon_detail_live_data livedataservices;
-    private MutableLiveData<DataSnapshot> dataSnapshotMutableLiveData;
 
 
+    DatabaseReference barberref = FirebaseDatabase.getInstance().getReference().child("barber");
+    Salon_detail_live_data livedatabarber= new Salon_detail_live_data(barberref,0);
+    Salon_detail_live_data livedataservices = new Salon_detail_live_data(barberref,1);
+    public LiveData<DataSnapshot> getLivedatabarber() {
 
-    public LiveData<DataSnapshot> getLivedatabarber(String phonenumber) {
-        DatabaseReference barberref = FirebaseDatabase.getInstance().getReference().child("barber")
-                .child(phonenumber);
-        this.livedatabarber = new Salon_detail_live_data(barberref);
         return livedatabarber;
     }
 
-    public LiveData<DataSnapshot> getLivedataservices(String phonenumber) {
-        DatabaseReference serviceref = FirebaseDatabase.getInstance().getReference().child("barber")
-                .child(phonenumber).child("services");
-        this.livedataservices = new Salon_detail_live_data(serviceref);
+    public LiveData<DataSnapshot> getLivedataservices() {
+
 
         return livedataservices;
     }

@@ -1,5 +1,6 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import com.example.abhishekpatil.salon_woc_18.viewModels.Services_by_barber_view_model;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -36,7 +38,7 @@ public class Services_by_barber extends Fragment {
     private CheckBox box_bleach;
     private EditText rate_bleach;
     private Button btn;
-    private DatabaseReference myref;
+
 
     @Nullable
     @Override
@@ -64,42 +66,39 @@ public class Services_by_barber extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
-        final String phonenumber = Services_by_barberArgs.fromBundle(getArguments()).getPhonenumber();
-        myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber).child("services");
-
+        final Services_by_barber_view_model mviewmodel = ViewModelProviders.of(this).get(Services_by_barber_view_model.class);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (box_haircut.isChecked()) {
-                    myref.child("haircut").setValue(rate_haircut.getText().toString());
+                    mviewmodel.setvalue("haircut",rate_haircut.getText().toString());
                 } else {
-                    myref.child("haircut").setValue("0");
+                   mviewmodel.setvalue("haircut","0");
                 }
                 if (box_hairspa.isChecked()) {
-                    myref.child("hairspa").setValue(rate_hairspa.getText().toString());
+                    mviewmodel.setvalue("shave",rate_hairspa.getText().toString());
                 } else {
-                    myref.child("hairspa").setValue("0");
+                    mviewmodel.setvalue("shave","0");
                 }
                 if (box_haircolor.isChecked()) {
-                    myref.child("haircolor").setValue(rate_haircolor.getText().toString());
+                    mviewmodel.setvalue("haircolor",rate_haircolor.getText().toString());
                 } else {
-                    myref.child("haircolor").setValue("0");
+                    mviewmodel.setvalue("haircolor","0");
                 }
                 if (box_massage.isChecked()) {
-                    myref.child("massage").setValue(rate_massage.getText().toString());
+                    mviewmodel.setvalue("massage",rate_massage.getText().toString());
                 } else {
-                    myref.child("massage").setValue("0");
+                    mviewmodel.setvalue("massage","0");
                 }
                 if (box_facial.isChecked()) {
-                    myref.child("facial").setValue(rate_facial.getText().toString());
+                    mviewmodel.setvalue("facial",rate_facial.getText().toString());
                 } else {
-                    myref.child("facial").setValue("0");
+                    mviewmodel.setvalue("facial","0");;
                 }
                 if (box_bleach.isChecked()) {
-                    myref.child("bleach").setValue(rate_bleach.getText().toString());
+                    mviewmodel.setvalue("bleach",rate_bleach.getText().toString());
                 } else {
-                    myref.child("bleach").setValue("0");
+                    mviewmodel.setvalue("bleach","0");
                 }
 
                 NavOptions navOptions = new NavOptions.Builder()

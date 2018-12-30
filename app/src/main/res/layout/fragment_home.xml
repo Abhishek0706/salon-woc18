@@ -2,15 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
-    android:background="#000"
+    android:weightSum="10"
+
     tools:context=".Home">
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/home"
-        android:layout_gravity="center"
-        />
+    <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:src="@drawable/home"-->
+        <!--android:scaleType="fitXY"-->
+        <!--android:layout_margin="8dp"-->
+        <!--/>-->
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:src="@drawable/home" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="DADDY'S SALON"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/redcolor"
+        android:textStyle="bold"
+        android:layout_weight="1"
+        android:textSize="24dp"
+        android:layout_gravity="center_horizontal"/>
+
 </LinearLayout>

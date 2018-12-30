@@ -34,7 +34,7 @@ public class Customer_booked_appointment extends android.support.v4.app.Fragment
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         Customer_booked_appointmentArgs args = Customer_booked_appointmentArgs.fromBundle(getArguments());
-        phonenumber = args.getPhonenumber().toString();
+        phonenumber = args.getPhonenumber();
 
 
         return view;

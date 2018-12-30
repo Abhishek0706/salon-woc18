@@ -23,7 +23,7 @@
                 android:text="@string/today"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:background="#ffffff"
+                android:textColor="@color/btncolor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>
@@ -57,10 +57,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time1"/>
 
 
@@ -80,7 +77,11 @@
                             android:id="@+id/today_service_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -103,10 +104,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time2"/>
 
 
@@ -126,7 +124,11 @@
                             android:id="@+id/today_service_time2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -149,11 +151,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time3"/>
 
 
@@ -173,7 +171,11 @@
                             android:id="@+id/today_service_time3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -196,11 +198,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_width="80dp"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time4"/>
 
 
@@ -221,7 +219,11 @@
                             android:id="@+id/today_service_time4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -244,10 +246,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time5"/>
 
                     <LinearLayout
@@ -266,7 +265,11 @@
                             android:id="@+id/today_service_time5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -285,14 +288,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time6"/>
 
                     <LinearLayout
@@ -311,7 +310,11 @@
                             android:id="@+id/today_service_time6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -334,10 +337,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time7"/>
 
 
@@ -357,7 +357,11 @@
                             android:id="@+id/today_service_time7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -376,14 +380,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time8"/>
 
 
@@ -404,7 +404,11 @@
                             android:id="@+id/today_service_time8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -423,14 +427,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time9"/>
 
 
@@ -440,10 +440,14 @@
                         android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
                         android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/today_phone_time9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                         <TextView
                             android:id="@+id/today_status_time9"
-                            android:text="@string/empty"
+                            android:text="@string/no"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
@@ -469,14 +473,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time10"/>
 
 
@@ -497,7 +497,11 @@
                             android:id="@+id/today_service_time10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -520,10 +524,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time11"/>
 
 
@@ -543,7 +544,11 @@
                             android:id="@+id/today_service_time11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -566,11 +571,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:layout_width="80dp"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time12"/>
 
 
@@ -590,7 +591,11 @@
                             android:id="@+id/today_service_time12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -609,14 +614,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginRight="8dp"
-
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
+                        style="@style/mytimestyle"
                         android:text="@string/time13"/>
 
 
@@ -636,7 +637,11 @@
                             android:id="@+id/today_service_time13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/no"/>
+                        <TextView
+                            android:id="@+id/today_phone_time13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 

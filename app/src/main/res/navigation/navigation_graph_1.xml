@@ -54,6 +54,9 @@
         <action
             android:id="@+id/action_sign_in_to_sign_in_verify"
             app:destination="@id/sign_in_verify" />
+        <action
+            android:id="@+id/action_sign_in_to_sign_up"
+            app:destination="@id/sign_up" />
     </fragment>
     <fragment
         android:id="@+id/barber_main"
@@ -190,6 +193,9 @@
             android:name="address"
             android:defaultValue="no address"
             app:argType="string" />
+        <action
+            android:id="@+id/action_salon_detail_to_customer_main"
+            app:destination="@id/customer_main" />
     </fragment>
     <fragment
         android:id="@+id/edit_profile"
@@ -204,6 +210,12 @@
             android:name="type"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_edit_profile_to_customer_main"
+            app:destination="@id/customer_main" />
+        <action
+            android:id="@+id/action_edit_profile_to_barber_main"
+            app:destination="@id/barber_main" />
     </fragment>
     <fragment
         android:id="@+id/edit_rates"
@@ -214,5 +226,8 @@
             android:name="phonenumber"
             android:defaultValue="0"
             app:argType="string" />
+        <action
+            android:id="@+id/action_edit_rates_to_barber_main"
+            app:destination="@id/barber_main" />
     </fragment>
 </navigation>

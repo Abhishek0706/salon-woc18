@@ -21,17 +21,10 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Customer_main_view_model extends ViewModel {
     private final DatabaseReference barberref = FirebaseDatabase.getInstance().getReference().child("barber");
-    private Customer_main_live_data live_data;
-    private MutableLiveData<DataSnapshot> dataSnapshotMutableLiveData ;
+    private Customer_main_live_data live_data = new Customer_main_live_data(barberref);
 
 
     public LiveData<DataSnapshot> getDataSnapshotLiveDatabarberlist(String city) {
-
-        if(dataSnapshotMutableLiveData == null) {
-        Query query = barberref.orderByChild("city").equalTo(city);
-        live_data = new Customer_main_live_data(query);
-
-        }
 
         return live_data;
 

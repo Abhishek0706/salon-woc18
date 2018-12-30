@@ -79,8 +79,20 @@ public class Tomorrow extends Fragment {
     private Switch switch13;
     private TextView name13;
     private TextView service13;
-    //    private Button logout;
     private Button migrate;
+    private TextView phone1;
+    private TextView phone2;
+    private TextView phone3;
+    private TextView phone4;
+    private TextView phone5;
+    private TextView phone6;
+    private TextView phone7;
+    private TextView phone8;
+    private TextView phone9;
+    private TextView phone10;
+    private TextView phone11;
+    private TextView phone12;
+    private TextView phone13;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -146,6 +158,19 @@ public class Tomorrow extends Fragment {
         name13 = (TextView) view.findViewById(R.id.tomorrow_status_time13);
         service13 = (TextView) view.findViewById(R.id.tomorrow_service_time13);
         migrate = (Button) view.findViewById(R.id.btn_today);
+        phone1 = (TextView) view.findViewById(R.id.tomorrow_phone_time1);
+        phone2 = (TextView) view.findViewById(R.id.tomorrow_phone_time2);
+        phone3 = (TextView) view.findViewById(R.id.tomorrow_phone_time3);
+        phone4 = (TextView) view.findViewById(R.id.tomorrow_phone_time4);
+        phone5 = (TextView) view.findViewById(R.id.tomorrow_phone_time5);
+        phone6 = (TextView) view.findViewById(R.id.tomorrow_phone_time6);
+        phone7 = (TextView) view.findViewById(R.id.tomorrow_phone_time7);
+        phone8 = (TextView) view.findViewById(R.id.tomorrow_phone_time8);
+        phone9 = (TextView) view.findViewById(R.id.tomorrow_phone_time9);
+        phone10 = (TextView) view.findViewById(R.id.tomorrow_phone_time10);
+        phone11 = (TextView) view.findViewById(R.id.tomorrow_phone_time11);
+        phone12 = (TextView) view.findViewById(R.id.tomorrow_phone_time12);
+        phone13 = (TextView) view.findViewById(R.id.tomorrow_phone_time13);
 
         return view;
     }
@@ -175,169 +200,221 @@ public class Tomorrow extends Fragment {
                         switch1.setVisibility(View.INVISIBLE);
                         name1.setText(dataSnapshot.child("time1").child("name").getValue().toString());
                         service1.setText(dataSnapshot.child("time1").child("service").getValue().toString());
+                        phone1.setText(dataSnapshot.child("time1").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time1").child("status").getValue().toString().equals("1")) {
                         switch1.setChecked(true);
-                        name1.setText("Available");
-                        service1.setText(" ");
+                        service1.setText("Available");
+                        name1.setText(" ");
+                        phone1.setText(" ");
                     } else {
                         switch1.setChecked(false);
-                        name1.setText("Closed");
+                        service1.setText("Closed");
+                        name1.setText(" ");
+                        phone1.setText(" ");
                     }
                     if (dataSnapshot.child("time2").child("status").getValue().toString().equals("2")) {
                         switch2.setChecked(true);
                         switch2.setVisibility(View.INVISIBLE);
                         name2.setText(dataSnapshot.child("time2").child("name").getValue().toString());
                         service2.setText(dataSnapshot.child("time2").child("service").getValue().toString());
+                        phone2.setText(dataSnapshot.child("time2").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time2").child("status").getValue().toString().equals("1")) {
                         switch2.setChecked(true);
-                        name2.setText("Available");
-                        service2.setText(" ");
+                        service2.setText("Available");
+                        name2.setText(" ");
+                        phone2.setText(" ");
                     } else {
                         switch2.setChecked(false);
-                        name2.setText("Closed");
+                        service2.setText("Closed");
+                        name2.setText(" ");
+                        phone2.setText(" ");
                     }
                     if (dataSnapshot.child("time3").child("status").getValue().toString().equals("2")) {
                         switch3.setChecked(true);
                         switch3.setVisibility(View.INVISIBLE);
                         name3.setText(dataSnapshot.child("time3").child("name").getValue().toString());
                         service3.setText(dataSnapshot.child("time3").child("service").getValue().toString());
+                        phone3.setText(dataSnapshot.child("time3").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time3").child("status").getValue().toString().equals("1")) {
                         switch3.setChecked(true);
-                        name3.setText("Available");
-                        service3.setText(" ");
+                        service3.setText("Available");
+                        name3.setText(" ");
+                        phone3.setText(" ");
                     } else {
                         switch3.setChecked(false);
-                        name3.setText("Closed");
+                        service3.setText("Closed");
+                        name3.setText(" ");
+                        phone3.setText(" ");
                     }
                     if (dataSnapshot.child("time4").child("status").getValue().toString().equals("2")) {
                         switch4.setChecked(true);
                         switch4.setVisibility(View.INVISIBLE);
                         name4.setText(dataSnapshot.child("time4").child("name").getValue().toString());
                         service4.setText(dataSnapshot.child("time4").child("service").getValue().toString());
+                        phone4.setText(dataSnapshot.child("time4").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time4").child("status").getValue().toString().equals("1")) {
                         switch4.setChecked(true);
-                        name4.setText("Available");
-                        service4.setText(" ");
+                        service4.setText("Available");
+                        name4.setText(" ");
+                        phone4.setText(" ");
                     } else {
                         switch4.setChecked(false);
-                        name4.setText("Closed");
+                        service4.setText("Closed");
+                        name4.setText(" ");
+                        phone4.setText(" ");
                     }
                     if (dataSnapshot.child("time5").child("status").getValue().toString().equals("2")) {
                         switch5.setChecked(true);
                         switch5.setVisibility(View.INVISIBLE);
                         name5.setText(dataSnapshot.child("time5").child("name").getValue().toString());
                         service5.setText(dataSnapshot.child("time5").child("service").getValue().toString());
+                        phone5.setText(dataSnapshot.child("time5").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time5").child("status").getValue().toString().equals("1")) {
                         switch5.setChecked(true);
-                        name5.setText("Available");
-                        service5.setText(" ");
+                        service5.setText("Available");
+                        name5.setText(" ");
+                        phone5.setText(" ");
                     } else {
                         switch5.setChecked(false);
-                        name5.setText("Closed");
+                        service5.setText("Closed");
+                        name5.setText(" ");
+                        phone5.setText(" ");
                     }
                     if (dataSnapshot.child("time6").child("status").getValue().toString().equals("2")) {
                         switch6.setChecked(true);
                         switch6.setVisibility(View.INVISIBLE);
                         name6.setText(dataSnapshot.child("time6").child("name").getValue().toString());
                         service6.setText(dataSnapshot.child("time6").child("service").getValue().toString());
+                        phone6.setText(dataSnapshot.child("time6").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time6").child("status").getValue().toString().equals("1")) {
                         switch6.setChecked(true);
-                        name6.setText("Available");
-                        service6.setText(" ");
+                        service6.setText("Available");
+                        name6.setText(" ");
+                        phone6.setText(" ");
                     } else {
                         switch6.setChecked(false);
-                        name6.setText("Closed");
+                        service6.setText("Closed");
+                        name6.setText(" ");
+                        phone6.setText(" ");
                     }
                     if (dataSnapshot.child("time7").child("status").getValue().toString().equals("2")) {
                         switch7.setChecked(true);
                         switch7.setVisibility(View.INVISIBLE);
                         name7.setText(dataSnapshot.child("time7").child("name").getValue().toString());
                         service7.setText(dataSnapshot.child("time7").child("service").getValue().toString());
+                        phone7.setText(dataSnapshot.child("time7").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time7").child("status").getValue().toString().equals("1")) {
                         switch7.setChecked(true);
-                        name7.setText("Available");
-                        service7.setText(" ");
+                        service7.setText("Available");
+                        name7.setText(" ");
+                        phone7.setText(" ");
                     } else {
                         switch7.setChecked(false);
-                        name7.setText("Closed");
+                        service7.setText("Closed");
+                        name7.setText(" ");
+                        phone7.setText(" ");
                     }
                     if (dataSnapshot.child("time8").child("status").getValue().toString().equals("2")) {
                         switch8.setChecked(true);
                         switch8.setVisibility(View.INVISIBLE);
                         name8.setText(dataSnapshot.child("time8").child("name").getValue().toString());
                         service8.setText(dataSnapshot.child("time8").child("service").getValue().toString());
+                        phone8.setText(dataSnapshot.child("time8").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time8").child("status").getValue().toString().equals("1")) {
                         switch8.setChecked(true);
-                        name8.setText("Available");
-                        service8.setText(" ");
+                        service8.setText("Available");
+                        name8.setText(" ");
+                        phone8.setText(" ");
                     } else {
                         switch8.setChecked(false);
-                        name8.setText("Closed");
+                        service8.setText("Closed");
+                        name8.setText(" ");
+                        phone8.setText(" ");
                     }
                     if (dataSnapshot.child("time9").child("status").getValue().toString().equals("2")) {
                         switch9.setChecked(true);
                         switch9.setVisibility(View.INVISIBLE);
                         name9.setText(dataSnapshot.child("time9").child("name").getValue().toString());
                         service9.setText(dataSnapshot.child("time9").child("service").getValue().toString());
+                        phone9.setText(dataSnapshot.child("time9").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time9").child("status").getValue().toString().equals("1")) {
                         switch9.setChecked(true);
-                        name9.setText("Available");
-                        service9.setText(" ");
+                        service9.setText("Available");
+                        name9.setText(" ");
+                        phone9.setText(" ");
                     } else {
                         switch9.setChecked(false);
-                        name9.setText("Closed");
+                        service9.setText("Closed");
+                        name9.setText(" ");
+                        phone9.setText(" ");
                     }
                     if (dataSnapshot.child("time10").child("status").getValue().toString().equals("2")) {
                         switch10.setChecked(true);
                         switch10.setVisibility(View.INVISIBLE);
                         name10.setText(dataSnapshot.child("time10").child("name").getValue().toString());
                         service10.setText(dataSnapshot.child("time10").child("service").getValue().toString());
+                        phone10.setText(dataSnapshot.child("time10").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time10").child("status").getValue().toString().equals("1")) {
                         switch10.setChecked(true);
-                        name10.setText("Available");
-                        service10.setText(" ");
+                        service10.setText("Available");
+                        name10.setText(" ");
+                        phone10.setText(" ");
                     } else {
                         switch10.setChecked(false);
-                        name10.setText("Closed");
+                        service10.setText("Closed");
+                        name10.setText(" ");
+                        phone10.setText(" ");
                     }
                     if (dataSnapshot.child("time11").child("status").getValue().toString().equals("2")) {
                         switch11.setChecked(true);
                         switch11.setVisibility(View.INVISIBLE);
                         name11.setText(dataSnapshot.child("time11").child("name").getValue().toString());
                         service11.setText(dataSnapshot.child("time11").child("service").getValue().toString());
+                        phone11.setText(dataSnapshot.child("time11").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time11").child("status").getValue().toString().equals("1")) {
                         switch11.setChecked(true);
-                        name11.setText("Available");
-                        service11.setText(" ");
+                        service11.setText("Available");
+                        name11.setText(" ");
+                        phone11.setText(" ");
                     } else {
                         switch11.setChecked(false);
-                        name11.setText("Closed");
+                        service11.setText("Closed");
+                        name11.setText(" ");
+                        phone11.setText(" ");
                     }
                     if (dataSnapshot.child("time12").child("status").getValue().toString().equals("2")) {
                         switch12.setChecked(true);
                         switch12.setVisibility(View.INVISIBLE);
                         name12.setText(dataSnapshot.child("time12").child("name").getValue().toString());
                         service12.setText(dataSnapshot.child("time12").child("service").getValue().toString());
+                        phone12.setText(dataSnapshot.child("time12").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time12").child("status").getValue().toString().equals("1")) {
                         switch12.setChecked(true);
-                        name12.setText("Available");
-                        service12.setText(" ");
+                        service12.setText("Available");
+                        name12.setText(" ");
+                        phone12.setText(" ");
                     } else {
                         switch12.setChecked(false);
-                        name12.setText("Closed");
+                        service12.setText("Closed");
+                        name12.setText(" ");
+                        phone12.setText(" ");
                     }
                     if (dataSnapshot.child("time13").child("status").getValue().toString().equals("2")) {
                         switch13.setChecked(true);
-                        switch13 .setVisibility(View.INVISIBLE);
+                        switch13.setVisibility(View.INVISIBLE);
                         name13.setText(dataSnapshot.child("time13").child("name").getValue().toString());
                         service13.setText(dataSnapshot.child("time13").child("service").getValue().toString());
+                        phone13.setText(dataSnapshot.child("time13").child("phonenumber").getValue().toString());
                     } else if (dataSnapshot.child("time13").child("status").getValue().toString().equals("1")) {
                         switch13.setChecked(true);
-                        name13.setText("Available");
-                        service13.setText(" ");
+                        service13.setText("Available");
+                        name13.setText(" ");
+                        phone13.setText(" ");
                     } else {
                         switch13.setChecked(false);
-                        name13.setText("Closed");
+                        service13.setText("Closed");
+                        name13.setText(" ");
+                        phone13.setText(" ");
                     }
                 }
             }
@@ -347,13 +424,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time1").child("name").setValue("----");
-                    myref.child("time1").child("service").setValue("----");
                     myref.child("time1").child("status").setValue("1");
-
                 } else {
-                    myref.child("time1").child("name").setValue("----");
-                    myref.child("time1").child("service").setValue("----");
                     myref.child("time1").child("status").setValue("0");
                 }
             }
@@ -362,12 +434,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time2").child("name").setValue("----");
-                    myref.child("time2").child("service").setValue("----");
                     myref.child("time2").child("status").setValue("1");
                 } else {
-                    myref.child("time2").child("name").setValue("----");
-                    myref.child("time2").child("service").setValue("----");
                     myref.child("time2").child("status").setValue("0");
                 }
             }
@@ -376,12 +444,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time3").child("name").setValue("----");
-                    myref.child("time3").child("service").setValue("----");
                     myref.child("time3").child("status").setValue("1");
                 } else {
-                    myref.child("time3").child("name").setValue("----");
-                    myref.child("time3").child("service").setValue("----");
                     myref.child("time3").child("status").setValue("0");
                 }
             }
@@ -390,12 +454,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time4").child("name").setValue("----");
-                    myref.child("time4").child("service").setValue("----");
                     myref.child("time4").child("status").setValue("1");
                 } else {
-                    myref.child("time4").child("name").setValue("----");
-                    myref.child("time4").child("service").setValue("----");
                     myref.child("time4").child("status").setValue("0");
                 }
             }
@@ -404,12 +464,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time5").child("name").setValue("----");
-                    myref.child("time5").child("service").setValue("----");
                     myref.child("time5").child("status").setValue("1");
                 } else {
-                    myref.child("time5").child("name").setValue("----");
-                    myref.child("time5").child("service").setValue("----");
                     myref.child("time5").child("status").setValue("0");
                 }
             }
@@ -418,12 +474,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time6").child("name").setValue("----");
-                    myref.child("time6").child("service").setValue("----");
                     myref.child("time6").child("status").setValue("1");
                 } else {
-                    myref.child("time6").child("name").setValue("----");
-                    myref.child("time6").child("service").setValue("----");
                     myref.child("time6").child("status").setValue("0");
                 }
             }
@@ -432,12 +484,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time7").child("name").setValue("----");
-                    myref.child("time7").child("service").setValue("----");
                     myref.child("time7").child("status").setValue("1");
                 } else {
-                    myref.child("time7").child("name").setValue("----");
-                    myref.child("time7").child("service").setValue("----");
                     myref.child("time7").child("status").setValue("0");
                 }
             }
@@ -446,12 +494,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time8").child("name").setValue("----");
-                    myref.child("time8").child("service").setValue("----");
                     myref.child("time8").child("status").setValue("1");
                 } else {
-                    myref.child("time8").child("name").setValue("----");
-                    myref.child("time8").child("service").setValue("----");
                     myref.child("time8").child("status").setValue("0");
                 }
             }
@@ -460,12 +504,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time9").child("name").setValue("----");
-                    myref.child("time9").child("service").setValue("----");
                     myref.child("time9").child("status").setValue("1");
                 } else {
-                    myref.child("time9").child("name").setValue("----");
-                    myref.child("time9").child("service").setValue("----");
                     myref.child("time9").child("status").setValue("0");
                 }
             }
@@ -474,12 +514,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time10").child("name").setValue("----");
-                    myref.child("time10").child("service").setValue("----");
                     myref.child("time10").child("status").setValue("1");
                 } else {
-                    myref.child("time10").child("name").setValue("----");
-                    myref.child("time10").child("service").setValue("----");
                     myref.child("time10").child("status").setValue("0");
                 }
             }
@@ -488,12 +524,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time11").child("name").setValue("----");
-                    myref.child("time11").child("service").setValue("----");
                     myref.child("time11").child("status").setValue("1");
                 } else {
-                    myref.child("time11").child("name").setValue("----");
-                    myref.child("time11").child("service").setValue("----");
                     myref.child("time11").child("status").setValue("0");
                 }
             }
@@ -502,12 +534,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time12").child("name").setValue("----");
-                    myref.child("time12").child("service").setValue("----");
                     myref.child("time12").child("status").setValue("1");
                 } else {
-                    myref.child("time12").child("name").setValue("----");
-                    myref.child("time12").child("service").setValue("----");
                     myref.child("time12").child("status").setValue("0");
                 }
             }
@@ -516,12 +544,8 @@ public class Tomorrow extends Fragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    myref.child("time13").child("name").setValue("----");
-                    myref.child("time13").child("service").setValue("----");
                     myref.child("time13").child("status").setValue("1");
                 } else {
-                    myref.child("time13").child("name").setValue("----");
-                    myref.child("time13").child("service").setValue("----");
                     myref.child("time13").child("status").setValue("0");
                 }
             }

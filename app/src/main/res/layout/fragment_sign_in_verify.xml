@@ -29,7 +29,7 @@
 
         <Button
             android:visibility="invisible"
-            android:background="@color/btncolor"
+            android:background="@drawable/buttonstyle"
             android:id="@+id/btn_verify_signin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

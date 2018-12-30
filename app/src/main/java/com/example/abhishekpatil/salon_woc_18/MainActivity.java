@@ -24,15 +24,14 @@ import androidx.navigation.Navigation;
 
 public class MainActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActionBar  actionBar = getSupportActionBar();
         actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setIcon(R.drawable.cut);
+        actionBar.setIcon(R.mipmap.ic_launcher_round);
+
 
 
     }

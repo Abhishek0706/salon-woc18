@@ -5,7 +5,7 @@
     <string name="address_of_salon">ADDRESS OF SALON</string>
     <string name="phone_number">PHONENUMBER</string>
     <string name="haircut">HAIRCUT</string>
-    <string name="hairspa">HAIRSPA</string>
+    <string name="hairspa">SHAVE</string>
     <string name="haircolor">HAIRCOLOR</string>
     <string name="massage">MASSAGE</string>
     <string name="facial">FACIAL</string>
@@ -42,12 +42,13 @@
     <string name="services">Services</string>
     <string name="book_for_tomorrow">BOOK FOR TOMORROW</string>
     <string name="booked_history">BOOKED HISTORY</string>
-    <string name="empty">----</string>
+    <string name="empty">  </string>
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="salon_name">Name</string>
     <string name="salon_address">Address</string>
     <string name="salon_phonenumber">Phone Number</string>
-    <style name="available">Available</style>
+    <string name="available">Available</string>
+    <string name="no">No Customer</string>
 
 </resources>

@@ -19,6 +19,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.example.abhishekpatil.salon_woc_18.viewModels.Salon_detail_view_model;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +27,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 import java.util.Calendar;
+
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 
 public class Salon_detail extends Fragment {
     private String Barbername;
@@ -53,6 +58,7 @@ public class Salon_detail extends Fragment {
     private DatabaseReference historyref;
     private static String date;
     private LinearLayout layout;
+    private TextView heading2;
 
     @Nullable
     @Override
@@ -63,9 +69,9 @@ public class Salon_detail extends Fragment {
         Barbername = Salon_detailArgs.fromBundle(getArguments()).getName();
         Barberaddress = Salon_detailArgs.fromBundle(getArguments()).getAddress();
         phonenumberBarber = Salon_detailArgs.fromBundle(getArguments()).getPhonenumber();
-        layout = (LinearLayout)view.findViewById(R.id.salon_detail_layout);
+        layout = (LinearLayout) view.findViewById(R.id.salon_detail_layout);
         phonenumberCustomer = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber().substring(1);
-
+        heading2 = (TextView) view.findViewById(R.id.heading2);
         customerref = FirebaseDatabase.getInstance().getReference().child("customer").child(phonenumberCustomer);
         historyref = customerref.child("history").push();
         mname = (TextView) view.findViewById(R.id.salon_info_name);
@@ -114,9 +120,8 @@ public class Salon_detail extends Fragment {
         view_model = ViewModelProviders.of(this).get(Salon_detail_view_model.class);
 
 
-        LiveData<DataSnapshot> liveData = view_model.getLivedatabarber(phonenumberBarber);
-        LiveData<DataSnapshot> liveData1 = view_model.getLivedataservices(phonenumberBarber);
 
+        LiveData<DataSnapshot> liveData1 = view_model.getLivedataservices();
         liveData1.observe(this, new Observer<DataSnapshot>() {
             @Override
             public void onChanged(@Nullable DataSnapshot dataSnapshot) {
@@ -125,11 +130,11 @@ public class Salon_detail extends Fragment {
                 } else {
                     cb1.setText("haircut(" + dataSnapshot.child("haircut").getValue().toString() + ")");
                 }
-                if (dataSnapshot.child("hairspa").getValue().toString().equals("0")) {
+                if (dataSnapshot.child("shave").getValue().toString().equals("0")) {
                     cb2.setEnabled(false);
 
                 } else {
-                    cb2.setText("hairspa(" + dataSnapshot.child("hairspa").getValue().toString() + ")");
+                    cb2.setText("shave(" + dataSnapshot.child("shave").getValue().toString() + ")");
                 }
                 if (dataSnapshot.child("haircolor").getValue().toString().equals("0")) {
                     cb3.setEnabled(false);
@@ -158,6 +163,7 @@ public class Salon_detail extends Fragment {
             }
         });
 
+        LiveData<DataSnapshot> liveData = view_model.getLivedatabarber();
         liveData.observe(this, new Observer<DataSnapshot>() {
             @Override
             public void onChanged(@Nullable DataSnapshot dataSnapshot) {
@@ -246,13 +252,13 @@ public class Salon_detail extends Fragment {
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                book.setEnabled(false);
+
 
                 if (cb1.isChecked()) {
                     myServices += "haircut ";
                 }
                 if (cb2.isChecked()) {
-                    myServices += "hairspa ";
+                    myServices += "shave ";
                 }
                 if (cb3.isChecked()) {
                     myServices += "haircolor ";
@@ -267,56 +273,56 @@ public class Salon_detail extends Fragment {
                     myServices += "bleach ";
                 }
 
+                if (myServices.equals(" ")) {
+                    Toast.makeText(getContext(), "Minimum One Service Required", Toast.LENGTH_LONG).show();
+                }
                 int selected_id = radioGroup.getCheckedRadioButtonId();
+                if (selected_id == -1) {
+                    Toast.makeText(getContext(), "Choose Time", Toast.LENGTH_LONG).show();
+                    heading2.setTextColor(getResources().getColor(R.color.redcolor));
+                    return;
+                }
                 radioButton = (RadioButton) getView().findViewById(selected_id);
                 String myTime = radioButton.getText().toString();
 
 
                 if (myTime.equals(rb1.getText().toString())) {
                     bookAppointment("time1", customerName, myServices);
-
-                }
-                if (myTime.equals(rb2.getText().toString())) {
+                } else if (myTime.equals(rb2.getText().toString())) {
                     bookAppointment("time2", customerName, myServices);
-                }
-                if (myTime.equals(rb3.getText().toString())) {
+                } else if (myTime.equals(rb3.getText().toString())) {
                     bookAppointment("time3", customerName, myServices);
-                }
-                if (myTime.equals(rb4.getText().toString())) {
+                } else if (myTime.equals(rb4.getText().toString())) {
                     bookAppointment("time4", customerName, myServices);
-                }
-                if (myTime.equals(rb5.getText().toString())) {
+                } else if (myTime.equals(rb5.getText().toString())) {
                     bookAppointment("time5", customerName, myServices);
-
-                }
-                if (myTime.equals(rb6.getText().toString())) {
+                } else if (myTime.equals(rb6.getText().toString())) {
                     bookAppointment("time6", customerName, myServices);
-                }
-                if (myTime.equals(rb7.getText().toString())) {
+                } else if (myTime.equals(rb7.getText().toString())) {
                     bookAppointment("time7", customerName, myServices);
-                }
-                if (myTime.equals(rb8.getText().toString())) {
+                } else if (myTime.equals(rb8.getText().toString())) {
                     bookAppointment("time8", customerName, myServices);
-                }
-                if (myTime.equals(rb9.getText().toString())) {
+                } else if (myTime.equals(rb9.getText().toString())) {
                     bookAppointment("time9", customerName, myServices);
-                }
-                if (myTime.equals(rb10.getText().toString())) {
+                } else if (myTime.equals(rb10.getText().toString())) {
                     bookAppointment("time10", customerName, myServices);
-                }
-                if (myTime.equals(rb11.getText().toString())) {
+                } else if (myTime.equals(rb11.getText().toString())) {
                     bookAppointment("time11", customerName, myServices);
-
-                }
-                if (myTime.equals(rb12.getText().toString())) {
+                } else if (myTime.equals(rb12.getText().toString())) {
                     bookAppointment("time12", customerName, myServices);
-                }
-                if (myTime.equals(rb13.getText().toString())) {
+                } else if (myTime.equals(rb13.getText().toString())) {
                     bookAppointment("time13", customerName, myServices);
+                } else {
+                    Toast.makeText(getContext(), "Choose Time", Toast.LENGTH_LONG).show();
+                    return;
+
                 }
 
-                layout.setClickable(false);
-                Toast.makeText(getContext(),"Your appointment have been successfully booked!!\n Please press back.",Toast.LENGTH_LONG).show();
+                book.setEnabled(false);
+                Toast.makeText(getContext(), "Booking Successful", Toast.LENGTH_LONG).show();
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.salon_detail, true).build();
+                Navigation.findNavController(getView()).navigate(R.id.action_salon_detail_to_customer_main, null, navOptions);
 
 
             }
@@ -329,6 +335,7 @@ public class Salon_detail extends Fragment {
         barberref.child(date).child(time).child("name").setValue(name);
         barberref.child(date).child(time).child("service").setValue(service);
         barberref.child(date).child(time).child("status").setValue("2");
+        barberref.child(date).child(time).child("phonenumber").setValue(phonenumberCustomer);
         historyref.child("date").setValue(date);
         historyref.child("time").setValue(time);
         historyref.child("phonenumber").setValue(phonenumberBarber);

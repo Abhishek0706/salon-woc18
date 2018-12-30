@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Tomorrow">
 
     <LinearLayout
@@ -18,20 +18,21 @@
 
             <Button
                 android:id="@+id/btn_today"
-                android:text="@string/today"
-                android:background="@color/btncolor"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@color/btncolor"
+                android:text="@string/today" />
+
             <TextView
 
-                android:text="@string/tomorrow"
-                android:background="#ffffff"
-                android:textStyle="bold"
-                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:text="@string/tomorrow"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -41,11 +42,10 @@
             android:orientation="vertical">
 
 
-
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -56,30 +56,33 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time1"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time1" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tomorrow_status_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -87,18 +90,19 @@
                         android:id="@+id/tomorrow_switch1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                         />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -109,18 +113,15 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time2"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time2" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -128,11 +129,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -140,18 +147,19 @@
                         android:id="@+id/tomorrow_switch2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                        />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -162,18 +170,15 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time3"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time3" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -181,11 +186,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -193,18 +204,19 @@
                         android:id="@+id/tomorrow_switch3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                        />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -215,30 +227,33 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time4"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time4" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tomorrow_status_time4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -246,18 +261,19 @@
                         android:id="@+id/tomorrow_switch4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                          />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -268,30 +284,33 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time5"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time5" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tomorrow_status_time5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -299,18 +318,19 @@
                         android:id="@+id/tomorrow_switch5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                         />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -321,18 +341,15 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time6"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time6" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -340,11 +357,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -352,18 +375,19 @@
                         android:id="@+id/tomorrow_switch6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                         />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -374,30 +398,33 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time7"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time7" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tomorrow_status_time7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time7"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -405,18 +432,19 @@
                         android:id="@+id/tomorrow_switch7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                         />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -427,18 +455,15 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time8"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time8" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -446,11 +471,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time8"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -458,18 +489,19 @@
                         android:id="@+id/tomorrow_switch8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                        />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -480,18 +512,15 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time9"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time9" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -499,11 +528,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time9"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time9"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -511,18 +546,19 @@
                         android:id="@+id/tomorrow_switch9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                        />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -533,30 +569,33 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time10"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time10" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tomorrow_status_time10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -564,18 +603,19 @@
                         android:id="@+id/tomorrow_switch10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                        />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -586,18 +626,15 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time11"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time11" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
@@ -605,11 +642,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time11"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time11"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -617,18 +660,19 @@
                         android:id="@+id/tomorrow_switch11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                    />
+                        android:checked="true" />
 
                 </LinearLayout>
 
 
             </android.support.v7.widget.CardView>
+
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -639,30 +683,33 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time12"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time12" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tomorrow_status_time12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time12"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/empty"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -670,9 +717,9 @@
                         android:id="@+id/tomorrow_switch12"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                       />
+                        android:checked="true" />
 
                 </LinearLayout>
 
@@ -680,9 +727,9 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:layout_margin="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 app:cardCornerRadius="8dp">
 
                 <LinearLayout
@@ -693,30 +740,33 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="80dp"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/time13"/>
+                        style="@style/mytimestyle"
+                        android:text="@string/time13" />
 
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
                         android:layout_gravity="center"
+                        android:layout_marginLeft="8dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/tomorrow_status_time13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/name_of_customer" />
+                            android:text="@string/empty" />
+
                         <TextView
                             android:id="@+id/tomorrow_service_time13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/services"/>
+                            android:text="@string/empty" />
+
+                        <TextView
+                            android:id="@+id/tomorrow_phone_time13"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -724,9 +774,9 @@
                         android:id="@+id/tomorrow_switch13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_weight="1"
-                        android:checked="true"
-                          />
+                        android:checked="true" />
 
                 </LinearLayout>
 
@@ -735,7 +785,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
 
 
 </ScrollView>

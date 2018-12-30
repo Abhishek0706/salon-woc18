@@ -74,6 +74,19 @@ public class Barber_main extends Fragment {
     private TextView name13;
     private TextView service13;
     private Button migrate;
+    private TextView phone1;
+    private TextView phone2;
+    private TextView phone3;
+    private TextView phone4;
+    private TextView phone5;
+    private TextView phone6;
+    private TextView phone7;
+    private TextView phone8;
+    private TextView phone9;
+    private TextView phone10;
+    private TextView phone11;
+    private TextView phone12;
+    private TextView phone13;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -114,7 +127,19 @@ public class Barber_main extends Fragment {
         service12 = (TextView) view.findViewById(R.id.today_service_time12);
         name13 = (TextView) view.findViewById(R.id.today_status_time13);
         service13 = (TextView) view.findViewById(R.id.today_service_time13);
-
+        phone1 = (TextView) view.findViewById(R.id.today_phone_time1);
+        phone2 = (TextView) view.findViewById(R.id.today_phone_time2);
+        phone3 = (TextView) view.findViewById(R.id.today_phone_time3);
+        phone4 = (TextView) view.findViewById(R.id.today_phone_time4);
+        phone5 = (TextView) view.findViewById(R.id.today_phone_time5);
+        phone6 = (TextView) view.findViewById(R.id.today_phone_time6);
+        phone7 = (TextView) view.findViewById(R.id.today_phone_time7);
+        phone8 = (TextView) view.findViewById(R.id.today_phone_time8);
+        phone9 = (TextView) view.findViewById(R.id.today_phone_time9);
+        phone10 = (TextView) view.findViewById(R.id.today_phone_time10);
+        phone11 = (TextView) view.findViewById(R.id.today_phone_time11);
+        phone12 = (TextView) view.findViewById(R.id.today_phone_time12);
+        phone13 = (TextView) view.findViewById(R.id.today_phone_time13);
         phonenumber = FirebaseAuth.getInstance().getCurrentUser().getPhoneNumber().substring(1);
 
         migrate = (Button) view.findViewById(R.id.btn_tomorrow);
@@ -127,6 +152,7 @@ public class Barber_main extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        City.setPhonenumber(phonenumber);
 
 
         migrate.setOnClickListener(new View.OnClickListener() {
@@ -156,6 +182,7 @@ public class Barber_main extends Fragment {
                         s = "time" + s;
                         timeref.child(tomorrow).child(s).child("name").setValue("----");
                         timeref.child(tomorrow).child(s).child("service").setValue("----");
+                        timeref.child(tomorrow).child(s).child("phonenumber").setValue("----");
                         timeref.child(tomorrow).child(s).child("status").setValue("1");
                     }
                 }
@@ -177,46 +204,52 @@ public class Barber_main extends Fragment {
                     if (dataSnapshot.child("time1").child("status").getValue().toString().equals("2")) {
                         name1.setText(dataSnapshot.child("time1").child("name").getValue().toString());
                         service1.setText(dataSnapshot.child("time1").child("service").getValue().toString());
+                        phone1.setText(dataSnapshot.child("time1").child("phonenumber").getValue().toString());
                     }
-
                     if (dataSnapshot.child("time2").child("status").getValue().toString().equals("2")) {
                         name2.setText(dataSnapshot.child("time2").child("name").getValue().toString());
                         service2.setText(dataSnapshot.child("time2").child("service").getValue().toString());
+                        phone2.setText(dataSnapshot.child("time2").child("phonenumber").getValue().toString());
                     }
-
                     if (dataSnapshot.child("time3").child("status").getValue().toString().equals("2")) {
                         name3.setText(dataSnapshot.child("time3").child("name").getValue().toString());
                         service3.setText(dataSnapshot.child("time3").child("service").getValue().toString());
+                        phone3.setText(dataSnapshot.child("time3").child("phonenumber").getValue().toString());
                     }
-
                     if (dataSnapshot.child("time4").child("status").getValue().toString().equals("2")) {
                         name4.setText(dataSnapshot.child("time4").child("name").getValue().toString());
                         service4.setText(dataSnapshot.child("time4").child("service").getValue().toString());
+                        phone4.setText(dataSnapshot.child("time4").child("phonenumber").getValue().toString());
                     }
 
                     if (dataSnapshot.child("time5").child("status").getValue().toString().equals("2")) {
                         name5.setText(dataSnapshot.child("time5").child("name").getValue().toString());
                         service5.setText(dataSnapshot.child("time5").child("service").getValue().toString());
+                        phone5.setText(dataSnapshot.child("time5").child("phonenumber").getValue().toString());
                     }
 
                     if (dataSnapshot.child("time6").child("status").getValue().toString().equals("2")) {
                         name6.setText(dataSnapshot.child("time6").child("name").getValue().toString());
                         service6.setText(dataSnapshot.child("time6").child("service").getValue().toString());
+                        phone6.setText(dataSnapshot.child("time6").child("phonenumber").getValue().toString());
                     }
 
                     if (dataSnapshot.child("time7").child("status").getValue().toString().equals("2")) {
                         name7.setText(dataSnapshot.child("time7").child("name").getValue().toString());
                         service7.setText(dataSnapshot.child("time7").child("service").getValue().toString());
+                        phone7.setText(dataSnapshot.child("time7").child("phonenumber").getValue().toString());
                     }
 
                     if (dataSnapshot.child("time8").child("status").getValue().toString().equals("2")) {
                         name8.setText(dataSnapshot.child("time8").child("name").getValue().toString());
                         service8.setText(dataSnapshot.child("time8").child("service").getValue().toString());
+                        phone8.setText(dataSnapshot.child("time8").child("phonenumber").getValue().toString());
                     }
 
                     if (dataSnapshot.child("time9").child("status").getValue().toString().equals("2")) {
                         name9.setText(dataSnapshot.child("time9").child("name").getValue().toString());
                         service9.setText(dataSnapshot.child("time9").child("service").getValue().toString());
+                        phone9.setText(dataSnapshot.child("time9").child("phonenumber").getValue().toString());
                     }
 
                     if (dataSnapshot.child("time10").child("status").getValue().toString().equals("2")) {
@@ -227,16 +260,19 @@ public class Barber_main extends Fragment {
                     if (dataSnapshot.child("time11").child("status").getValue().toString().equals("2")) {
                         name11.setText(dataSnapshot.child("time11").child("name").getValue().toString());
                         service11.setText(dataSnapshot.child("time11").child("service").getValue().toString());
+                        phone11.setText(dataSnapshot.child("time11").child("phonenumber").getValue().toString());
                     }
 
                     if (dataSnapshot.child("time12").child("status").getValue().toString().equals("2")) {
                         name12.setText(dataSnapshot.child("time12").child("name").getValue().toString());
                         service12.setText(dataSnapshot.child("time12").child("service").getValue().toString());
+                        phone12.setText(dataSnapshot.child("time12").child("phonenumber").getValue().toString());
                     }
 
                     if (dataSnapshot.child("time13").child("status").getValue().toString().equals("2")) {
                         name13.setText(dataSnapshot.child("time13").child("name").getValue().toString());
                         service13.setText(dataSnapshot.child("time13").child("service").getValue().toString());
+                        phone13.setText(dataSnapshot.child("time13").child("phonenumber").getValue().toString());
                     }
 
                 }

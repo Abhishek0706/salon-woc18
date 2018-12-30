@@ -4,6 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 
+import com.example.abhishekpatil.salon_woc_18.City;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -19,8 +20,16 @@ public class Salon_detail_live_data extends LiveData<DataSnapshot> {
         this.query = query;
     }
 
-    public Salon_detail_live_data (DatabaseReference ref){
-        this.query = ref;
+    public Salon_detail_live_data (DatabaseReference ref, int a){
+        String phonenumber = City.getBarberphonenumber();
+        if(a==0){
+            this.query = ref.child(phonenumber);
+
+        }
+        else {
+            this.query = ref.child(phonenumber).child("services");
+        }
+
     }
 
     @Override

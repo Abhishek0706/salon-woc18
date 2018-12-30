@@ -1,5 +1,6 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.abhishekpatil.salon_woc_18.viewModels.Sign_in_verify_view_model;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -30,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
 import androidx.navigation.NavOptions;
@@ -40,35 +43,29 @@ public class Sign_in_verify extends Fragment {
     private EditText otp;
     private Button btn;
     private FirebaseAuth mAuth;
-    private DatabaseReference customerref;
-    private DatabaseReference barberref;
-    FirebaseDatabase firebaseDatabase;
     private String verificationId;
     private ProgressBar pb;
+    private Sign_in_verify_view_model mviewmodel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign_in_verify, container, false);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        customerref = firebaseDatabase.getReference().child("customer");
-        barberref = firebaseDatabase.getReference().child("barber");
+
         mAuth = FirebaseAuth.getInstance();
         otp = (EditText) view.findViewById(R.id.text_otp_signin);
         btn = (Button) view.findViewById(R.id.btn_verify_signin);
-        pb = (ProgressBar)view.findViewById(R.id.progress_signinverify);
+        pb = (ProgressBar) view.findViewById(R.id.progress_signinverify);
 
         return view;
     }
-
-
     @Override
     public void onStart() {
         super.onStart();
-
-
+        mviewmodel = ViewModelProviders.of(this).get(Sign_in_verify_view_model.class);
+        mviewmodel.setV(getView());
         String phonenumber = Sign_up_verifyArgs.fromBundle(getArguments()).getPhonenumber();
-
+        mviewmodel.setPhonenumber(phonenumber);
         sendVerificationCode("+" + phonenumber);
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -84,18 +81,13 @@ public class Sign_in_verify extends Fragment {
                 }
                 verifyCode(code);
 
-
             }
         });
-
-
     }
 
     private void verifyCode(String code) {
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithCredential(credential);
-
-
     }
 
 
@@ -145,49 +137,12 @@ public class Sign_in_verify extends Fragment {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful() == true) {
-
-                    final String phonenumber = Sign_up_verifyArgs.fromBundle(getArguments()).getPhonenumber();
-
-                    customerref.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            if (dataSnapshot.child(phonenumber).exists()) {
-                                //Toast.makeText(getContext(),"Hello customer",Toast.LENGTH_LONG).show();
-                                NavOptions navOptions = new NavOptions.Builder()
-                                        .setPopUpTo(R.id.sign_in_verify, true)
-                                        .build();
-                                String city = dataSnapshot.child(phonenumber).child("city").getValue().toString();
-                                Sign_in_verifyDirections.ActionSignInVerifyToCustomerMain action = Sign_in_verifyDirections.actionSignInVerifyToCustomerMain();
-                                action.setPhonenumber(phonenumber);
-                                action.setCity(city);
-
-
-                                Navigation.findNavController(getView()).navigate(action, navOptions);
-
-                            } else {
-                                //Toast.makeText(getContext(),"Hello barber",Toast.LENGTH_LONG).show();
-                                NavOptions navOptions = new NavOptions.Builder()
-                                        .setPopUpTo(R.id.sign_in_verify, true)
-                                        .build();
-                                Navigation.findNavController(getView()).navigate(R.id.action_sign_in_verify_to_barber_main, null, navOptions);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
+                    mviewmodel.navigatetodestination();
                 }
                 else{
-                    Toast.makeText(getContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(),"Invalid OTP", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
-
     }
 }
