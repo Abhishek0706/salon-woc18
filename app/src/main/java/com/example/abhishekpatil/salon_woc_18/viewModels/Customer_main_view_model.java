@@ -24,10 +24,8 @@ public class Customer_main_view_model extends ViewModel {
     private Customer_main_live_data live_data = new Customer_main_live_data(barberref);
 
 
-    public LiveData<DataSnapshot> getDataSnapshotLiveDatabarberlist(String city) {
+    public LiveData<DataSnapshot> getDataSnapshotLiveDatabarberlist() {
 
         return live_data;
-
-
     }
 }

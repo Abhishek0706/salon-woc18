@@ -76,9 +76,11 @@ public class Edit_profile extends Fragment {
         phonenumber = City.getPhonenumber();
 
         if (type == 0) {
-            editaddress.setVisibility(View.INVISIBLE);
+            editaddress.setVisibility(View.GONE);
+            myImage.setVisibility(View.GONE);
             myref = FirebaseDatabase.getInstance().getReference().child("customer").child(phonenumber);
         } else {
+
             myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber);
         }
 
@@ -109,7 +111,6 @@ public class Edit_profile extends Fragment {
                             .setPopUpTo(R.id.edit_profile, true).build();
                     Navigation.findNavController(getView()).navigate(R.id.action_edit_profile_to_barber_main, null, navOptions);
                 } else {//customer
-
                     NavOptions navOptions = new NavOptions.Builder()
                             .setPopUpTo(R.id.edit_profile, true).build();
                     Navigation.findNavController(getView()).navigate(R.id.action_edit_profile_to_customer_main, null, navOptions);

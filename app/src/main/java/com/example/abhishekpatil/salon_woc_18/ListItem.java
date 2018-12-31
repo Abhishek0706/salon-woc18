@@ -1,14 +1,18 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.net.Uri;
+
 public class ListItem {
     private String name;
     private String address;
     private String phonenumber;
+    private Uri uri;
 
-    public ListItem(String name, String address, String phonenumber) {
+    public ListItem(String name, String address, String phonenumber ,Uri uri) {
         this.name = name;
         this.address = address;
         this.phonenumber = phonenumber;
+
     }
 
     public ListItem() {
@@ -26,4 +30,6 @@ public class ListItem {
     public String getPhonenumber() {
         return phonenumber;
     }
+
+
 }

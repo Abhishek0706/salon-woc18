@@ -144,7 +144,10 @@ public class Sign_up extends Fragment {
             @Override
             public void onClick(View v) {
                 Sign_upDirections.ActionSignUpToSignIn action = Sign_upDirections.actionSignUpToSignIn();
-                Navigation.findNavController(v).navigate(action);
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.home, true)
+                        .build();
+                Navigation.findNavController(v).navigate(action,navOptions);
             }
         });
 

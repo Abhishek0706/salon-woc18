@@ -86,7 +86,7 @@ public class Customer_main extends Fragment {
         Customer_main_view_model view_model = ViewModelProviders.of(this).get(Customer_main_view_model.class);
 
 
-        LiveData<DataSnapshot> liveData = view_model.getDataSnapshotLiveDatabarberlist(city);
+        LiveData<DataSnapshot> liveData = view_model.getDataSnapshotLiveDatabarberlist();
 
         liveData.observe(this, new Observer<DataSnapshot>() {
             @Override
