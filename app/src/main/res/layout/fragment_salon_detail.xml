@@ -16,8 +16,9 @@
             android:id="@+id/salon_imageView"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/wp2542098"/>
+            android:scaleType="fitXY"
+            android:background="@drawable/ic_image_black_24dp"
+            android:layout_gravity="center_horizontal" />
 
         <TextView
             android:id="@+id/salon_info_name"

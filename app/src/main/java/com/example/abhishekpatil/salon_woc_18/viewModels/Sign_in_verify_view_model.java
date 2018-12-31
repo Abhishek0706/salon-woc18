@@ -69,8 +69,14 @@ public class Sign_in_verify_view_model extends ViewModel {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             Calendar calendar = Calendar.getInstance();
                             String year = String.valueOf(calendar.get(Calendar.YEAR));
-                            String month = String.valueOf(calendar.get(Calendar.MONTH));
+                            String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
                             String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+                            if(day.length()==1){
+                                day = "0"+day;
+                            }
+                            if(month.length()==1){
+                                month = "0"+month;
+                            }
                             String today = day + month + year;
                             if (!dataSnapshot.child(today).exists()) {
                                 for (int i = 1; i <= 13; i++) {

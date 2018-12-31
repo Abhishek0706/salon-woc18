@@ -17,8 +17,6 @@ import java.util.List;
 
 public class Salon_detail_view_model extends ViewModel {
 
-
-
     DatabaseReference barberref = FirebaseDatabase.getInstance().getReference().child("barber");
     Salon_detail_live_data livedatabarber= new Salon_detail_live_data(barberref,0);
     Salon_detail_live_data livedataservices = new Salon_detail_live_data(barberref,1);

@@ -31,9 +31,10 @@
                 android:id="@+id/btn_tomorrow"
                 android:text="@string/tomorrow"
                 android:layout_width="0dp"
-                android:background="@color/btncolor"
+                android:textColor="#ffffff"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@color/btncolor"/>
 
         </LinearLayout>
 

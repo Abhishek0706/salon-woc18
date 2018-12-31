@@ -110,8 +110,15 @@ public class Tomorrow extends Fragment {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 1);
         String year = String.valueOf(calendar.get(Calendar.YEAR));
-        String month = String.valueOf(calendar.get(Calendar.MONTH));
+        String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
+
         String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+        if(day.length()==1){
+            day = "0"+day;
+        }
+        if(month.length()==1){
+            month = "0"+month;
+        }
 
         String date = day + month + year;
 
@@ -577,7 +584,10 @@ public class Tomorrow extends Fragment {
                 return true;
             case R.id.barber_menu_logout:
                 FirebaseAuth.getInstance().signOut();
-                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_home);
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.tomorrow, true)
+                        .build();
+                Navigation.findNavController(getView()).navigate(R.id.action_tomorrow_to_home,null,navOptions);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

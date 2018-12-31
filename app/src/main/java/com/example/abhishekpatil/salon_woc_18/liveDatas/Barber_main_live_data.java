@@ -9,6 +9,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Calendar;
+
 public class Barber_main_live_data extends LiveData<DataSnapshot> {
     private final Query query;
     private  final  MyValueEventListener listener = new MyValueEventListener();
@@ -18,7 +20,18 @@ public class Barber_main_live_data extends LiveData<DataSnapshot> {
     }
 
     public  Barber_main_live_data (DatabaseReference ref){
-        this.query = ref;
+        Calendar calendar = Calendar.getInstance();
+        String year = String.valueOf(calendar.get(Calendar.YEAR));
+        String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
+        String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+        if(day.length()==1){
+            day = "0"+day;
+        }
+        if(month.length()==1){
+            month = "0"+month;
+        }
+        String date = day + month + year;
+        this.query = ref.child(date);
     }
 
     @Override

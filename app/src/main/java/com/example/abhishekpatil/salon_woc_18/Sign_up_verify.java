@@ -109,6 +109,7 @@ public class Sign_up_verify extends Fragment {
     }
 
     private void verifyCode(String code) {
+        pb.setVisibility(View.VISIBLE);
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithCredential(credential);
 
@@ -117,7 +118,7 @@ public class Sign_up_verify extends Fragment {
 
 
     private void sendVerificationCode(String number) {
-        pb.setVisibility(View.VISIBLE);
+
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number,
                 60,

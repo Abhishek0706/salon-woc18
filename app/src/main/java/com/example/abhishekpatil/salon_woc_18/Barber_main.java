@@ -23,18 +23,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.abhishekpatil.salon_woc_18.viewModels.Barber_main_view_model;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
 
@@ -42,6 +48,8 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 public class Barber_main extends Fragment {
+
+
 
     private LinearLayout todayLayout;
     private DatabaseReference myref;
@@ -167,8 +175,14 @@ public class Barber_main extends Fragment {
         Calendar calendar1 = Calendar.getInstance();
         calendar1.add(Calendar.DATE, 1);
         String year2 = String.valueOf(calendar1.get(Calendar.YEAR));
-        String month2 = String.valueOf(calendar1.get(Calendar.MONTH));
+        String month2 = String.valueOf(calendar1.get(Calendar.MONTH)+1);
         String day2 = String.valueOf(calendar1.get(Calendar.DAY_OF_MONTH));
+        if(day2.length()==1){
+            day2 = "0"+day2;
+        }
+        if(month2.length()==1){
+            month2 = "0"+month2;
+        }
         final String tomorrow = day2 + month2 + year2;
 
         timeref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -279,6 +293,7 @@ public class Barber_main extends Fragment {
             }
         });
 
+
     }
 
     @Override
@@ -304,6 +319,9 @@ public class Barber_main extends Fragment {
                 return true;
             case R.id.barber_menu_logout:
                 FirebaseAuth.getInstance().signOut();
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.barber_main, true)
+                        .build();
                 Navigation.findNavController(getView()).navigate(R.id.action_barber_main_to_home);
                 return true;
             default:

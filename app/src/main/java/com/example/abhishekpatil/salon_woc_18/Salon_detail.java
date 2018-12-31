@@ -14,19 +14,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.abhishekpatil.salon_woc_18.viewModels.Salon_detail_view_model;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
 
@@ -59,13 +65,15 @@ public class Salon_detail extends Fragment {
     private static String date;
     private LinearLayout layout;
     private TextView heading2;
+    private StorageReference mstorage;
+    private ImageView myImage;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_salon_detail, container, false);
-
-
+        myImage = (ImageView) view.findViewById(R.id.salon_imageView);
+        mstorage = FirebaseStorage.getInstance().getReference();
         Barbername = Salon_detailArgs.fromBundle(getArguments()).getName();
         Barberaddress = Salon_detailArgs.fromBundle(getArguments()).getAddress();
         phonenumberBarber = Salon_detailArgs.fromBundle(getArguments()).getPhonenumber();
@@ -108,17 +116,34 @@ public class Salon_detail extends Fragment {
         mname.setText(Barbername);
         maddrerss.setText(Barberaddress);
         mphonenumber.setText(phonenumberBarber);
+        mstorage.child(City.getBarberphonenumber()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(getContext()).load(uri).into(myImage);
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
 
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 1);
         String year = String.valueOf(calendar.get(Calendar.YEAR));
-        String month = String.valueOf(calendar.get(Calendar.MONTH));
+        String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
         String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+        if(day.length()==1){
+            day = "0"+day;
+        }
+        if(month.length()==1){
+            month = "0"+month;
+        }
         date = day + month + year;
 
         view_model = ViewModelProviders.of(this).get(Salon_detail_view_model.class);
-
 
 
         LiveData<DataSnapshot> liveData1 = view_model.getLivedataservices();
@@ -275,6 +300,7 @@ public class Salon_detail extends Fragment {
 
                 if (myServices.equals(" ")) {
                     Toast.makeText(getContext(), "Minimum One Service Required", Toast.LENGTH_LONG).show();
+                    return;
                 }
                 int selected_id = radioGroup.getCheckedRadioButtonId();
                 if (selected_id == -1) {

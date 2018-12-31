@@ -1,7 +1,9 @@
 package com.example.abhishekpatil.salon_woc_18;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,14 +15,24 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
+
+import static android.app.Activity.RESULT_OK;
 
 public class Edit_profile extends Fragment {
     String phonenumber;
@@ -30,6 +42,10 @@ public class Edit_profile extends Fragment {
     private EditText editaddress;
     private Button editbutton;
     private DatabaseReference myref;
+    private ImageView myImage;
+    private Uri imageuri;
+    private StorageReference mStorageRef;
+    private StorageTask mtask;
 
     @Nullable
     @Override
@@ -39,6 +55,8 @@ public class Edit_profile extends Fragment {
         editCity = (Spinner) view.findViewById(R.id.spinner_city);
         editaddress = (EditText) view.findViewById(R.id.edit_address);
         editbutton = (Button) view.findViewById(R.id.btn_edit);
+        myImage = (ImageView)view.findViewById(R.id.edit_image);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
         return view;
     }
 
@@ -64,6 +82,7 @@ public class Edit_profile extends Fragment {
             myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber);
         }
 
+
         editbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +97,11 @@ public class Edit_profile extends Fragment {
                 City.setName(editname.getText().toString());
                 City.setCity(Cities.cityname[editCity.getSelectedItemPosition()].trim());
                 if (type == 1 && editaddress.length() != 0) {//barber
+                    if(mtask!=null&& mtask.isInProgress()){
+
+                    }else{
+                        uploadFile();
+                    }
 
                     City.setAddress(editaddress.getText().toString());
                     myref.child("address").setValue(editaddress.getText().toString());
@@ -97,6 +121,39 @@ public class Edit_profile extends Fragment {
             }
         });
 
+        myImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setType("image/*");
+                i.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(i,1);
+            }
+        });
 
+
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode ==1 && resultCode == RESULT_OK && data !=null && data.getData()!=null){
+            imageuri = data.getData();
+            myImage.setImageURI(imageuri);
+        }
+    }
+    private void uploadFile(){
+        if(imageuri!= null){
+           StorageReference fileref= mStorageRef.child(City.getPhonenumber());
+
+               mtask = fileref.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                }
+            });
+        }else{
+            Toast.makeText(getContext(),"No Image Selected. Last uploaded Image will be shown.",Toast.LENGTH_LONG).show();
+        }
     }
 }

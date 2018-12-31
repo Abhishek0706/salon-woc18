@@ -75,8 +75,14 @@ public class Sign_up_verify_view_model extends ViewModel {
 
         Calendar calendar = Calendar.getInstance();
         String year = String.valueOf(calendar.get(Calendar.YEAR));
-        String month = String.valueOf(calendar.get(Calendar.MONTH));
+        String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
         String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+        if(day.length()==1){
+            day = "0"+day;
+        }
+        if(month.length()==1){
+            month = "0"+month;
+        }
         String today = day + month + year;
         String phonenumber = getPhonenumber();
         String name = getName();

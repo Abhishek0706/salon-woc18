@@ -14,13 +14,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.abhishekpatil.salon_woc_18.viewModels.Services_by_barber_view_model;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class Services_by_barber extends Fragment {
@@ -38,6 +49,10 @@ public class Services_by_barber extends Fragment {
     private CheckBox box_bleach;
     private EditText rate_bleach;
     private Button btn;
+    private ImageView myImage;
+    private Uri imageuri;
+    private StorageReference mStorageRef;
+    private StorageTask mtask;
 
 
     @Nullable
@@ -56,58 +71,96 @@ public class Services_by_barber extends Fragment {
         rate_facial = (EditText) view.findViewById(R.id.rate_facial);
         box_bleach = (CheckBox) view.findViewById(R.id.cb_bleach);
         rate_bleach = (EditText) view.findViewById(R.id.rate_bleach);
-
+        myImage = (ImageView) view.findViewById(R.id.salon_image);
         btn = (Button) view.findViewById(R.id.btn_next_services);
-
-
+        mStorageRef = FirebaseStorage.getInstance().getReference();
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
+        myImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setType("image/*");
+                i.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(i, 1);
+            }
+        });
         final Services_by_barber_view_model mviewmodel = ViewModelProviders.of(this).get(Services_by_barber_view_model.class);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                uploadFile();
                 if (box_haircut.isChecked()) {
-                    mviewmodel.setvalue("haircut",rate_haircut.getText().toString());
+                    mviewmodel.setvalue("haircut", rate_haircut.getText().toString());
                 } else {
-                   mviewmodel.setvalue("haircut","0");
+                    mviewmodel.setvalue("haircut", "0");
                 }
                 if (box_hairspa.isChecked()) {
-                    mviewmodel.setvalue("shave",rate_hairspa.getText().toString());
+                    mviewmodel.setvalue("shave", rate_hairspa.getText().toString());
                 } else {
-                    mviewmodel.setvalue("shave","0");
+                    mviewmodel.setvalue("shave", "0");
                 }
                 if (box_haircolor.isChecked()) {
-                    mviewmodel.setvalue("haircolor",rate_haircolor.getText().toString());
+                    mviewmodel.setvalue("haircolor", rate_haircolor.getText().toString());
                 } else {
-                    mviewmodel.setvalue("haircolor","0");
+                    mviewmodel.setvalue("haircolor", "0");
                 }
                 if (box_massage.isChecked()) {
-                    mviewmodel.setvalue("massage",rate_massage.getText().toString());
+                    mviewmodel.setvalue("massage", rate_massage.getText().toString());
                 } else {
-                    mviewmodel.setvalue("massage","0");
+                    mviewmodel.setvalue("massage", "0");
                 }
                 if (box_facial.isChecked()) {
-                    mviewmodel.setvalue("facial",rate_facial.getText().toString());
+                    mviewmodel.setvalue("facial", rate_facial.getText().toString());
                 } else {
-                    mviewmodel.setvalue("facial","0");;
+                    mviewmodel.setvalue("facial", "0");
+                    ;
                 }
                 if (box_bleach.isChecked()) {
-                    mviewmodel.setvalue("bleach",rate_bleach.getText().toString());
+                    mviewmodel.setvalue("bleach", rate_bleach.getText().toString());
                 } else {
-                    mviewmodel.setvalue("bleach","0");
+                    mviewmodel.setvalue("bleach", "0");
                 }
 
                 NavOptions navOptions = new NavOptions.Builder()
                         .setPopUpTo(R.id.services_by_barber, true)
                         .build();
 
-                Navigation.findNavController(v).navigate(R.id.action_services_by_barber_to_barber_main,null,navOptions);
+                Navigation.findNavController(v).navigate(R.id.action_services_by_barber_to_barber_main, null, navOptions);
             }
         });
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            imageuri = data.getData();
+            myImage.setImageURI(imageuri);
+        }
+        else{
+            myImage.setImageResource(R.drawable.wp2542098);
+        }
+    }
+
+    private void uploadFile() {
+        if (imageuri != null) {
+            StorageReference fileref = mStorageRef.child(City.getPhonenumber());
+
+            mtask = fileref.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                }
+            });
+        } else {
+            Toast.makeText(getContext(), "No Image Selected. Default Image will be shown.", Toast.LENGTH_LONG).show();
+        }
     }
 }

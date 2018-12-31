@@ -100,6 +100,7 @@ public class Sign_up extends Fragment {
                         if (dataSnapshot.child(phonenumber).exists()) {
                             Toast.makeText(getContext(), "user is already registered. Please sign in", Toast.LENGTH_LONG).show();
                             exists = 1;
+                            pb.setVisibility(View.INVISIBLE);
 
                         }
 
@@ -143,10 +144,7 @@ public class Sign_up extends Fragment {
             @Override
             public void onClick(View v) {
                 Sign_upDirections.ActionSignUpToSignIn action = Sign_upDirections.actionSignUpToSignIn();
-                NavOptions navOptions = new NavOptions.Builder()
-                        .setPopUpTo(R.id.sign_up, true)
-                        .build();
-                Navigation.findNavController(v).navigate(action, navOptions);
+                Navigation.findNavController(v).navigate(action);
             }
         });
 

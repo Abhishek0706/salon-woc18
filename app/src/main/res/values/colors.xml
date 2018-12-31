@@ -7,4 +7,6 @@
     <color name="btncolor">#00bfff</color>
     <color name="redcolor">#ff3333</color>
     <color name="white">#ffffff</color>
+    <color name="primaryText">#212121</color>
+
 </resources>

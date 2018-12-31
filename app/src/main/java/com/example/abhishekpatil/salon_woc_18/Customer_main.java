@@ -31,6 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +50,7 @@ public class Customer_main extends Fragment {
     private DatabaseReference customerref;
     private String phonenumber;
     private static String city;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,6 +74,7 @@ public class Customer_main extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
 
 
         Customer_mainArgs args = Customer_mainArgs.fromBundle(getArguments());
@@ -127,7 +131,10 @@ public class Customer_main extends Fragment {
                 return true;
             case R.id.menu_logout:
                 FirebaseAuth.getInstance().signOut();
-                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_home);
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setPopUpTo(R.id.customer_main, true)
+                        .build();
+                Navigation.findNavController(getView()).navigate(R.id.action_customer_main_to_home,null,navOptions);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

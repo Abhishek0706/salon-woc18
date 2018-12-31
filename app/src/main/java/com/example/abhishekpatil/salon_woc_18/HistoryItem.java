@@ -24,7 +24,8 @@ public class HistoryItem {
 
     public String getDate() {
 
-            return date.substring(0,2)+"/"+date.substring(2,4)+"/"+date.substring(4,date.length());
+
+        return date.substring(0,2)+"/"+date.substring(2,4)+"/"+date.substring(4,date.length());
     }
 
     public String getTime() {
