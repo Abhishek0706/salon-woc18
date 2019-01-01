@@ -87,6 +87,8 @@ public class Sign_up_verify extends Fragment {
                     return;
                 }
                 verifyCode(otp);
+                btn_verify_barber.setEnabled(false);
+                btn_verify_customer.setEnabled(false);
 
             }
         });
@@ -101,6 +103,8 @@ public class Sign_up_verify extends Fragment {
                     return;
                 }
                 verifyCode(otp);
+                btn_verify_barber.setEnabled(false);
+                btn_verify_customer.setEnabled(false);
 
             }
         });
@@ -163,6 +167,9 @@ public class Sign_up_verify extends Fragment {
                     Toast.makeText(getContext(), "FIRSTLY CHECK YOUR APPOINTMENTS", Toast.LENGTH_LONG);
                 }
                 else{
+                    btn_verify_barber.setEnabled(true);
+                    btn_verify_customer.setEnabled(true);
+                    pb.setVisibility(View.INVISIBLE);
                     motp.setError("Invalid Code");
                     motp.requestFocus();
                 }

@@ -64,7 +64,7 @@ public class Sign_in_verify extends Fragment {
         super.onStart();
         mviewmodel = ViewModelProviders.of(this).get(Sign_in_verify_view_model.class);
         mviewmodel.setV(getView());
-        String phonenumber = Sign_up_verifyArgs.fromBundle(getArguments()).getPhonenumber();
+        String phonenumber = Sign_in_verifyArgs.fromBundle(getArguments()).getPhonenumber();
         mviewmodel.setPhonenumber(phonenumber);
         sendVerificationCode("+" + phonenumber);
 
@@ -79,6 +79,7 @@ public class Sign_in_verify extends Fragment {
                     otp.requestFocus();
                     return;
                 }
+                btn.setEnabled(false);
                 verifyCode(code);
 
             }
@@ -139,6 +140,8 @@ public class Sign_in_verify extends Fragment {
                     mviewmodel.navigatetodestination();
                 }
                 else{
+                    btn.setEnabled(true);
+                    pb.setVisibility(View.INVISIBLE);
                     Toast.makeText(getContext(),"Invalid OTP", Toast.LENGTH_LONG).show();
                 }
             }

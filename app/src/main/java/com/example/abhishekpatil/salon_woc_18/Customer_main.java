@@ -67,7 +67,6 @@ public class Customer_main extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         myref = FirebaseDatabase.getInstance().getReference().child("barber");
         customerref = FirebaseDatabase.getInstance().getReference().child("customer");
-
         return view;
     }
 
@@ -106,6 +105,7 @@ public class Customer_main extends Fragment {
         adapter = new MyAdapter(listItems, getContext());
 
         recyclerView.setAdapter(adapter);
+
     }
 
     @Override
@@ -142,4 +142,5 @@ public class Customer_main extends Fragment {
 
 
     }
+
 }

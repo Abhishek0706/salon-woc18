@@ -63,16 +63,16 @@ public class Edit_profile extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        editname.setHint(City.getName());
+        editname.setText(City.getName());
+        editaddress.setText(City.getAddress());
         editCity.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, Cities.cityname));
         Edit_profileArgs args = Edit_profileArgs.fromBundle(getArguments());
         ArrayAdapter myadapter = (ArrayAdapter) editCity.getAdapter();
         String s = City.getCity();
         int spinnerpos = myadapter.getPosition(s);
         editCity.setSelection(spinnerpos);
-        editaddress.setHint(City.getAddress());
-        type = args.getType();
 
+        type = args.getType();
         phonenumber = City.getPhonenumber();
 
         if (type == 0) {
@@ -83,7 +83,6 @@ public class Edit_profile extends Fragment {
 
             myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber);
         }
-
 
         editbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +97,7 @@ public class Edit_profile extends Fragment {
                 myref.child("city").setValue(Cities.cityname[editCity.getSelectedItemPosition()].trim());
                 City.setName(editname.getText().toString());
                 City.setCity(Cities.cityname[editCity.getSelectedItemPosition()].trim());
+                Toast.makeText(getContext(), "Changes Applied", Toast.LENGTH_LONG).show();
                 if (type == 1 && editaddress.length() != 0) {//barber
                     if (mtask != null && mtask.isInProgress()) {
 
@@ -106,18 +106,22 @@ public class Edit_profile extends Fragment {
                     }
                     City.setAddress(editaddress.getText().toString());
                     myref.child("address").setValue(editaddress.getText().toString());
+//                    getActivity().onBackPressed();
                     NavOptions navOptions = new NavOptions.Builder()
                             .setPopUpTo(R.id.edit_profile, true).build();
                     Navigation.findNavController(getView()).navigate(R.id.action_edit_profile_to_barber_main, null, navOptions);
+//
                 } else {//customer
+
+//                    getActivity().onBackPressed();
                     NavOptions navOptions = new NavOptions.Builder()
                             .setPopUpTo(R.id.edit_profile, true).build();
                     Navigation.findNavController(getView()).navigate(R.id.action_edit_profile_to_customer_main, null, navOptions);
-
+//
                 }
                 editbutton.setEnabled(false);
 
-                Toast.makeText(getContext(), "Changes Applied", Toast.LENGTH_LONG).show();
+
             }
         });
 

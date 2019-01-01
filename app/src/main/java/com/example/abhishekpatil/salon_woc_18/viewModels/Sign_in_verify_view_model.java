@@ -82,7 +82,7 @@ public class Sign_in_verify_view_model extends ViewModel {
                                 for (int i = 1; i <= 13; i++) {
                                     String s = String.valueOf(i);
                                     s = "time" + s;
-                                    City.setPhonenumber(getPhonenumber());
+
                                     barberref.child(getPhonenumber()).child(today).child(s).child("name").setValue("----");
                                     barberref.child(getPhonenumber()).child(today).child(s).child("service").setValue("----");
                                     barberref.child(getPhonenumber()).child(today).child(s).child("status").setValue("0");
@@ -90,6 +90,10 @@ public class Sign_in_verify_view_model extends ViewModel {
                                 }
 
                             }
+                            City.setPhonenumber(getPhonenumber());
+                            City.setName(dataSnapshot.child("name").getValue().toString());
+                            City.setAddress(dataSnapshot.child("address").getValue().toString());
+                            City.setCity(dataSnapshot.child("city").getValue().toString());
                             NavOptions navOptions = new NavOptions.Builder()
                                     .setPopUpTo(R.id.sign_in_verify, true)
                                     .build();

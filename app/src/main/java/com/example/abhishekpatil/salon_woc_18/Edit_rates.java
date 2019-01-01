@@ -1,11 +1,13 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,8 +97,12 @@ public class Edit_rates extends Fragment {
                 } else {
                     myref.child("bleach").setValue("0");
                 }
-                btn.setClickable(false);
+                btn.setEnabled(false);
+
                 Toast.makeText(getContext(),"Changes Applied.",Toast.LENGTH_LONG).show();
+
+//                getActivity().onBackPressed();
+
                 NavOptions navOptions = new NavOptions.Builder()
                         .setPopUpTo(R.id.edit_rates, true)
                         .build();
