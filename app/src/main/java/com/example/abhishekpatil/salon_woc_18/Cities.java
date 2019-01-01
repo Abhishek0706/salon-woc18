@@ -496,6 +496,7 @@ public class Cities {
             "Ri Bhoi",
             "Rohtak",
             "Rohtas",
+            "Roorkee",
             "Rudraprayag",
             "Rupnagar",
             "Sabarkantha",

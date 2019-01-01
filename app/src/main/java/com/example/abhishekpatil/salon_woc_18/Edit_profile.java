@@ -55,7 +55,7 @@ public class Edit_profile extends Fragment {
         editCity = (Spinner) view.findViewById(R.id.spinner_city);
         editaddress = (EditText) view.findViewById(R.id.edit_address);
         editbutton = (Button) view.findViewById(R.id.btn_edit);
-        myImage = (ImageView)view.findViewById(R.id.edit_image);
+        myImage = (ImageView) view.findViewById(R.id.edit_image);
         mStorageRef = FirebaseStorage.getInstance().getReference();
         return view;
     }
@@ -99,12 +99,11 @@ public class Edit_profile extends Fragment {
                 City.setName(editname.getText().toString());
                 City.setCity(Cities.cityname[editCity.getSelectedItemPosition()].trim());
                 if (type == 1 && editaddress.length() != 0) {//barber
-                    if(mtask!=null&& mtask.isInProgress()){
+                    if (mtask != null && mtask.isInProgress()) {
 
-                    }else{
+                    } else {
                         uploadFile();
                     }
-
                     City.setAddress(editaddress.getText().toString());
                     myref.child("address").setValue(editaddress.getText().toString());
                     NavOptions navOptions = new NavOptions.Builder()
@@ -128,33 +127,35 @@ public class Edit_profile extends Fragment {
                 Intent i = new Intent();
                 i.setType("image/*");
                 i.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(i,1);
+                startActivityForResult(i, 1);
             }
         });
 
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode ==1 && resultCode == RESULT_OK && data !=null && data.getData()!=null){
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null) {
             imageuri = data.getData();
             myImage.setImageURI(imageuri);
         }
     }
-    private void uploadFile(){
-        if(imageuri!= null){
-           StorageReference fileref= mStorageRef.child(City.getPhonenumber());
 
-               mtask = fileref.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+    private void uploadFile() {
+        if (imageuri != null) {
+            StorageReference fileref = mStorageRef.child(City.getPhonenumber());
+
+            mtask = fileref.putFile(imageuri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
                 }
             });
-        }else{
-            Toast.makeText(getContext(),"No Image Selected. Last uploaded Image will be shown.",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getContext(), "No Image Selected. Last uploaded Image will be shown.", Toast.LENGTH_LONG).show();
         }
     }
 }
