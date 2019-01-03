@@ -64,7 +64,7 @@ public class Home_view_model extends ViewModel {
     public void setInitialData() {
         Calendar calendar = Calendar.getInstance();
         String year = String.valueOf(calendar.get(Calendar.YEAR));
-        String month = String.valueOf(calendar.get(Calendar.MONTH));
+        String month = String.valueOf(calendar.get(Calendar.MONTH)+1);
         String day = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
         if(day.length()==1){
             day = "0"+day;

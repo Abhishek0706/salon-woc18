@@ -4,7 +4,7 @@
 
     <application
         android:allowBackup="true"
-        android:label="Salon-woc 18"
+        android:label="Daddy's Salon"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
