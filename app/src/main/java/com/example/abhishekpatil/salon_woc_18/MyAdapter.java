@@ -59,11 +59,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 Glide.with(context).load(uri).into(viewHolder.img);
 
             }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(context, "failed", Toast.LENGTH_LONG).show();
-            }
         });
 
         viewHolder.text_name.setText(listItem.getName());

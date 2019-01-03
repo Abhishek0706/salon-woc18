@@ -16,8 +16,11 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
@@ -64,6 +67,61 @@ public class Edit_rates extends Fragment {
         super.onStart();
         final String phonenumber = City.getPhonenumber();
         myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber).child("services");
+        myref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(!dataSnapshot.child("haircut").getValue().toString().equals("0")){
+                    box_haircut.setChecked(true);
+                    rate_haircut.setText(dataSnapshot.child("haircut").getValue().toString());
+                }
+                else{
+                    box_haircut.setChecked(false);
+                }
+                if(!dataSnapshot.child("shave").getValue().toString().equals("0")){
+                    box_hairspa.setChecked(true);
+                    rate_hairspa.setText(dataSnapshot.child("shave").getValue().toString());
+                }
+                else{
+                    box_hairspa.setChecked(false);
+                }
+                if(!dataSnapshot.child("haircolor").getValue().toString().equals("0")){
+                    box_haircolor.setChecked(true);
+                    rate_haircolor.setText(dataSnapshot.child("haircolor").getValue().toString());
+                }
+                else{
+                    box_haircolor.setChecked(false);
+                }
+                if(!dataSnapshot.child("massage").getValue().toString().equals("0")){
+                    box_massage.setChecked(true);
+                    rate_massage.setText(dataSnapshot.child("massage").getValue().toString());
+                }
+                else{
+                    box_massage.setChecked(false);
+                }
+                if(!dataSnapshot.child("facial").getValue().toString().equals("0")){
+                    box_facial.setChecked(true);
+                    rate_facial.setText(dataSnapshot.child("facial").getValue().toString());
+                }
+                else{
+                    box_facial.setChecked(false);
+                }
+                if(!dataSnapshot.child("bleach").getValue().toString().equals("0")){
+                    box_bleach.setChecked(true);
+                    rate_bleach.setText(dataSnapshot.child("bleach").getValue().toString());
+                }
+                else{
+                    box_bleach.setChecked(false);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,8 +158,6 @@ public class Edit_rates extends Fragment {
                 btn.setEnabled(false);
 
                 Toast.makeText(getContext(),"Changes Applied.",Toast.LENGTH_LONG).show();
-
-//                getActivity().onBackPressed();
 
                 NavOptions navOptions = new NavOptions.Builder()
                         .setPopUpTo(R.id.edit_rates, true)

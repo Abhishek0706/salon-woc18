@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.abhishekpatil.salon_woc_18.viewModels.Home_view_model;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,6 +24,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 
 import java.util.Calendar;
 
@@ -29,10 +34,13 @@ import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 public class Home extends Fragment {
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         return view;
     }
 
@@ -49,11 +57,13 @@ public class Home extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.child(phonenumber).exists()) {
+                        //Customer
                         String city = dataSnapshot.child(phonenumber).child("city").getValue().toString();
                         String name = dataSnapshot.child(phonenumber).child("name").getValue().toString();
                         mviewmodel.setdetail(phonenumber, city, name);
                         mviewmodel.navigateCustomer();
                     } else {
+                        //barber
                         final DatabaseReference barberref = mviewmodel.getBarberref();
                         barberref.child(phonenumber).addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
@@ -73,6 +83,11 @@ public class Home extends Fragment {
                                 String name = dataSnapshot.child("name").getValue().toString();
                                 String address = dataSnapshot.child("address").getValue().toString();
                                 City.setAddress(address);
+                                //yaha p url dset karna hai
+
+
+
+
                                 mviewmodel.setdetail(phonenumber, city, name);
                                 if (!dataSnapshot.child(today).exists()) {
                                     mviewmodel.setInitialData();

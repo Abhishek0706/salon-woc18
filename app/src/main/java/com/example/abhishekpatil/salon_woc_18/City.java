@@ -1,10 +1,21 @@
 package com.example.abhishekpatil.salon_woc_18;
 
+import android.net.Uri;
+
 public class City {
     public static  String city;
     public static String phonenumber;
     public static String name;
     public static String address;
+    public static Uri uri;
+
+    public static Uri getUri() {
+        return uri;
+    }
+
+    public static void setUri(Uri uri) {
+        City.uri = uri;
+    }
 
     public static String getAddress() {
         return address;

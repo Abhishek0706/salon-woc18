@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -65,6 +66,14 @@ public class Edit_profile extends Fragment {
         super.onStart();
         editname.setText(City.getName());
         editaddress.setText(City.getAddress());
+        mStorageRef.child(City.getPhonenumber()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(getContext()).load(uri).into(myImage);
+
+            }
+        });
+
         editCity.setAdapter(new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_dropdown_item, Cities.cityname));
         Edit_profileArgs args = Edit_profileArgs.fromBundle(getArguments());
         ArrayAdapter myadapter = (ArrayAdapter) editCity.getAdapter();
@@ -76,12 +85,16 @@ public class Edit_profile extends Fragment {
         phonenumber = City.getPhonenumber();
 
         if (type == 0) {
+            //customer
             editaddress.setVisibility(View.GONE);
             myImage.setVisibility(View.GONE);
             myref = FirebaseDatabase.getInstance().getReference().child("customer").child(phonenumber);
         } else {
-
+            //barber
             myref = FirebaseDatabase.getInstance().getReference().child("barber").child(phonenumber);
+            // retrieve image
+
+
         }
 
         editbutton.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +119,7 @@ public class Edit_profile extends Fragment {
                     }
                     City.setAddress(editaddress.getText().toString());
                     myref.child("address").setValue(editaddress.getText().toString());
-//                    getActivity().onBackPressed();
+
                     NavOptions navOptions = new NavOptions.Builder()
                             .setPopUpTo(R.id.edit_profile, true).build();
                     Navigation.findNavController(getView()).navigate(R.id.action_edit_profile_to_barber_main, null, navOptions);
